@@ -32,7 +32,8 @@ class Login extends CI_Controller{
             redirect(base_url("index.php/Home"));
  
         }else{
-            echo "Username dan password salah !";
+             $this->session->set_flashdata('failedLogin', 'Password/Username Salah');
+            redirect('login');
         }
     }
  

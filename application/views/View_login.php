@@ -36,6 +36,11 @@
           <form class="form-login" action="login/aksi_login" method="post">
             <h2 class="form-login-heading">sign in now</h2>
             <div class="login-wrap">
+             <?php  if($this->session->flashdata('failedLogin')==true){?>
+            <div class="alert alert-danger">
+             <?php echo $this->session->flashdata('failedLogin');?> 
+            </div>
+             <?php } ?>
                 <input type="text" class="form-control" name="username" placeholder="User ID" required="" autofocus>
                 <br>
                 <input type="password" class="form-control" name="password" placeholder="Password" required="">
