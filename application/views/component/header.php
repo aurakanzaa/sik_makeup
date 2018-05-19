@@ -197,10 +197,10 @@ $data['ava'] = $session_data['ava'];
               <ul class="sidebar-menu" id="nav-accordion">
               
                   <p class="centered"><a href="profile.html"><img src="assets/img/ui-sam.jpg" class="img-circle" width="60"></a></p>
-                  <h5 class="centered">Marcel Newman</h5>
+                  <h5 class="centered"><?= $session_data['username'];?></h5>
                       
                   <li class="mt">
-                      <a class="active" href="index.html">
+                      <a class="active" href="home">
                           <i class="fa fa-dashboard"></i>
                           <span>Home</span>
                       </a>
@@ -262,11 +262,11 @@ $data['ava'] = $session_data['ava'];
                   <li class="sub-menu">
                       <a href="javascript:;" >
                           <i class=" fa fa-bar-chart-o"></i>
-                          <span>Charts</span>
+                          <span>Products</span>
                       </a>
                       <ul class="sub">
-                          <li><a  href="morris.html">Morris</a></li>
-                          <li><a  href="chartjs.html">Chartjs</a></li>
+                          <li><a  href="product">Product</a></li>
+                          <li><a  href="kategori">Kategori</a></li>
                       </ul>
                   </li>
 
