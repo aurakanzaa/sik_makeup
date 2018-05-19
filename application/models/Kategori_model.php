@@ -19,7 +19,7 @@ class Kategori_model extends CI_Model {
 	public function getKategori($id)
 	{
 		$this->db->where('id_kategori',$id);
-		$query = $this->db->get('nama_kategori');
+		$query = $this->db->get('kategori');
 		return $query->result();
 	}	
 
@@ -31,7 +31,7 @@ class Kategori_model extends CI_Model {
 			
 			);
 		$this->db->where('id_kategori',$id);
-		$this->db->update('nama_kategori',$data);
+		$this->db->update('kategori',$data);
 		if($this->db->affected_rows()==1){
 			return true;
 		}else{
@@ -41,7 +41,7 @@ class Kategori_model extends CI_Model {
 
 	public function delete($id){
 		$this->db->where('id_kategori',$id);
-		$this->db->delete('nama_kategori');
+		$this->db->delete('kategori');
 		
 	}
 
