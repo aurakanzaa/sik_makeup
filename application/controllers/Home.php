@@ -17,24 +17,28 @@ class Home extends CI_Controller {
 
 	public function index()
 	{
-		if($this->session->userdata('logged_in')){
-			$session_data= $this->session->userdata('logged_in');
-			if ($session_data['role'] === 'admin') {
-		    	$object['kat']=$this->kategori_model->getDataKategori();
-				$this->load->view('component/header');
-				$this->load->view('home',$object);
-				$this->load->view('component/footer');
-			
+		// if($this->session->set_userdata('logged_in')){
+		// 	$session_data= $this->session->set_userdata('logged_in');
+		// 	// $data['username']=$session_data['username'];
+		// 	if ($session_data['role'] === 'admin') {
+				
+  //   			$this->load->view('component/header');
+		// 		$this->load->view('home',$data);
+		// 		$this->load->view('component/footer');
   //   		}elseif($session_data['role'] === 'kasir'){
-  //   			redirect('login','refresh');
-    		}
+  //   			$this->load->view('component/header');
+  //   			$this->load->view('home',$data);
+  //   			$this->load->view('component/footer');
+  //   		}
 		// }else{
 		// 	redirect('login','refresh');
-		}	
+		// }
+
 		$this->load->view('component/header');
-		$this->load->view('component/footer');
 		$this->load->view('home');
+		$this->load->view('component/footer');
 	}
+
 
 }
 
