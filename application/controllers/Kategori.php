@@ -15,21 +15,26 @@ class Kategori extends CI_Controller {
 	}
 	public function index()
 	{
-		if($this->session->userdata('logged_in')){
-			$session_data= $this->session->userdata('logged_in');
-			// $data['username']=$session_data['username'];
-			if ($session_data['role'] === 'admin') {
+		// if($this->session->userdata('logged_in')){
+		// 	$session_data= $this->session->userdata('logged_in');
+		// 	if ($session_data['role'] === 'admin') {
+		//     	$object['kat']=$this->kategori_model->getDataKategori();
+		// 		$this->load->view('component/header');
+		// 		$this->load->view('kategori',$object);
+		// 		$this->load->view('component/footer');
+			
+  //   		}elseif($session_data['role'] === 'kasir'){
+  //   			redirect('login','refresh');
+  //   		}
+		// }else{
+		// 	redirect('login','refresh');
+		// }	
+		
 		    	$object['kat']=$this->kategori_model->getDataKategori();
 				$this->load->view('component/header');
 				$this->load->view('kategori',$object);
 				$this->load->view('component/footer');
 			
-    		}elseif($session_data['role'] === 'kasir'){
-    			redirect('login','refresh');
-    		}
-		}else{
-			redirect('login','refresh');
-		}	
 	}	
 
 	public function form_kategori(){
