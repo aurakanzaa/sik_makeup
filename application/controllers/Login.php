@@ -27,7 +27,7 @@ class Login extends CI_Controller{
                 'status' => "login"
                 );
  
-            $this->session->set_userdata($data_session);
+            $this->session->set_userdata('userSession',$data_session);
  
             redirect(base_url("index.php/Home"));
  

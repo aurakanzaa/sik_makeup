@@ -2,6 +2,7 @@
       MAIN CONTENT
       *********************************************************************************************************************************************************** -->
       <!--main content start-->
+      <?php $sess=$this->session->userdata('userSession'); ?>
       <section id="main-content">
           <section class="wrapper">
 
@@ -14,7 +15,7 @@
 					  			<span class="li_heart"></span>
 					  			<h3>933</h3>
                   			</div>
-					  			<p>933 People liked your page the last 24hs. Whoohoo!</p>
+					  			<p><?php echo $sess['nama']; ?></p>
                   		</div>
                   		<div class="col-md-2 col-sm-2 box0">
                   			<div class="box1">

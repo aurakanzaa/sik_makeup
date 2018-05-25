@@ -40,7 +40,7 @@ $data['ava'] = $session_data['ava'];
         $(document).ready(function () {
         var unique_id = $.gritter.add({
             // (string | mandatory) the heading of the notification
-            title: 'Hi <?= $session_data['username'];?>',
+            title: 'Hi <?php echo $sess=$this->session->userdata('userSession')['nama']; ?>',
             // (string | mandatory) the text inside the notification
             text: 'Welcome to Makeup',
             // (string | optional) the image to display on the left
