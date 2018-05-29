@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
--- https://www.phpmyadmin.net/
+-- version 4.5.1
+-- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 28, 2018 at 03:43 PM
--- Server version: 10.1.21-MariaDB
--- PHP Version: 7.1.1
+-- Generation Time: May 29, 2018 at 06:01 AM
+-- Server version: 10.1.16-MariaDB
+-- PHP Version: 5.6.24
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -42,17 +42,17 @@ CREATE TABLE `absensi` (
 CREATE TABLE `admin` (
   `id` int(11) NOT NULL,
   `id_role` int(11) NOT NULL,
+  `id_golongan` int(11) NOT NULL,
   `username` varchar(8) NOT NULL,
-  `password` varchar(8) NOT NULL,
-  `id_gol` int(11) NOT NULL
+  `password` varchar(32) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `admin`
 --
 
-INSERT INTO `admin` (`id`, `id_role`, `username`, `password`, `id_gol`) VALUES
-(1, 1, 'admin', 'admin', 0);
+INSERT INTO `admin` (`id`, `id_role`, `id_golongan`, `username`, `password`) VALUES
+(2, 1, 1, 'admin', '21232f297a57a5a743894a0e4a801fc3');
 
 -- --------------------------------------------------------
 
@@ -92,7 +92,8 @@ CREATE TABLE `gaji` (
   `id_gaji` int(3) NOT NULL,
   `total_gaji` int(11) NOT NULL,
   `tanggal` date NOT NULL,
-  `status` varchar(10) NOT NULL
+  `status` varchar(10) NOT NULL,
+  `id_admin` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -106,6 +107,13 @@ CREATE TABLE `golongan` (
   `nama_gol` varchar(15) NOT NULL,
   `gaji_pokok` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `golongan`
+--
+
+INSERT INTO `golongan` (`id_gol`, `nama_gol`, `gaji_pokok`) VALUES
+(1, 'SUper User', 10000);
 
 -- --------------------------------------------------------
 
@@ -449,7 +457,8 @@ ALTER TABLE `absensi`
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `id_role` (`id_role`);
+  ADD KEY `id_role` (`id_role`),
+  ADD KEY `id_golongan` (`id_golongan`);
 
 --
 -- Indexes for table `cash_flow`
@@ -466,7 +475,8 @@ ALTER TABLE `cash_flow`
 -- Indexes for table `gaji`
 --
 ALTER TABLE `gaji`
-  ADD PRIMARY KEY (`id_gaji`);
+  ADD PRIMARY KEY (`id_gaji`),
+  ADD KEY `id_admin` (`id_admin`);
 
 --
 -- Indexes for table `golongan`
@@ -588,7 +598,7 @@ ALTER TABLE `absensi`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `cash_flow`
 --
@@ -603,7 +613,7 @@ ALTER TABLE `gaji`
 -- AUTO_INCREMENT for table `golongan`
 --
 ALTER TABLE `golongan`
-  MODIFY `id_gol` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_gol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `kategori`
 --
@@ -688,7 +698,8 @@ ALTER TABLE `absensi`
 -- Constraints for table `admin`
 --
 ALTER TABLE `admin`
-  ADD CONSTRAINT `admin_ibfk_1` FOREIGN KEY (`id_role`) REFERENCES `role` (`id_role`);
+  ADD CONSTRAINT `admin_ibfk_1` FOREIGN KEY (`id_role`) REFERENCES `role` (`id_role`),
+  ADD CONSTRAINT `admin_ibfk_2` FOREIGN KEY (`id_golongan`) REFERENCES `golongan` (`id_gol`);
 
 --
 -- Constraints for table `cash_flow`
@@ -699,6 +710,12 @@ ALTER TABLE `cash_flow`
   ADD CONSTRAINT `cash_flow_ibfk_5` FOREIGN KEY (`id_pembayaran`) REFERENCES `pembayaran` (`id_pembayaran`),
   ADD CONSTRAINT `cash_flow_ibfk_6` FOREIGN KEY (`id_Pengeluaran`) REFERENCES `pengeluaran` (`id_pengeluaran`),
   ADD CONSTRAINT `cash_flow_ibfk_7` FOREIGN KEY (`id_utang`) REFERENCES `utang` (`id_utang`);
+
+--
+-- Constraints for table `gaji`
+--
+ALTER TABLE `gaji`
+  ADD CONSTRAINT `gaji_ibfk_1` FOREIGN KEY (`id_admin`) REFERENCES `admin` (`id`);
 
 --
 -- Constraints for table `labarugi`

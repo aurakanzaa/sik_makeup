@@ -265,8 +265,9 @@ $data['ava'] = $session_data['ava'];
                           <span>Products</span>
                       </a>
                       <ul class="sub">
-                          <li><a  href="product">Product</a></li>
+                          <li><a  href="produk">Produk</a></li>
                           <li><a  href="kategori">Kategori</a></li>
+                          <li><a  href="supplier">Supplier</a></li>
                       </ul>
                   </li>
 
