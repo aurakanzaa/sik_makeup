@@ -5,18 +5,19 @@ MAIN CONTENT
 <section id="main-content">
   <section class="wrapper site-min-height">
     <br>&nbsp;&nbsp;&nbsp;&nbsp;
-    
+    <a href=""><button type="button" class="btn btn-success "><i class="fa fa-plus"> </i> Tambah Supplier</button></a>
     <br>
     
     <div class="col-md-12 mt">
       <div class="content-panel">
-        <table style="margin:20px auto;" border="1">
+        <table class="table table-hover">
+        <h4><i class="fa fa-angle-right"></i> Daftar Supplier </h4>
         <tr>
           <th>No</th>
           <th>Nama Supplier</th>
           <th>Alamat</th>
           <th>No Telpon</th>
-          
+          <th align="center">Edit | Delete</th> 
         </tr>
         <?php 
         $no = 1;
@@ -28,8 +29,12 @@ MAIN CONTENT
           <td><?php echo $sup->alamat ?></td>
           <td><?php echo $sup->no_telp ?></td>
           <td>
-                <?php echo anchor('crud/edit/'.$sup->id_supplier,'Edit'); ?>
-                <?php echo anchor('crud/hapus/'.$sup->id_supplier,'Hapus'); ?>
+                <a class="btn btn-primary btn-xs" href="">
+                  <i class="fa fa-pencil"></i>
+                </a>&nbsp;&nbsp;&nbsp;&nbsp;
+                <a class="btn btn-danger btn-xs" href="">
+                  <i class="fa fa-trash-o"></i>
+                </a>  
           </td>
         </tr>
         <?php } ?>
