@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 17 Mei 2018 pada 14.53
--- Versi Server: 10.1.16-MariaDB
--- PHP Version: 7.0.9
+-- Generation Time: May 29, 2018 at 06:01 AM
+-- Server version: 10.1.16-MariaDB
+-- PHP Version: 5.6.24
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,32 +17,47 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `makeup_db`
+-- Database: `makeupnew`
 --
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `admin`
+-- Table structure for table `absensi`
+--
+
+CREATE TABLE `absensi` (
+  `id_absen` int(11) NOT NULL,
+  `tgl_masuk_jam` datetime NOT NULL,
+  `tgl_pulang_jam` datetime NOT NULL,
+  `id_admin` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin`
 --
 
 CREATE TABLE `admin` (
   `id` int(11) NOT NULL,
-  `username` varchar(32) NOT NULL,
-  `password` varchar(64) NOT NULL
+  `id_role` int(11) NOT NULL,
+  `id_golongan` int(11) NOT NULL,
+  `username` varchar(8) NOT NULL,
+  `password` varchar(32) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `admin`
+-- Dumping data for table `admin`
 --
 
-INSERT INTO `admin` (`id`, `username`, `password`) VALUES
-(1, 'admin', '21232f297a57a5a743894a0e4a801fc3');
+INSERT INTO `admin` (`id`, `id_role`, `id_golongan`, `username`, `password`) VALUES
+(2, 1, 1, 'admin', '21232f297a57a5a743894a0e4a801fc3');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `cash_flow`
+-- Table structure for table `cash_flow`
 --
 
 CREATE TABLE `cash_flow` (
@@ -55,7 +70,7 @@ CREATE TABLE `cash_flow` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `cash_flow`
+-- Dumping data for table `cash_flow`
 --
 
 INSERT INTO `cash_flow` (`id_transaksi`, `id_user`, `id_pembayaran`, `id_Pengeluaran`, `id_utang`, `id_pembelian`) VALUES
@@ -70,7 +85,40 @@ INSERT INTO `cash_flow` (`id_transaksi`, `id_user`, `id_pembayaran`, `id_Pengelu
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kategori`
+-- Table structure for table `gaji`
+--
+
+CREATE TABLE `gaji` (
+  `id_gaji` int(3) NOT NULL,
+  `total_gaji` int(11) NOT NULL,
+  `tanggal` date NOT NULL,
+  `status` varchar(10) NOT NULL,
+  `id_admin` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `golongan`
+--
+
+CREATE TABLE `golongan` (
+  `id_gol` int(11) NOT NULL,
+  `nama_gol` varchar(15) NOT NULL,
+  `gaji_pokok` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `golongan`
+--
+
+INSERT INTO `golongan` (`id_gol`, `nama_gol`, `gaji_pokok`) VALUES
+(1, 'SUper User', 10000);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `kategori`
 --
 
 CREATE TABLE `kategori` (
@@ -79,19 +127,20 @@ CREATE TABLE `kategori` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `kategori`
+-- Dumping data for table `kategori`
 --
 
 INSERT INTO `kategori` (`id_kategori`, `nama_kategori`) VALUES
 (1, 'eyes'),
 (2, 'lips'),
 (3, 'face'),
-(4, 'beauty & skin care');
+(4, 'beauty & skin care'),
+(6, 'alololoy');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `labarugi`
+-- Table structure for table `labarugi`
 --
 
 CREATE TABLE `labarugi` (
@@ -112,7 +161,7 @@ CREATE TABLE `labarugi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `labarugi`
+-- Dumping data for table `labarugi`
 --
 
 INSERT INTO `labarugi` (`id_labarugi`, `id_user`, `penjualan`, `retur_penjualan`, `potongan_penjualan`, `jml_retur_potongan_penjualan`, `penjualan_bersih`, `harga_pokok_penjualan`, `laba_bruto`, `biaya_operasional`, `biaya_adm_umum`, `total_biaya`, `laba_usaha_bersih`, `tanggal`) VALUES
@@ -121,7 +170,7 @@ INSERT INTO `labarugi` (`id_labarugi`, `id_user`, `penjualan`, `retur_penjualan`
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `neraca`
+-- Table structure for table `neraca`
 --
 
 CREATE TABLE `neraca` (
@@ -135,7 +184,7 @@ CREATE TABLE `neraca` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `neraca`
+-- Dumping data for table `neraca`
 --
 
 INSERT INTO `neraca` (`id_neraca`, `id_user`, `id_transaksi`, `Activa`, `Pasiva`, `tgl_neraca`, `keterangan`) VALUES
@@ -150,7 +199,7 @@ INSERT INTO `neraca` (`id_neraca`, `id_user`, `id_transaksi`, `Activa`, `Pasiva`
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pembayaran`
+-- Table structure for table `pembayaran`
 --
 
 CREATE TABLE `pembayaran` (
@@ -161,7 +210,7 @@ CREATE TABLE `pembayaran` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `pembayaran`
+-- Dumping data for table `pembayaran`
 --
 
 INSERT INTO `pembayaran` (`id_pembayaran`, `id_pemesanan`, `Total_pembayaran`, `tgl_pembayaran`) VALUES
@@ -172,7 +221,7 @@ INSERT INTO `pembayaran` (`id_pembayaran`, `id_pemesanan`, `Total_pembayaran`, `
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pembelian`
+-- Table structure for table `pembelian`
 --
 
 CREATE TABLE `pembelian` (
@@ -188,7 +237,7 @@ CREATE TABLE `pembelian` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `pembelian`
+-- Dumping data for table `pembelian`
 --
 
 INSERT INTO `pembelian` (`id_pembelian`, `id_user`, `nama_barang`, `id_produk`, `qty`, `Harga`, `harga_total`, `id_supp`, `tgl_beli`) VALUES
@@ -199,7 +248,7 @@ INSERT INTO `pembelian` (`id_pembelian`, `id_user`, `nama_barang`, `id_produk`, 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pemesanan`
+-- Table structure for table `pemesanan`
 --
 
 CREATE TABLE `pemesanan` (
@@ -211,7 +260,7 @@ CREATE TABLE `pemesanan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `pemesanan`
+-- Dumping data for table `pemesanan`
 --
 
 INSERT INTO `pemesanan` (`id_pemesanan`, `id_user`, `id_produk`, `qty`, `tanggal_pemesanan`) VALUES
@@ -223,7 +272,7 @@ INSERT INTO `pemesanan` (`id_pemesanan`, `id_user`, `id_produk`, `qty`, `tanggal
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pengeluaran`
+-- Table structure for table `pengeluaran`
 --
 
 CREATE TABLE `pengeluaran` (
@@ -236,7 +285,7 @@ CREATE TABLE `pengeluaran` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `pengeluaran`
+-- Dumping data for table `pengeluaran`
 --
 
 INSERT INTO `pengeluaran` (`id_pengeluaran`, `id_user`, `nama_barang`, `harga_satuan`, `qty`, `total_harga`) VALUES
@@ -247,7 +296,7 @@ INSERT INTO `pengeluaran` (`id_pengeluaran`, `id_user`, `nama_barang`, `harga_sa
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `perubahan_modal`
+-- Table structure for table `perubahan_modal`
 --
 
 CREATE TABLE `perubahan_modal` (
@@ -262,7 +311,7 @@ CREATE TABLE `perubahan_modal` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `perubahan_modal`
+-- Dumping data for table `perubahan_modal`
 --
 
 INSERT INTO `perubahan_modal` (`id_perubahan_modal`, `id_user`, `id_laba`, `modal_awal`, `laba_bersih`, `prive`, `total`, `modal_akhir`) VALUES
@@ -271,7 +320,7 @@ INSERT INTO `perubahan_modal` (`id_perubahan_modal`, `id_user`, `id_laba`, `moda
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `produk`
+-- Table structure for table `produk`
 --
 
 CREATE TABLE `produk` (
@@ -284,7 +333,7 @@ CREATE TABLE `produk` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `produk`
+-- Dumping data for table `produk`
 --
 
 INSERT INTO `produk` (`id_produk`, `nama_produk`, `stok`, `harga`, `id_kategori`, `deskripsi`) VALUES
@@ -294,7 +343,7 @@ INSERT INTO `produk` (`id_produk`, `nama_produk`, `stok`, `harga`, `id_kategori`
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `role`
+-- Table structure for table `role`
 --
 
 CREATE TABLE `role` (
@@ -303,7 +352,7 @@ CREATE TABLE `role` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `role`
+-- Dumping data for table `role`
 --
 
 INSERT INTO `role` (`id_role`, `nama_role`) VALUES
@@ -313,7 +362,7 @@ INSERT INTO `role` (`id_role`, `nama_role`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `struk`
+-- Table structure for table `struk`
 --
 
 CREATE TABLE `struk` (
@@ -325,7 +374,7 @@ CREATE TABLE `struk` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `supplier`
+-- Table structure for table `supplier`
 --
 
 CREATE TABLE `supplier` (
@@ -336,7 +385,7 @@ CREATE TABLE `supplier` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `supplier`
+-- Dumping data for table `supplier`
 --
 
 INSERT INTO `supplier` (`id_supplier`, `nama`, `alamat`, `no_telp`) VALUES
@@ -349,7 +398,7 @@ INSERT INTO `supplier` (`id_supplier`, `nama`, `alamat`, `no_telp`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `user`
+-- Table structure for table `user`
 --
 
 CREATE TABLE `user` (
@@ -363,7 +412,7 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `user`
+-- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`id`, `id_role`, `nama`, `alamat`, `email`, `jenis_kelamin`, `no_telp`) VALUES
@@ -372,7 +421,7 @@ INSERT INTO `user` (`id`, `id_role`, `nama`, `alamat`, `email`, `jenis_kelamin`,
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `utang`
+-- Table structure for table `utang`
 --
 
 CREATE TABLE `utang` (
@@ -385,7 +434,7 @@ CREATE TABLE `utang` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `utang`
+-- Dumping data for table `utang`
 --
 
 INSERT INTO `utang` (`id_utang`, `id_user`, `nama_barang`, `total_utang`, `jml_utang`, `sisa_utang`) VALUES
@@ -397,6 +446,21 @@ INSERT INTO `utang` (`id_utang`, `id_user`, `nama_barang`, `total_utang`, `jml_u
 --
 
 --
+-- Indexes for table `absensi`
+--
+ALTER TABLE `absensi`
+  ADD PRIMARY KEY (`id_absen`),
+  ADD KEY `id_admin` (`id_admin`);
+
+--
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_role` (`id_role`),
+  ADD KEY `id_golongan` (`id_golongan`);
+
+--
 -- Indexes for table `cash_flow`
 --
 ALTER TABLE `cash_flow`
@@ -406,6 +470,19 @@ ALTER TABLE `cash_flow`
   ADD KEY `id_Pengeluaran` (`id_Pengeluaran`),
   ADD KEY `id_utang` (`id_utang`,`id_pembelian`),
   ADD KEY `id_pembelian` (`id_pembelian`);
+
+--
+-- Indexes for table `gaji`
+--
+ALTER TABLE `gaji`
+  ADD PRIMARY KEY (`id_gaji`),
+  ADD KEY `id_admin` (`id_admin`);
+
+--
+-- Indexes for table `golongan`
+--
+ALTER TABLE `golongan`
+  ADD PRIMARY KEY (`id_gol`);
 
 --
 -- Indexes for table `kategori`
@@ -513,15 +590,35 @@ ALTER TABLE `utang`
 --
 
 --
+-- AUTO_INCREMENT for table `absensi`
+--
+ALTER TABLE `absensi`
+  MODIFY `id_absen` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
 -- AUTO_INCREMENT for table `cash_flow`
 --
 ALTER TABLE `cash_flow`
   MODIFY `id_transaksi` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
+-- AUTO_INCREMENT for table `gaji`
+--
+ALTER TABLE `gaji`
+  MODIFY `id_gaji` int(3) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `golongan`
+--
+ALTER TABLE `golongan`
+  MODIFY `id_gol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
 -- AUTO_INCREMENT for table `kategori`
 --
 ALTER TABLE `kategori`
-  MODIFY `id_kategori` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_kategori` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `labarugi`
 --
@@ -588,11 +685,24 @@ ALTER TABLE `user`
 ALTER TABLE `utang`
   MODIFY `id_utang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+-- Constraints for dumped tables
 --
 
 --
--- Ketidakleluasaan untuk tabel `cash_flow`
+-- Constraints for table `absensi`
+--
+ALTER TABLE `absensi`
+  ADD CONSTRAINT `absensi_ibfk_1` FOREIGN KEY (`id_admin`) REFERENCES `admin` (`id`);
+
+--
+-- Constraints for table `admin`
+--
+ALTER TABLE `admin`
+  ADD CONSTRAINT `admin_ibfk_1` FOREIGN KEY (`id_role`) REFERENCES `role` (`id_role`),
+  ADD CONSTRAINT `admin_ibfk_2` FOREIGN KEY (`id_golongan`) REFERENCES `golongan` (`id_gol`);
+
+--
+-- Constraints for table `cash_flow`
 --
 ALTER TABLE `cash_flow`
   ADD CONSTRAINT `cash_flow_ibfk_3` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`),
@@ -602,26 +712,32 @@ ALTER TABLE `cash_flow`
   ADD CONSTRAINT `cash_flow_ibfk_7` FOREIGN KEY (`id_utang`) REFERENCES `utang` (`id_utang`);
 
 --
--- Ketidakleluasaan untuk tabel `labarugi`
+-- Constraints for table `gaji`
+--
+ALTER TABLE `gaji`
+  ADD CONSTRAINT `gaji_ibfk_1` FOREIGN KEY (`id_admin`) REFERENCES `admin` (`id`);
+
+--
+-- Constraints for table `labarugi`
 --
 ALTER TABLE `labarugi`
   ADD CONSTRAINT `labarugi_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`);
 
 --
--- Ketidakleluasaan untuk tabel `neraca`
+-- Constraints for table `neraca`
 --
 ALTER TABLE `neraca`
   ADD CONSTRAINT `neraca_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`),
   ADD CONSTRAINT `neraca_ibfk_2` FOREIGN KEY (`id_transaksi`) REFERENCES `cash_flow` (`id_transaksi`);
 
 --
--- Ketidakleluasaan untuk tabel `pembayaran`
+-- Constraints for table `pembayaran`
 --
 ALTER TABLE `pembayaran`
   ADD CONSTRAINT `pembayaran_ibfk_1` FOREIGN KEY (`id_pemesanan`) REFERENCES `pemesanan` (`id_pemesanan`);
 
 --
--- Ketidakleluasaan untuk tabel `pembelian`
+-- Constraints for table `pembelian`
 --
 ALTER TABLE `pembelian`
   ADD CONSTRAINT `pembelian_ibfk_2` FOREIGN KEY (`id_supp`) REFERENCES `supplier` (`id_supplier`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -629,45 +745,45 @@ ALTER TABLE `pembelian`
   ADD CONSTRAINT `pembelian_ibfk_5` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`);
 
 --
--- Ketidakleluasaan untuk tabel `pemesanan`
+-- Constraints for table `pemesanan`
 --
 ALTER TABLE `pemesanan`
   ADD CONSTRAINT `pemesanan_ibfk_1` FOREIGN KEY (`id_produk`) REFERENCES `produk` (`id_produk`),
   ADD CONSTRAINT `pemesanan_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`);
 
 --
--- Ketidakleluasaan untuk tabel `pengeluaran`
+-- Constraints for table `pengeluaran`
 --
 ALTER TABLE `pengeluaran`
   ADD CONSTRAINT `pengeluaran_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`);
 
 --
--- Ketidakleluasaan untuk tabel `perubahan_modal`
+-- Constraints for table `perubahan_modal`
 --
 ALTER TABLE `perubahan_modal`
   ADD CONSTRAINT `perubahan_modal_ibfk_1` FOREIGN KEY (`id_laba`) REFERENCES `labarugi` (`id_labarugi`),
   ADD CONSTRAINT `perubahan_modal_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`);
 
 --
--- Ketidakleluasaan untuk tabel `produk`
+-- Constraints for table `produk`
 --
 ALTER TABLE `produk`
   ADD CONSTRAINT `produk_ibfk_1` FOREIGN KEY (`id_kategori`) REFERENCES `kategori` (`id_kategori`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `struk`
+-- Constraints for table `struk`
 --
 ALTER TABLE `struk`
   ADD CONSTRAINT `struk_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `user`
+-- Constraints for table `user`
 --
 ALTER TABLE `user`
   ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`id_role`) REFERENCES `role` (`id_role`);
 
 --
--- Ketidakleluasaan untuk tabel `utang`
+-- Constraints for table `utang`
 --
 ALTER TABLE `utang`
   ADD CONSTRAINT `utang_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`);

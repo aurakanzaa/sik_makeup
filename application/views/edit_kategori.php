@@ -1,6 +1,6 @@
 <section id="main-content">
     <section class="wrapper">
-        <h3><i class="fa fa-angle-right"></i> Tambah Kategori</h3><hr>
+        <h3><i class="fa fa-angle-right"></i> Edit Kategori</h3><hr>
         <?php echo validation_errors(); ?>  
 
         <?php echo form_open_multipart('kategori/update/'.$this->uri->segment(3));?>

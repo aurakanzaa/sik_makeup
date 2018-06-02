@@ -20,7 +20,7 @@ $data['ava'] = $session_data['ava'];
     <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/css/zabuto_calendar.css">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/js/gritter/css/jquery.gritter.css">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/lineicons/style.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Custom styles for this template -->
     <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/css/style.css">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/css/style-responsive.css">
@@ -197,7 +197,7 @@ $data['ava'] = $session_data['ava'];
               <ul class="sidebar-menu" id="nav-accordion">
               
                   <p class="centered"><a href="profile.html"><img src="assets/img/ui-sam.jpg" class="img-circle" width="60"></a></p>
-                  <h5 class="centered"><?= $session_data['username'];?></h5>
+                  <h5 class="centered"><?php echo $sess=$this->session->userdata('userSession')['nama'];?></h5>
                       
                   <li class="mt">
                       <a class="active" href="home">
@@ -251,12 +251,15 @@ $data['ava'] = $session_data['ava'];
                   </li>
                   <li class="sub-menu">
                       <a href="javascript:;" >
-                          <i class="fa fa-th"></i>
-                          <span>Data Tables</span>
+                          <i class="fa fa-drivers-license-o"></i>
+                          <span>HRD</span>
                       </a>
                       <ul class="sub">
-                          <li><a  href="basic_table.html">Basic Table</a></li>
-                          <li><a  href="responsive_table.html">Responsive Table</a></li>
+                          <li><a  href="admin">Admin</a></li>
+                          <li><a  href="absensi">Absensi</a></li>
+                          <li><a  href="gaji">Gaji</a></li>
+                          <li><a  href="golongan">Golongan</a></li>
+                          <li><a  href="user">User</a></li>
                       </ul>
                   </li>
                   <li class="sub-menu">
