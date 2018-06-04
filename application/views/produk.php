@@ -5,7 +5,7 @@ MAIN CONTENT
 <section id="main-content">
   <section class="wrapper site-min-height">
     <br>&nbsp;&nbsp;&nbsp;&nbsp;
-    <a href=""><button type="button" class="btn btn-success "><i class="fa fa-plus"> </i> Tambah Produk</button></a>
+    <a href="<?php echo base_url('index.php/produk/form_produk'); ?>"><button type="button" class="btn btn-success "><i class="fa fa-plus"> </i> Tambah Produk</button></a>
     <br>
     
     <div class="col-md-12 mt">
@@ -23,15 +23,15 @@ MAIN CONTENT
         </tr>
         <?php 
         $no = 1;
-        foreach($produk as $pro){ 
+        foreach($pro as $key){ 
         ?>
         <tr>
           <td><?php echo $no++ ?></td>
-          <td><?php echo $pro->nama_produk ?></td>
-          <td><?php echo $pro->stok ?></td>
-          <td><?php echo $pro->harga ?></td>
-          <td><?php echo $pro->id_kategori ?></td>
-          <td><?php echo $pro->deskripsi ?></td>
+          <td><?php echo $key->nama_produk ?></td>
+          <td><?php echo $key->stok ?></td>
+          <td><?php echo $key->harga ?></td>
+          <td><?php echo $key->id_kategori ?></td>
+          <td><?php echo $key->deskripsi ?></td>
           <td>
                 <a class="btn btn-primary btn-xs" href="">
                   <i class="fa fa-pencil"></i>
