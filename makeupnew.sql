@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 29, 2018 at 06:01 AM
+-- Generation Time: Jun 07, 2018 at 05:10 PM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 5.6.24
 
@@ -44,15 +44,16 @@ CREATE TABLE `admin` (
   `id_role` int(11) NOT NULL,
   `id_golongan` int(11) NOT NULL,
   `username` varchar(8) NOT NULL,
-  `password` varchar(32) NOT NULL
+  `password` varchar(32) NOT NULL,
+  `foto` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `admin`
 --
 
-INSERT INTO `admin` (`id`, `id_role`, `id_golongan`, `username`, `password`) VALUES
-(2, 1, 1, 'admin', '21232f297a57a5a743894a0e4a801fc3');
+INSERT INTO `admin` (`id`, `id_role`, `id_golongan`, `username`, `password`, `foto`) VALUES
+(2, 1, 1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'fr-11.jpg');
 
 -- --------------------------------------------------------
 
@@ -96,6 +97,13 @@ CREATE TABLE `gaji` (
   `id_admin` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `gaji`
+--
+
+INSERT INTO `gaji` (`id_gaji`, `total_gaji`, `tanggal`, `status`, `id_admin`) VALUES
+(2, 1000000, '2018-06-13', 'aktif', 2);
+
 -- --------------------------------------------------------
 
 --
@@ -135,7 +143,8 @@ INSERT INTO `kategori` (`id_kategori`, `nama_kategori`) VALUES
 (2, 'lips'),
 (3, 'face'),
 (4, 'beauty & skin care'),
-(6, 'alololoy');
+(6, 'alololoy'),
+(7, 'Makeup Cair');
 
 -- --------------------------------------------------------
 
@@ -205,7 +214,7 @@ INSERT INTO `neraca` (`id_neraca`, `id_user`, `id_transaksi`, `Activa`, `Pasiva`
 CREATE TABLE `pembayaran` (
   `id_pembayaran` int(11) NOT NULL,
   `id_pemesanan` int(11) NOT NULL,
-  `Total_pembayaran` int(11) NOT NULL,
+  `total_pembayaran` int(11) NOT NULL,
   `tgl_pembayaran` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -213,7 +222,7 @@ CREATE TABLE `pembayaran` (
 -- Dumping data for table `pembayaran`
 --
 
-INSERT INTO `pembayaran` (`id_pembayaran`, `id_pemesanan`, `Total_pembayaran`, `tgl_pembayaran`) VALUES
+INSERT INTO `pembayaran` (`id_pembayaran`, `id_pemesanan`, `total_pembayaran`, `tgl_pembayaran`) VALUES
 (0, 0, 0, '2018-04-01'),
 (1, 3, 100000, '2018-04-21'),
 (2, 2, 300000, '2018-04-19');
@@ -227,10 +236,8 @@ INSERT INTO `pembayaran` (`id_pembayaran`, `id_pemesanan`, `Total_pembayaran`, `
 CREATE TABLE `pembelian` (
   `id_pembelian` int(10) NOT NULL,
   `id_user` int(11) NOT NULL,
-  `nama_barang` varchar(255) NOT NULL,
   `id_produk` int(10) NOT NULL,
   `qty` int(50) NOT NULL,
-  `Harga` int(11) NOT NULL,
   `harga_total` int(50) NOT NULL,
   `id_supp` int(11) NOT NULL,
   `tgl_beli` date NOT NULL
@@ -240,10 +247,10 @@ CREATE TABLE `pembelian` (
 -- Dumping data for table `pembelian`
 --
 
-INSERT INTO `pembelian` (`id_pembelian`, `id_user`, `nama_barang`, `id_produk`, `qty`, `Harga`, `harga_total`, `id_supp`, `tgl_beli`) VALUES
-(0, 2, '0', 1, 0, 0, 0, 1, '2018-04-01'),
-(1, 2, 'makeup', 1, 100, 30000, 3000000, 1, '2018-04-20'),
-(2, 2, 'makeup2', 2, 20, 80000, 1600000, 2, '2018-04-20');
+INSERT INTO `pembelian` (`id_pembelian`, `id_user`, `id_produk`, `qty`, `harga_total`, `id_supp`, `tgl_beli`) VALUES
+(0, 2, 1, 0, 0, 1, '2018-04-01'),
+(1, 2, 1, 100, 3000000, 1, '2018-04-20'),
+(2, 2, 2, 20, 1892121, 2, '2018-04-20');
 
 -- --------------------------------------------------------
 
@@ -281,17 +288,18 @@ CREATE TABLE `pengeluaran` (
   `nama_barang` varchar(40) NOT NULL,
   `harga_satuan` int(11) NOT NULL,
   `qty` int(11) NOT NULL,
-  `total_harga` int(11) NOT NULL
+  `total_harga` int(11) NOT NULL,
+  `tanggal_pengeluaran` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pengeluaran`
 --
 
-INSERT INTO `pengeluaran` (`id_pengeluaran`, `id_user`, `nama_barang`, `harga_satuan`, `qty`, `total_harga`) VALUES
-(0, 2, '0', 0, 0, 0),
-(1, 2, 'sewa ruangan', 500000, 1, 500000),
-(2, 2, 'bayar listrik', 80000, 1, 80000);
+INSERT INTO `pengeluaran` (`id_pengeluaran`, `id_user`, `nama_barang`, `harga_satuan`, `qty`, `total_harga`, `tanggal_pengeluaran`) VALUES
+(0, 2, '0', 0, 0, 0, '0000-00-00'),
+(1, 2, 'sewa ruangan', 500000, 1, 500000, '0000-00-00'),
+(2, 2, 'bayar listrik', 80000, 1, 80000, '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -327,7 +335,8 @@ CREATE TABLE `produk` (
   `id_produk` int(10) NOT NULL,
   `nama_produk` varchar(50) NOT NULL,
   `stok` int(11) NOT NULL,
-  `harga` int(11) NOT NULL,
+  `harga_jual` int(11) NOT NULL,
+  `harga_beli` int(11) NOT NULL,
   `id_kategori` int(10) NOT NULL,
   `deskripsi` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -336,9 +345,10 @@ CREATE TABLE `produk` (
 -- Dumping data for table `produk`
 --
 
-INSERT INTO `produk` (`id_produk`, `nama_produk`, `stok`, `harga`, `id_kategori`, `deskripsi`) VALUES
-(1, 'blush on', 100, 50000, 2, 'pemerah pipi'),
-(2, 'mascara maybeline', 20, 100000, 1, 'lala');
+INSERT INTO `produk` (`id_produk`, `nama_produk`, `stok`, `harga_jual`, `harga_beli`, `id_kategori`, `deskripsi`) VALUES
+(1, 'blush on', 100, 50000, 0, 2, 'pemerah pipi'),
+(2, 'mascara maybeline', 20, 100000, 0, 1, 'lala'),
+(3, 'Barang Baru', 100, 10000, 9000, 1, 'sfjksdf sdfkjsdkf');
 
 -- --------------------------------------------------------
 
@@ -608,7 +618,7 @@ ALTER TABLE `cash_flow`
 -- AUTO_INCREMENT for table `gaji`
 --
 ALTER TABLE `gaji`
-  MODIFY `id_gaji` int(3) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_gaji` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `golongan`
 --
@@ -618,7 +628,7 @@ ALTER TABLE `golongan`
 -- AUTO_INCREMENT for table `kategori`
 --
 ALTER TABLE `kategori`
-  MODIFY `id_kategori` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_kategori` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `labarugi`
 --
@@ -658,7 +668,7 @@ ALTER TABLE `perubahan_modal`
 -- AUTO_INCREMENT for table `produk`
 --
 ALTER TABLE `produk`
-  MODIFY `id_produk` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_produk` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `role`
 --
