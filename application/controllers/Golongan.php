@@ -15,31 +15,59 @@ class Golongan extends CI_Controller {
 	}
 	public function index()
 	{
-		// if($this->session->userdata('logged_in')){
-		// 	$session_data= $this->session->userdata('logged_in');
-		// 	if ($session_data['role'] === 'admin') {
-		//     	$object['kat']=$this->golongan_model->getDataGolongan();
-		// 		$this->load->view('component/header');
-		// 		$this->load->view('golongan',$object);
-		// 		$this->load->view('component/footer');
-			
-  //   		}elseif($session_data['role'] === 'kasir'){
-  //   			redirect('login','refresh');
-  //   		}
-		// }else{
-		// 	redirect('login','refresh');
-		// }	
+		$object['gol']=$this->golongan_model->getDataGolongan();
+		$cek['status'] = array(
+        		'home'=>'',
+        		'hrd'=>'active',
+        		'keuangan'=>'',
+        		'produk'=>'',
+        		'pembelian'=>'',
+        		'pemasukan'=>'',
+        		'pengeluaran'=>'',
+        		'utang'=>'',
+        		'cash_flow'=>'',
+        		'neraca'=>'',
+        		'admin'=>'',
+        		'gaji'=>'',
+        		'golongan'=>'active',
+        		'absensi'=>'',
+        		'user'=>'',
+        		'barang'=>'',
+        		'supplier'=>'',
+        		'kategori'=>'',
+        		);
 		
-		    	$object['gol']=$this->golongan_model->getDataGolongan();
-				$this->load->view('component/header');
+		    	
+				$this->load->view('component/header',$cek);
 				$this->load->view('golongan',$object);
 				$this->load->view('component/footer');
 			
 	}	
 
 	public function form_golongan(){
-		$this->load->view('component/header');
-		$this->load->view('form_golongan');
+		$object['gol']=$this->golongan_model->getDataGolongan();
+		$cek['status'] = array(
+        		'home'=>'',
+        		'hrd'=>'active',
+        		'keuangan'=>'',
+        		'produk'=>'',
+        		'pembelian'=>'',
+        		'pemasukan'=>'',
+        		'pengeluaran'=>'',
+        		'utang'=>'',
+        		'cash_flow'=>'',
+        		'neraca'=>'',
+        		'admin'=>'',
+        		'gaji'=>'',
+        		'golongan'=>'active',
+        		'absensi'=>'',
+        		'user'=>'',
+        		'barang'=>'',
+        		'supplier'=>'',
+        		'kategori'=>'',
+        		);
+		$this->load->view('component/header',$cek);
+		$this->load->view('form_golongan',$object);
 		$this->load->view('component/footer');
 	}
 
@@ -50,8 +78,30 @@ class Golongan extends CI_Controller {
 		$this->load->model('golongan_model');
 
 		if($this->form_validation->run()==FALSE){
-			$this->load->view('component/header');
-			$this->load->view('form_golongan');
+			$object['gol']=$this->golongan_model->getDataGolongan();
+			$object['kat']=$this->golongan_model->getDataGolongan();
+			$cek['status'] = array(
+	        		'home'=>'',
+	        		'hrd'=>'active',
+	        		'keuangan'=>'',
+	        		'produk'=>'',
+	        		'pembelian'=>'',
+	        		'pemasukan'=>'',
+	        		'pengeluaran'=>'',
+	        		'utang'=>'',
+	        		'cash_flow'=>'',
+	        		'neraca'=>'',
+	        		'admin'=>'',
+	        		'gaji'=>'',
+	        		'golongan'=>'active',
+	        		'absensi'=>'',
+	        		'user'=>'',
+	        		'barang'=>'',
+	        		'supplier'=>'',
+	        		'kategori'=>'',
+	        		);
+			$this->load->view('component/header',$cek);
+			$this->load->view('form_golongan',$object);
 			$this->load->view('component/footer');
 		}else{
 			
@@ -69,7 +119,28 @@ class Golongan extends CI_Controller {
 		$data['gol']=$this->golongan_model->getGolongan($id);
 
 		if($this->form_validation->run()==FALSE){
-			$this->load->view('component/header');
+			$object['gol']=$this->golongan_model->getDataGolongan();
+			$cek['status'] = array(
+        		'home'=>'',
+        		'hrd'=>'active',
+        		'keuangan'=>'',
+        		'produk'=>'',
+        		'pembelian'=>'',
+        		'pemasukan'=>'',
+        		'pengeluaran'=>'',
+        		'utang'=>'',
+        		'cash_flow'=>'',
+        		'neraca'=>'',
+        		'admin'=>'',
+        		'gaji'=>'',
+        		'golongan'=>'active',
+        		'absensi'=>'',
+        		'user'=>'',
+        		'barang'=>'',
+        		'supplier'=>'',
+        		'kategori'=>'',
+        		);
+			$this->load->view('component/header',$cek);
 			$this->load->view('edit_golongan',$data);
 			$this->load->view('component/footer');
 		}else{

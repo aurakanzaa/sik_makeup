@@ -15,23 +15,29 @@ class Absensi extends CI_Controller {
 	}
 	public function index()
 	{
-		// if($this->session->userdata('logged_in')){
-		// 	$session_data= $this->session->userdata('logged_in');
-		// 	if ($session_data['role'] === 'admin') {
-		//     	$object['kat']=$this->absensi_model->getDataabsensi();
-		// 		$this->load->view('component/header');
-		// 		$this->load->view('absensi',$object);
-		// 		$this->load->view('component/footer');
-			
-  //   		}elseif($session_data['role'] === 'kasir'){
-  //   			redirect('login','refresh');
-  //   		}
-		// }else{
-		// 	redirect('login','refresh');
-		// }	
+		$object['absensi']=$this->absensi_model->getDataAbsensi();
+		$cek['status'] = array(
+        		'home'=>'',
+        		'hrd'=>'active',
+        		'keuangan'=>'',
+        		'produk'=>'',
+        		'pembelian'=>'',
+        		'pemasukan'=>'',
+        		'pengeluaran'=>'',
+        		'utang'=>'',
+        		'cash_flow'=>'',
+        		'neraca'=>'',
+        		'admin'=>'',
+        		'gaji'=>'',
+        		'golongan'=>'',
+        		'absensi'=>'active',
+        		'user'=>'',
+        		'barang'=>'',
+        		'supplier'=>'',
+        		'kategori'=>'',
+        		);
 		
-		    	$object['absensi']=$this->absensi_model->getDataAbsensi();
-				$this->load->view('component/header');
+				$this->load->view('component/header',$cek);
 				$this->load->view('absensi',$object);
 				$this->load->view('component/footer');
 			

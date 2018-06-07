@@ -43,7 +43,7 @@ class Pengeluaran extends CI_Controller {
 		$this->load->view('component/footer');	
 	}
 
-	public function form_pembelian()
+	public function form_pengeluaran()
 	{
 		$object['produk']=$this->produk_model->getDataProduk();
 		$object['supplier']=$this->supplier_model->getDataSupplier();
@@ -52,9 +52,9 @@ class Pengeluaran extends CI_Controller {
         		'hrd'=>'',
         		'keuangan'=>'active',
         		'produk'=>'',
-        		'pembelian'=>'active',
+        		'pembelian'=>'',
         		'pemasukan'=>'',
-        		'pengeluaran'=>'',
+        		'pengeluaran'=>'active',
         		'utang'=>'',
         		'cash_flow'=>'',
         		'neraca'=>'',
@@ -68,7 +68,7 @@ class Pengeluaran extends CI_Controller {
         		'kategori'=>'',
         		);
 		$this->load->view('component/header',$cek);
-		$this->load->view('Pembelian/form_pembelian',$object);
+		$this->load->view('Pengeluaran/form_pengeluaran',$object);
 		$this->load->view('component/footer');	
 	}
 
@@ -86,9 +86,9 @@ class Pengeluaran extends CI_Controller {
         		'hrd'=>'',
         		'keuangan'=>'active',
         		'produk'=>'',
-        		'pembelian'=>'active',
+        		'pembelian'=>'',
         		'pemasukan'=>'',
-        		'pengeluaran'=>'',
+        		'pengeluaran'=>'active',
         		'utang'=>'',
         		'cash_flow'=>'',
         		'neraca'=>'',
@@ -102,12 +102,12 @@ class Pengeluaran extends CI_Controller {
         		'kategori'=>'',
         		);
 		$this->load->view('component/header',$cek);
-		$this->load->view('Pembelian/form_pembelian',$object);
+		$this->load->view('pengeluaran/form_pengeluaran',$object);
 		$this->load->view('component/footer');
 		}else{
 			
-			$this->pembelian_model->insert();
-			redirect('pembelian','refresh');
+			$this->pengeluaran_model->insert();
+			redirect('pengeluaran','refresh');
 		}
 	}
 
@@ -119,7 +119,7 @@ class Pengeluaran extends CI_Controller {
 		
 		if($this->form_validation->run()==FALSE){
 
-			$object['pembelian']=$this->pembelian_model->getPembelian($id);
+			$object['pengeluaran']=$this->pengeluaran_model->getDataPengeluaran($id);
 			$object['produk']=$this->produk_model->getDataProduk();
 			$object['supplier']=$this->supplier_model->getDataSupplier();
 			$cek['status'] = array(
@@ -127,9 +127,9 @@ class Pengeluaran extends CI_Controller {
         		'hrd'=>'',
         		'keuangan'=>'active',
         		'produk'=>'',
-        		'pembelian'=>'active',
+        		'pembelian'=>'',
         		'pemasukan'=>'',
-        		'pengeluaran'=>'',
+        		'pengeluaran'=>'active',
         		'utang'=>'',
         		'cash_flow'=>'',
         		'neraca'=>'',
@@ -143,22 +143,22 @@ class Pengeluaran extends CI_Controller {
         		'kategori'=>'',
         		);
 			$this->load->view('component/header',$cek);
-			$this->load->view('Pembelian/form_update_pembelian',$object);
+			$this->load->view('pengeluaran/edit_pengeluaran',$object);
 			$this->load->view('component/footer');
 		}else{
 			
-			$this->pembelian_model->update($id);
-			redirect('pembelian','refresh');
+			$this->pengeluaran_model->update($id);
+			redirect('pengeluaran','refresh');
 		}
 	}
 
 	public function delete($id)
 	{
-		$this->pembelian_model->delete($id);
-		redirect('pembelian','refresh');
+		$this->pengeluaran_model->delete($id);
+		redirect('pengeluaran','refresh');
 	}
 
 }
 
-/* End of file Pembelian.php */
-/* Location: ./application/controllers/Pembelian.php */
+/* End of file Pengeluaran.php */
+/* Location: ./application/controllers/Pengeluaran.php */

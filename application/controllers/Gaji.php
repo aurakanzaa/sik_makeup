@@ -15,32 +15,62 @@ class Gaji extends CI_Controller {
 	}
 	public function index()
 	{
-		// if($this->session->userdata('logged_in')){
-		// 	$session_data= $this->session->userdata('logged_in');
-		// 	if ($session_data['role'] === 'admin') {
-		//     	$object['kat']=$this->gaji_model->getDataGaji();
-		// 		$this->load->view('component/header');
-		// 		$this->load->view('gaji',$object);
-		// 		$this->load->view('component/footer');
-			
-  //   		}elseif($session_data['role'] === 'kasir'){
-  //   			redirect('login','refresh');
-  //   		}
-		// }else{
-		// 	redirect('login','refresh');
-		// }	
+		$object['gaji']=$this->gaji_model->getDataGaji();
+		$cek['status'] = array(
+        		'home'=>'',
+        		'hrd'=>'active',
+        		'keuangan'=>'',
+        		'produk'=>'',
+        		'pembelian'=>'',
+        		'pemasukan'=>'',
+        		'pengeluaran'=>'',
+        		'utang'=>'',
+        		'cash_flow'=>'',
+        		'neraca'=>'',
+        		'admin'=>'',
+        		'gaji'=>'active',
+        		'golongan'=>'',
+        		'absensi'=>'',
+        		'user'=>'',
+        		'barang'=>'',
+        		'supplier'=>'',
+        		'kategori'=>'',
+        		);
 		
-		    	$object['gaji']=$this->gaji_model->getDataGaji();
-				$this->load->view('component/header');
+		    	
+				$this->load->view('component/header',$cek);
 				$this->load->view('gaji',$object);
 				$this->load->view('component/footer');
 			
 	}	
 
 	public function form_gaji(){
-		$this->load->view('component/header');
-		$this->load->view('form_gaji');
-		$this->load->view('component/footer');
+		$object['gaji']=$this->gaji_model->getDataGaji();
+		$cek['status'] = array(
+        		'home'=>'',
+        		'hrd'=>'active',
+        		'keuangan'=>'',
+        		'produk'=>'',
+        		'pembelian'=>'',
+        		'pemasukan'=>'',
+        		'pengeluaran'=>'',
+        		'utang'=>'',
+        		'cash_flow'=>'',
+        		'neraca'=>'',
+        		'admin'=>'',
+        		'gaji'=>'active',
+        		'golongan'=>'',
+        		'absensi'=>'',
+        		'user'=>'',
+        		'barang'=>'',
+        		'supplier'=>'',
+        		'kategori'=>'',
+        		);
+		
+		    	
+				$this->load->view('component/header',$cek);
+				$this->load->view('form_gaji',$object);
+				$this->load->view('component/footer');
 	}
 
 	public function create(){
@@ -52,8 +82,29 @@ class Gaji extends CI_Controller {
 		$this->load->model('gaji_model');
 
 		if($this->form_validation->run()==FALSE){
-			$this->load->view('component/header');
-			$this->load->view('form_gaji');
+			$object['gaji']=$this->gaji_model->getDataGaji();
+			$cek['status'] = array(
+        		'home'=>'',
+        		'hrd'=>'active',
+        		'keuangan'=>'',
+        		'produk'=>'',
+        		'pembelian'=>'',
+        		'pemasukan'=>'',
+        		'pengeluaran'=>'',
+        		'utang'=>'',
+        		'cash_flow'=>'',
+        		'neraca'=>'',
+        		'admin'=>'',
+        		'gaji'=>'active',
+        		'golongan'=>'',
+        		'absensi'=>'',
+        		'user'=>'',
+        		'barang'=>'',
+        		'supplier'=>'',
+        		'kategori'=>'',
+        		);
+			$this->load->view('component/header',$cek);
+			$this->load->view('form_gaji',$object);
 			$this->load->view('component/footer');
 		}else{
 			
@@ -73,7 +124,28 @@ class Gaji extends CI_Controller {
 		$data['gaji']=$this->gaji_model->getGaji($id);
 
 		if($this->form_validation->run()==FALSE){
-			$this->load->view('component/header');
+			$data['gaji']=$this->gaji_model->getGaji($id);
+			$cek['status'] = array(
+        		'home'=>'',
+        		'hrd'=>'active',
+        		'keuangan'=>'',
+        		'produk'=>'',
+        		'pembelian'=>'',
+        		'pemasukan'=>'',
+        		'pengeluaran'=>'',
+        		'utang'=>'',
+        		'cash_flow'=>'',
+        		'neraca'=>'',
+        		'admin'=>'',
+        		'gaji'=>'active',
+        		'golongan'=>'',
+        		'absensi'=>'',
+        		'user'=>'',
+        		'barang'=>'',
+        		'supplier'=>'',
+        		'kategori'=>'',
+        		);
+			$this->load->view('component/header',$cek);
 			$this->load->view('edit_gaji',$data);
 			$this->load->view('component/footer');
 		}else{
