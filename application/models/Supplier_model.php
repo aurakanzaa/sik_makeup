@@ -3,9 +3,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Supplier_model extends CI_Model {
 
-	function tampil_supplier()
+	function getDataSupplier()
 	{
-		return $this->db->get('supplier');
+		$query=$this->db->get('supplier');
+		return $query ->result();
 	}
 
 }

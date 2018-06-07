@@ -10,6 +10,7 @@ class Produk extends CI_Controller {
 		$this->load->library('form_validation');
 		$this->load->model('kategori_model');
 		$this->load->model('produk_model');
+		$this->load->model('kategori_model');
 		$this->load->helper('html');
 		$this->load->library('image_lib');
 	}
@@ -38,8 +39,9 @@ class Produk extends CI_Controller {
 	}	
 
 	public function form_produk(){
+		$object['kategori']=$this->kategori_model->getDataKategori();
 		$this->load->view('component/header');
-		$this->load->view('form_produk');
+		$this->load->view('form_produk',$object);
 		$this->load->view('component/footer');
 	}
 
@@ -47,15 +49,17 @@ class Produk extends CI_Controller {
 		$object['pro']=$this->produk_model->getDataProduk();
 		$this->form_validation->set_rules('nama_produk','nama_produk','trim|required');
 		$this->form_validation->set_rules('stok','stok','trim|required');
-		$this->form_validation->set_rules('harga','harga','trim|required');
+		$this->form_validation->set_rules('harga_jual','harga','trim|required');
+		$this->form_validation->set_rules('harga_beli','harga','trim|required');
 		$this->form_validation->set_rules('id_kategori','id_kategori','trim|required');
 		$this->form_validation->set_rules('deskripsi','deskripsi','trim|required');
 		$this->load->model('produk_model');
 		$this->load->model('kategori_model');
 
 		if($this->form_validation->run()==FALSE){
+			$object['kategori']=$this->kategori_model->getDataKategori();
 			$this->load->view('component/header');
-			$this->load->view('form_produk');
+			$this->load->view('form_produk',$object);
 			$this->load->view('component/footer');
 		}else{
 			

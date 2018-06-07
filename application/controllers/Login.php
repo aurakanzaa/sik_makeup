@@ -19,12 +19,13 @@ class Login extends CI_Controller{
             'username' => $username,
             'password' => md5($password)
             );
-        $cek = $this->Model_login->cek_login("admin",$where)->num_rows();
-        if($cek > 0){
- 
+        $cek = $this->Model_login->cek_login("admin",$where);
+        if($cek){
             $data_session = array(
-                'nama' => $username,
-                'status' => "login"
+                'nama' => $cek[0]->username,
+                'status' => "login",
+                'id' => $cek[0]->id,
+                'foto' => $cek[0]->foto
                 );
  
             $this->session->set_userdata('userSession',$data_session);

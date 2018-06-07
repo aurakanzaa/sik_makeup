@@ -3,7 +3,7 @@
           <section class="wrapper">
           
           
-            <h3><i class="fa fa-angle-right"></i> Tambah Produk</h3>
+            <h3><i class="fa fa-angle-right"></i> Tambah Pembelian</h3>
             <?php echo validation_errors(); ?>  
             <!-- BASIC FORM ELELEMNTS -->
             <div class="row mt">
@@ -12,54 +12,49 @@
                       <br>
                        <?php 
                         $attr = array('class' => 'form-horizontal style-form');
-                       echo form_open_multipart('produk/create',$attr);?>
+                       echo form_open_multipart('pembelian/create',$attr);?>
                       
                         
                           <div class="form-group">
                               <label class="col-sm-2 col-sm-2 control-label">Nama Produk</label>
                               <div class="col-sm-5">
-                                  <input type="text" name="nama_produk" class="form-control">
+                                  <select class="form-control" name="id_produk">
+                                  <?php foreach ($produk as $key) {?>
+                                    <option value="<?php echo $key->id_produk; ?>"><?php echo $key->nama_produk; ?></option>
+                                    <?php } ?>
+                                  </select>
                               </div>
                           </div>
-                         
                          <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">Stok</label>
+                              <label class="col-sm-2 col-sm-2 control-label">Jumlah</label>
                               <div class="col-sm-5">
-                                  <input type="number" name="stok" class="form-control">
+                                  <input type="number" name="jumlah" class="form-control">
                               </div>
                           </div>
 
                           <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">Harga Beli</label>
+                              <label class="col-sm-2 col-sm-2 control-label">Harga Total</label>
                               <div class="col-sm-5">
-                                  <input type="number" name="harga_beli" class="form-control">
+                                  <input type="number" name="harga_total" class="form-control">
                               </div>
                           </div>
 
-
-                           <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">Harga Jual</label>
-                              <div class="col-sm-5">
-                                  <input type="number" name="harga_jual" class="form-control">
-                              </div>
-                          </div>
-                          
                           <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">Kategori</label>
+                              <label class="col-sm-2 col-sm-2 control-label">Supplier</label>
 
                               <div class="col-sm-5">
-                                  <select class="form-control" name="id_kategori">
-                                  <?php foreach ($kategori as $key) {?>
-                                    <option value="<?php echo $key->id_kategori; ?>"><?php echo $key->nama_kategori; ?></option>
+                                  <select class="form-control" name="id_supplier">
+                                  <?php foreach ($supplier as $key) {?>
+                                    <option value="<?php echo $key->id_supplier; ?>"><?php echo $key->nama; ?></option>
                                     <?php } ?>
                                   </select>
                               </div>
                           </div>
 
                           <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">Deskripsi</label>
+                              <label class="col-sm-2 col-sm-2 control-label">Tanggal</label>
                               <div class="col-sm-5">
-                                  <input type="text" name="deskripsi" class="form-control">
+                                  <input type="date" name="tanggal" class="form-control">
                               </div>
                           </div>
 

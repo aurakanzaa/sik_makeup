@@ -36,26 +36,6 @@ $data['ava'] = $session_data['ava'];
     <script src="<?php echo base_url('/assets/js/sparkline-chart.js'); ?>"></script>    
     <script src="<?php echo base_url('/assets/js/zabuto_calendar.js'); ?>"></script>    
     
-    <script type="text/javascript">
-        $(document).ready(function () {
-        var unique_id = $.gritter.add({
-            // (string | mandatory) the heading of the notification
-            title: 'Hi <?php echo $this->session->userdata('userSession')['nama']; ?>',
-            // (string | mandatory) the text inside the notification
-            text: 'Welcome to Makeup',
-            // (string | optional) the image to display on the left
-            image: '<?php echo base_url('/assets/img/admin/'); echo $this->session->userdata('userSession')['foto'] ?><?= $session_data['ava']; ?>',
-            // (bool | optional) if you want it to fade out on its own or just sit there
-            sticky: false,
-            // (int | optional) the time you want it to be alive for before fading out
-            time: 3,
-            // (string | optional) the class name you want to apply to that specific message
-            class_name: 'my-sticky-class'
-        });
-
-        return false;
-        });
-    </script>
     
     <script type="application/javascript">
         $(document).ready(function () {

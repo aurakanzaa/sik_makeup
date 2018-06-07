@@ -5,40 +5,36 @@ MAIN CONTENT
 <section id="main-content">
   <section class="wrapper site-min-height">
     <br>&nbsp;&nbsp;&nbsp;&nbsp;
-    <a href="<?php echo base_url('index.php/produk/form_produk'); ?>"><button type="button" class="btn btn-success "><i class="fa fa-plus"> </i> Tambah Produk</button></a>
+    <a href="<?php echo base_url('index.php/pembelian/form_pembelian'); ?>"><button type="button" class="btn btn-success "><i class="fa fa-plus"> </i> Tambah Pemasukan</button></a>
     <br>
     
     <div class="col-md-12 mt">
       <div class="content-panel">
         <table class="table table-hover">
-        <h4><i class="fa fa-angle-right"></i> Daftar Produk</h4>
+        <h4><i class="fa fa-angle-right"></i> Daftar Pemasukan</h4>
         <tr>
           <th>No</th>
-          <th>Nama Produk</th>
-          <th>Stok</th>
-          <th>Harga Beli</th>
-          <th>Harga Jual</th>
-          <th>id_kategori</th>
-          <th>Deskripsi</th>
+          <th>Tanggal</th>
+          <th>Kode </th>
+          <th>Pesanan</th>
+          <th>Total Pemasukan</th>\
           <th align="center">Edit | Delete</th>
         </tr>
         <?php 
         $no = 1;
-        foreach($pro as $key){ 
+        foreach($pemasukan as $key){ 
         ?>
         <tr>
           <td><?php echo $no++ ?></td>
-          <td><?php echo $key->nama_produk ?></td>
-          <td><?php echo $key->stok ?></td>
-          <td><?php echo $key->harga_beli ?></td>
-          <td><?php echo $key->harga_jual ?></td>
-          <td><?php echo $key->id_kategori ?></td>
-          <td><?php echo $key->deskripsi ?></td>
+          <td><?php echo $key->tgl_pembayaran ?></td>
+          <td><?php echo $key->id_pembayaran ?></td>
+          <td><?php echo $key->id_pemesanan ?></td>
+          <td><?php echo $key->total_pembayaran ?></td>
           <td>
-                <a class="btn btn-primary btn-xs" href="">
+                <a class="btn btn-primary btn-xs" href="<?php echo site_url('pembelian/update/').$key->id_pembayaran ?>">
                   <i class="fa fa-pencil"></i>
                 </a>&nbsp;&nbsp;&nbsp;&nbsp;
-                <a class="btn btn-danger btn-xs" href="">
+                <a class="btn btn-danger btn-xs" href="<?php echo site_url('pembelian/delete/').$key->id_pembayaran ?>">
                   <i class="fa fa-trash-o"></i>
                 </a>  
           </td>

@@ -22,7 +22,7 @@
 					  			<span class="li_cloud"></span>
 					  			<h3>+48</h3>
                   			</div>
-					  			<p>48 New files were added in your cloud storage.</p>
+					  			<p><?php echo $dat[0]->foto; ?></p>
                   		</div>
                   		<div class="col-md-2 col-sm-2 box0">
                   			<div class="box1">

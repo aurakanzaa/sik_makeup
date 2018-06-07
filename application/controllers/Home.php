@@ -12,30 +12,38 @@ class Home extends CI_Controller {
 		// $this->load->model('kategori_model');
 		$this->load->helper('html');
 		$this->load->library('image_lib');
-		
+		$this->load->model('Model_login');
 	}
 
 	public function index()
 	{
-		// if($this->session->set_userdata('logged_in')){
-		// 	$session_data= $this->session->set_userdata('logged_in');
-		// 	// $data['username']=$session_data['username'];
-		// 	if ($session_data['role'] === 'admin') {
-				
-  //   			$this->load->view('component/header');
-		// 		$this->load->view('home',$data);
-		// 		$this->load->view('component/footer');
-  //   		}elseif($session_data['role'] === 'kasir'){
-  //   			$this->load->view('component/header');
-  //   			$this->load->view('home',$data);
-  //   			$this->load->view('component/footer');
-  //   		}
-		// }else{
-		// 	redirect('login','refresh');
-		// }
-
-		$this->load->view('component/header');
-		$this->load->view('home');
+		$where = array(
+            'username' => 'admin',
+            'password' => md5('admin')
+            );
+        $cek['dat'] = $this->Model_login->cek_login("admin",$where);
+        $cek['status'] = array(
+        		'home'=>'active',
+        		'hrd'=>'',
+        		'keuangan'=>'',
+        		'produk'=>'',
+        		'pembelian'=>'',
+        		'pemasukan'=>'',
+        		'pengeluaran'=>'',
+        		'utang'=>'',
+        		'cash_flow'=>'',
+        		'neraca'=>'',
+        		'admin'=>'',
+        		'gaji'=>'',
+        		'golongan'=>'',
+        		'absensi'=>'',
+        		'user'=>'',
+        		'barang'=>'',
+        		'supplier'=>'',
+        		'kategori'=>'',
+        		);
+		$this->load->view('component/header',$cek);
+		$this->load->view('home',$cek);
 		$this->load->view('component/footer');
 	}
 

@@ -16,7 +16,7 @@ class Supplier extends CI_Controller {
 
 	public function index()
 	{
-				$sup['supplier'] = $this->Supplier_model->tampil_supplier()->result();
+				$sup['supplier'] = $this->Supplier_model->getDataSupplier();
 				$this->load->view('component/header');
 				$this->load->view('supplier',$sup);
 				$this->load->view('component/footer');

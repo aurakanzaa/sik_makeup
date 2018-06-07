@@ -196,81 +196,52 @@ $data['ava'] = $session_data['ava'];
               <!-- sidebar menu start-->
               <ul class="sidebar-menu" id="nav-accordion">
               
-                  <p class="centered"><a href="profile.html"><img src="assets/img/ui-sam.jpg" class="img-circle" width="60"></a></p>
-                  <h5 class="centered"><?php echo $sess=$this->session->userdata('userSession')['nama'];?></h5>
+                  <p class="centered"><a href="profile.html"><img src=<?php echo base_url('/assets/img/admin/').$this->session->userdata('userSession')['foto']; ?> class="img-circle" width="60"></a></p>
+                  <h5 class="centered"><?php echo $this->session->userdata('userSession')['nama'];?></h5>
                       
                   <li class="mt">
-                      <a class="active" href="home">
+                      <a class="<?php echo $status['home'] ?>" href="home">
                           <i class="fa fa-dashboard"></i>
                           <span>Home</span>
                       </a>
                   </li>
 
                   <li class="sub-menu">
-                      <a href="javascript:;" >
-                          <i class="fa fa-desktop"></i>
-                          <span>UI Elements</span>
+                      <a href="javascript:;" class="<?php echo $status['keuangan'] ?>">
+                          <i class="fa fa-money"></i>
+                          <span>Keuangan</span>
                       </a>
                       <ul class="sub">
-                          <li><a  href="general.html">General</a></li>
-                          <li><a  href="buttons.html">Buttons</a></li>
-                          <li><a  href="panels.html">Panels</a></li>
-                      </ul>
-                  </li>
-
-                  <li class="sub-menu">
-                      <a href="javascript:;" >
-                          <i class="fa fa-cogs"></i>
-                          <span>Components</span>
-                      </a>
-                      <ul class="sub">
-                          <li><a  href="calendar.html">Calendar</a></li>
-                          <li><a  href="gallery.html">Gallery</a></li>
-                          <li><a  href="todo_list.html">Todo List</a></li>
+                          <li class="<?php echo $status['pembelian'] ?>"><a  href="<?php echo site_url('pembelian') ?>">Pembelian</a></li>
+                          <li class="<?php echo $status['pemasukan'] ?>"><a  href="<?php echo site_url('pemasukan') ?>">Pemasukan</a></li>
+                          <li class="<?php echo $status['pengeluaran'] ?>"><a  href="<?php echo site_url('Pengeluaran') ?>">Pengeluaran</a></li>
+                          <li class="<?php echo $status['utang'] ?>"><a  href="<?php echo site_url('utang') ?>">Utang</a></li>
+                          <li class="<?php echo $status['cash_flow'] ?>"><a  href="<?php echo site_url('cash_flow') ?>">Cash Flow</a></li>
+                          <li class="<?php echo $status['neraca'] ?>" ><a  href="<?php echo site_url('neraca') ?>">Neraca</a></li>
                       </ul>
                   </li>
                   <li class="sub-menu">
-                      <a href="javascript:;" >
-                          <i class="fa fa-book"></i>
-                          <span>Extra Pages</span>
-                      </a>
-                      <ul class="sub">
-                          <li><a  href="blank.html">Blank Page</a></li>
-                          <li><a  href="login.html">Login</a></li>
-                          <li><a  href="lock_screen.html">Lock Screen</a></li>
-                      </ul>
-                  </li>
-                  <li class="sub-menu">
-                      <a href="javascript:;" >
-                          <i class="fa fa-tasks"></i>
-                          <span>Forms</span>
-                      </a>
-                      <ul class="sub">
-                          <li><a  href="form_component.html">Form Components</a></li>
-                      </ul>
-                  </li>
-                  <li class="sub-menu">
-                      <a href="javascript:;" >
+                      <a href="javascript:;" class="<?php echo $status['hrd'] ?>">
                           <i class="fa fa-drivers-license-o"></i>
                           <span>HRD</span>
                       </a>
                       <ul class="sub">
-                          <li><a  href="admin">Admin</a></li>
-                          <li><a  href="absensi">Absensi</a></li>
-                          <li><a  href="gaji">Gaji</a></li>
-                          <li><a  href="golongan">Golongan</a></li>
-                          <li><a  href="user">User</a></li>
+                          <li class="<?php echo $status['admin'] ?>"><a  href="<?php echo site_url('admin') ?>">Admin</a></li>
+                          <li class="<?php echo $status['absensi'] ?>"><a  href="<?php echo site_url('Absensi') ?>">Absensi</a></li>
+                          <li class="<?php echo $status['gaji'] ?>"><a  href="<?php echo site_url('gaji') ?>">Gaji</a></li>
+                          <li class="<?php echo $status['golongan'] ?>"><a  href="<?php echo site_url('Golongan') ?>">Golongan</a></li>
+                          <li class="<?php echo $status['user'] ?>"><a  href="<?php echo site_url('user') ?>">User</a></li>
                       </ul>
                   </li>
                   <li class="sub-menu">
-                      <a href="javascript:;" >
+                      <a href="javascript:;" class="<?php echo $status['produk'] ?>">
                           <i class=" fa fa-bar-chart-o"></i>
                           <span>Products</span>
                       </a>
                       <ul class="sub">
-                          <li><a  href="produk">Produk</a></li>
-                          <li><a  href="kategori">Kategori</a></li>
-                          <li><a  href="supplier">Supplier</a></li>
+                          <li class="<?php echo $status['barang'] ?>"><a  href="<?php echo site_url('produk') ?>">Produk</a></li>
+                          <li class="<?php echo $status['kategori'] ?>"><a  href="<?php echo site_url('Kategori') ?>">Kategori</a></li>
+                          <li class="<?php echo $status['supplier'] ?>"><a  href="<?php echo site_url('Supplier') ?>">Supplier</a></li>
                       </ul>
                   </li>
 
