@@ -12,7 +12,7 @@ class Kategori_model extends CI_Model {
 	}
 	public function getDataKategori()
 	{
-		$query = $this->db->get('kategori');
+		$query = $this->db->query("SELECT id_kategori,nama_kategori from kategori");
 		return $query->result();
 	}
 
@@ -20,6 +20,8 @@ class Kategori_model extends CI_Model {
 	{
 		$this->db->where('id_kategori',$id);
 		$query = $this->db->get('kategori');
+
+		
 		return $query->result();
 	}	
 

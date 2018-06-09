@@ -35,10 +35,10 @@ MAIN CONTENT
           <td><?php echo $key->id_kategori ?></td>
           <td><?php echo $key->deskripsi ?></td>
           <td>
-                <a class="btn btn-primary btn-xs" href="">
+                <a class="btn btn-primary btn-xs" href="<?php echo base_url('index.php/produk/update'); ?>/<?php echo $key->id_produk ?>">
                   <i class="fa fa-pencil"></i>
                 </a>&nbsp;&nbsp;&nbsp;&nbsp;
-                <a class="btn btn-danger btn-xs" href="">
+                <a class="btn btn-danger btn-xs" href="<?php echo base_url('index.php/produk/delete'); ?>/<?php echo $key->id_produk ?>">
                   <i class="fa fa-trash-o"></i>
                 </a>  
           </td>

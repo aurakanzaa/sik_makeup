@@ -21,6 +21,12 @@ class Produk_model extends CI_Model {
 		return $query->result();
 	}
 
+	public function getDataKategori()
+	{
+		$query = $this->db->query("SELECT id_kategori,nama_kategori from kategori");
+		return $query->result();
+	}
+
 	public function getProduk($id)
 	{
 		$this->db->where('id_produk',$id);
@@ -33,7 +39,8 @@ class Produk_model extends CI_Model {
 		(
 			'nama_produk' => $this->input->post('nama_produk'),
 			'stok' => $this->input->post('stok'),
-			'harga' => $this->input->post('harga'),
+			'harga_jual' => $this->input->post('harga_jual'),
+			'harga_beli' => $this->input->post('harga_beli'),
 			'id_kategori' => $this->input->post('id_kategori'),
 			'deskripsi' => $this->input->post('deskripsi'),
 			);

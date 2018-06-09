@@ -200,7 +200,7 @@ $data['ava'] = $session_data['ava'];
                   <h5 class="centered"><?php echo $this->session->userdata('userSession')['nama'];?></h5>
                       
                   <li class="mt">
-                      <a class="<?php echo $status['home'] ?>" href="home">
+                      <a class="<?php echo $status['home'] ?>" href="<?php echo site_url('home') ?>">
                           <i class="fa fa-dashboard"></i>
                           <span>Home</span>
                       </a>

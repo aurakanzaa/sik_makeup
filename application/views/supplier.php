@@ -5,7 +5,7 @@ MAIN CONTENT
 <section id="main-content">
   <section class="wrapper site-min-height">
     <br>&nbsp;&nbsp;&nbsp;&nbsp;
-    <a href=""><button type="button" class="btn btn-success "><i class="fa fa-plus"> </i> Tambah Supplier</button></a>
+    <a href="<?php echo base_url('index.php/supplier/form_supplier'); ?>"><button type="button" class="btn btn-success "><i class="fa fa-plus"> </i> Tambah Supplier</button></a>
     <br>
     
     <div class="col-md-12 mt">
@@ -29,10 +29,10 @@ MAIN CONTENT
           <td><?php echo $sup->alamat ?></td>
           <td><?php echo $sup->no_telp ?></td>
           <td>
-                <a class="btn btn-primary btn-xs" href="">
+                <a class="btn btn-primary btn-xs" href="<?php echo base_url('index.php/supplier/update'); ?>/<?php echo $sup->id_supplier ?>">
                   <i class="fa fa-pencil"></i>
                 </a>&nbsp;&nbsp;&nbsp;&nbsp;
-                <a class="btn btn-danger btn-xs" href="">
+                <a class="btn btn-danger btn-xs" href="<?php echo base_url('index.php/supplier/delete'); ?>/<?php echo $sup->id_supplier ?>">
                   <i class="fa fa-trash-o"></i>
                 </a>  
           </td>

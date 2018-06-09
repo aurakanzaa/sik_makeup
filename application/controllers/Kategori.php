@@ -15,32 +15,60 @@ class Kategori extends CI_Controller {
 	}
 	public function index()
 	{
-		// if($this->session->userdata('logged_in')){
-		// 	$session_data= $this->session->userdata('logged_in');
-		// 	if ($session_data['role'] === 'admin') {
-		//     	$object['kat']=$this->kategori_model->getDataKategori();
-		// 		$this->load->view('component/header');
-		// 		$this->load->view('kategori',$object);
-		// 		$this->load->view('component/footer');
-			
-  //   		}elseif($session_data['role'] === 'kasir'){
-  //   			redirect('login','refresh');
-  //   		}
-		// }else{
-		// 	redirect('login','refresh');
-		// }	
+		$cek['status'] = array(
+        		'home'=>'',
+        		'hrd'=>'',
+        		'keuangan'=>'',
+        		'produk'=>'active',
+        		'pembelian'=>'',
+        		'pemasukan'=>'',
+        		'pengeluaran'=>'',
+        		'utang'=>'',
+        		'cash_flow'=>'',
+        		'neraca'=>'',
+        		'admin'=>'',
+        		'gaji'=>'',
+        		'golongan'=>'',
+        		'absensi'=>'',
+        		'user'=>'',
+        		'barang'=>'',
+        		'supplier'=>'',
+        		'kategori'=>'active',
+        		);
 		
 		    	$object['kat']=$this->kategori_model->getDataKategori();
-				$this->load->view('component/header');
+				$this->load->view('component/header',$cek);
 				$this->load->view('kategori',$object);
 				$this->load->view('component/footer');
 			
 	}	
 
 	public function form_kategori(){
-		$this->load->view('component/header');
-		$this->load->view('form_kategori');
-		$this->load->view('component/footer');
+				$object['kat']=$this->kategori_model->getDataKategori();
+				$cek['status'] = array(
+        		'home'=>'',
+        		'hrd'=>'',
+        		'keuangan'=>'',
+        		'produk'=>'active',
+        		'pembelian'=>'',
+        		'pemasukan'=>'',
+        		'pengeluaran'=>'',
+        		'utang'=>'',
+        		'cash_flow'=>'',
+        		'neraca'=>'',
+        		'admin'=>'',
+        		'gaji'=>'',
+        		'golongan'=>'',
+        		'absensi'=>'',
+        		'user'=>'',
+        		'barang'=>'',
+        		'supplier'=>'',
+        		'kategori'=>'active',
+        		);
+		
+				$this->load->view('component/header',$cek);
+				$this->load->view('form_kategori',$object);
+				$this->load->view('component/footer');
 	}
 
 	public function create(){
@@ -49,8 +77,30 @@ class Kategori extends CI_Controller {
 		$this->load->model('kategori_model');
 
 		if($this->form_validation->run()==FALSE){
-			$this->load->view('component/header');
-			$this->load->view('form_kategori');
+			$cek['status'] = array(
+        		'home'=>'',
+        		'hrd'=>'',
+        		'keuangan'=>'',
+        		'produk'=>'active',
+        		'pembelian'=>'',
+        		'pemasukan'=>'',
+        		'pengeluaran'=>'',
+        		'utang'=>'',
+        		'cash_flow'=>'',
+        		'neraca'=>'',
+        		'admin'=>'',
+        		'gaji'=>'',
+        		'golongan'=>'',
+        		'absensi'=>'',
+        		'user'=>'',
+        		'barang'=>'',
+        		'supplier'=>'',
+        		'kategori'=>'active',
+        		);
+		
+		    $object['kat']=$this->kategori_model->getDataKategori();
+			$this->load->view('component/header',$cek);
+			$this->load->view('form_kategori',$object);
 			$this->load->view('component/footer');
 		}else{
 			
@@ -67,7 +117,29 @@ class Kategori extends CI_Controller {
 		$data['kategori']=$this->kategori_model->getKategori($id);
 
 		if($this->form_validation->run()==FALSE){
-			$this->load->view('component/header');
+			$cek['status'] = array(
+        		'home'=>'',
+        		'hrd'=>'',
+        		'keuangan'=>'',
+        		'produk'=>'active',
+        		'pembelian'=>'',
+        		'pemasukan'=>'',
+        		'pengeluaran'=>'',
+        		'utang'=>'',
+        		'cash_flow'=>'',
+        		'neraca'=>'',
+        		'admin'=>'',
+        		'gaji'=>'',
+        		'golongan'=>'',
+        		'absensi'=>'',
+        		'user'=>'',
+        		'barang'=>'',
+        		'supplier'=>'',
+        		'kategori'=>'active',
+        		);
+		
+		    $object['kat']=$this->kategori_model->getDataKategori();
+			$this->load->view('component/header',$cek);
 			$this->load->view('edit_kategori',$data);
 			$this->load->view('component/footer');
 		}else{
@@ -81,10 +153,6 @@ class Kategori extends CI_Controller {
 		redirect('kategori','refresh');
 	}
 
-	// public function insert(){
-	// 	$this->penjualan_model->insertData();
-	// 	redirect('home','refresh');
-	// }
 }
 
 /* End of file kategori.php */
