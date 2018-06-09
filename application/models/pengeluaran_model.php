@@ -11,43 +11,43 @@ class Pengeluaran_model extends CI_Model {
 	public function insert()
 	{
 		$object = array(
-			'id_produk' => $this->input->post('id_produk'),
-			'qty' => $this->input->post('jumlah'),
-			'harga_total' => $this->input->post('harga_total'),
-			'id_supp' => $this->input->post('id_supplier'),
-			'tgl_beli' => $this->input->post('tanggal'),
-			'id_user' => $this->session->userdata('userSession')['id']
+			'id_user' => $this->input->post('id_user'),
+			'nama_barang' => $this->input->post('nama_barang'),
+			'harga_satuan' => $this->input->post('harga_satuan'),
+			'qty' => $this->input->post('qty'),
+			'total_harga' => $this->input->post('total_harga'),
+			'tanggal_pengeluaran' => $this->input->post('tanggal_pengeluaran'),
 			);
-		$this->db->insert('pembelian',$object);
+		$this->db->insert('pengeluaran',$object);
 	
 	}
-	public function getPembelian($id)
+	public function getPengeluaran($id)
 	{
-		$this->db->where('id_pembelian',$id);
-		$query = $this->db->get('pembelian');
+		$this->db->where('id_pengeluaran',$id);
+		$query = $this->db->get('pengeluaran');
 		return $query->result();
 	}
 	public function update($id)
 	{
 		$object = array(
-			'id_produk' => $this->input->post('id_produk'),
-			'qty' => $this->input->post('jumlah'),
-			'harga_total' => $this->input->post('harga_total'),
-			'id_supp' => $this->input->post('id_supplier'),
-			'tgl_beli' => $this->input->post('tanggal'),
-			'id_user' => $this->session->userdata('userSession')['id']
+			'id_user' => $this->input->post('id_user'),
+			'nama_barang' => $this->input->post('nama_barang'),
+			'harga_satuan' => $this->input->post('harga_satuan'),
+			'qty' => $this->input->post('qty'),
+			'total_harga' => $this->input->post('total_harga'),
+			'tanggal_pengeluaran' => $this->input->post('tanggal_pengeluaran'),
 			);
-		$this->db->where('id_pembelian', $id);
-		$this->db->update('pembelian',$object);
+		$this->db->where('id_pengeluaran', $id);
+		$this->db->update('pengeluaran',$object);
 
 	
 	}
 	public function delete($id)
 	{
-		$this->db->query("delete from pembelian where id_pembelian='$id'");	
+		$this->db->query("delete from pengeluaran where id_pengeluaran='$id'");	
 	}	
 
 }
 
-/* End of file Pembelian_model.php */
-/* Location: ./application/models/Pembelian_model.php */
+/* End of file Pengeluaran_model.php */
+/* Location: ./application/models/Pengeluaran_model.php */

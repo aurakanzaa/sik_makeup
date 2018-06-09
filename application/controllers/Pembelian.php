@@ -78,10 +78,10 @@ class Pembelian extends CI_Controller {
 		$this->form_validation->set_rules('harga_total','Harga Total','trim|required');
 		$this->form_validation->set_rules('tanggal','Tanggal','trim|required');
 		if($this->form_validation->run()==FALSE){
-			$object['produk']=$this->produk_model->getDataProduk();
-		$object['supplier']=$this->supplier_model->getDataSupplier();
+		      $object['produk']=$this->produk_model->getDataProduk();
+		      $object['supplier']=$this->supplier_model->getDataSupplier();
 		
-		$cek['status'] = array(
+		      $cek['status'] = array(
         		'home'=>'',
         		'hrd'=>'',
         		'keuangan'=>'active',
@@ -101,13 +101,13 @@ class Pembelian extends CI_Controller {
         		'supplier'=>'',
         		'kategori'=>'',
         		);
-		$this->load->view('component/header',$cek);
-		$this->load->view('Pembelian/form_pembelian',$object);
-		$this->load->view('component/footer');
+		      $this->load->view('component/header',$cek);
+		      $this->load->view('Pembelian/form_pembelian',$object);
+		      $this->load->view('component/footer');
 		}else{
 			
-			$this->pembelian_model->insert();
-			redirect('pembelian','refresh');
+		      $this->pembelian_model->insert();
+		      redirect('pembelian','refresh');
 		}
 	}
 
@@ -123,25 +123,25 @@ class Pembelian extends CI_Controller {
 			$object['produk']=$this->produk_model->getDataProduk();
 			$object['supplier']=$this->supplier_model->getDataSupplier();
 			$cek['status'] = array(
-        		'home'=>'',
-        		'hrd'=>'',
-        		'keuangan'=>'active',
-        		'produk'=>'',
-        		'pembelian'=>'active',
-        		'pemasukan'=>'',
-        		'pengeluaran'=>'',
-        		'utang'=>'',
-        		'cash_flow'=>'',
-        		'neraca'=>'',
-        		'admin'=>'',
-        		'gaji'=>'',
-        		'golongan'=>'',
-        		'absensi'=>'',
-        		'user'=>'',
-        		'barang'=>'',
-        		'supplier'=>'',
-        		'kategori'=>'',
-        		);
+        		      'home'=>'',
+        		      'hrd'=>'',
+        		      'keuangan'=>'active',
+        		      'produk'=>'',
+        		      'pembelian'=>'active',
+        		      'pemasukan'=>'',
+        		      'pengeluaran'=>'',
+        		      'utang'=>'',
+        		      'cash_flow'=>'',
+        		      'neraca'=>'',
+        		      'admin'=>'',
+        		      'gaji'=>'',
+        		      'golongan'=>'',
+        		      'absensi'=>'',
+        		      'user'=>'',
+        		      'barang'=>'',
+        		      'supplier'=>'',
+        		      'kategori'=>'',
+        		      );
 			$this->load->view('component/header',$cek);
 			$this->load->view('Pembelian/form_update_pembelian',$object);
 			$this->load->view('component/footer');

@@ -73,20 +73,20 @@ class Pengeluaran extends CI_Controller {
 	}
 
 	public function create(){
-		$this->form_validation->set_rules('id_user','nama','trim|required');
-		$this->form_validation->set_rules('nama_barang','nama_barang','trim|required');
-		$this->form_validation->set_rules('harga_satuan','harga_satuan','trim|required');
-                $this->form_validation->set_rules('qty','qty','trim|required');
-                $this->form_validation->set_rules('total_harga','total_harga','trim|required');
-		$this->form_validation->set_rules('tanggal_pengeluaran','tanggal_pengeluaran','trim|required');
+		$this->form_validation->set_rules('id_user','Id User','trim|required');
+		$this->form_validation->set_rules('nama_barang','Nama Barang','trim|required');
+		$this->form_validation->set_rules('harga_satuan','Harga Satuan','trim|required');
+                $this->form_validation->set_rules('qty','Qty','trim|required');
+                $this->form_validation->set_rules('total_harga','Total Harga','trim|required');
+		$this->form_validation->set_rules('tanggal_pengeluaran','Tanggal Pengeluaran','trim|required');
                 
 		if($this->form_validation->run()==FALSE){
-			$object['produk']=$this->produk_model->getDataProduk();
-		$object['pengeluaran']=$this->pengeluaran_model->getDataPengeluaran();
-                $object['user']=$this->user_model->getDataUser();
+			
+		      $object['pengeluaran']=$this->pengeluaran_model->getDataPengeluaran();
+                      $object['user']=$this->user_model->getDataUser();
 		
-		$cek['status'] = array(
-        		'home'=>'',
+		      $cek['status'] = array(
+        	       	'home'=>'',
         		'hrd'=>'',
         		'keuangan'=>'active',
         		'produk'=>'',
@@ -105,9 +105,9 @@ class Pengeluaran extends CI_Controller {
         		'supplier'=>'',
         		'kategori'=>'',
         		);
-		$this->load->view('component/header',$cek);
-		$this->load->view('pengeluaran/form_pengeluaran',$object);
-		$this->load->view('component/footer');
+		      $this->load->view('component/header',$cek);
+		      $this->load->view('pengeluaran/form_pengeluaran',$object);
+		      $this->load->view('component/footer');
 		}else{
 			
 			$this->pengeluaran_model->insert();
@@ -116,16 +116,16 @@ class Pengeluaran extends CI_Controller {
 	}
 
 	public function update($id){
-		$this->form_validation->set_rules('id_user','nama','trim|required');
-                $this->form_validation->set_rules('nama_barang','nama_barang','trim|required');
-                $this->form_validation->set_rules('harga_satuan','harga_satuan','trim|required');
-                $this->form_validation->set_rules('qty','qty','trim|required');
-                $this->form_validation->set_rules('total_harga','total_harga','trim|required');
-                $this->form_validation->set_rules('tanggal_pengeluaran','tanggal_pengeluaran','trim|required');
+		$this->form_validation->set_rules('id_user','Id User','trim|required');
+                $this->form_validation->set_rules('nama_barang','Nama Barang','trim|required');
+                $this->form_validation->set_rules('harga_satuan','Harga Satuan','trim|required');
+                $this->form_validation->set_rules('qty','Qty','trim|required');
+                $this->form_validation->set_rules('total_harga','Total Harga','trim|required');
+                $this->form_validation->set_rules('tanggal_pengeluaran','Tanggal Pengeluaran','trim|required');
 		
 		if($this->form_validation->run()==FALSE){
 
-			$object['pengeluaran']=$this->pengeluaran_model->getDataPengeluaran();
+		$object['pengeluaran']=$this->pengeluaran_model->getDataPengeluaran();
                 $object['user']=$this->user_model->getDataUser();
 			$cek['status'] = array(
         		'home'=>'',

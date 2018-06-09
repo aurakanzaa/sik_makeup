@@ -3,7 +3,7 @@
           <section class="wrapper">
           
           
-            <h3><i class="fa fa-angle-right"></i> Tambah Pembelian</h3>
+            <h3><i class="fa fa-angle-right"></i> Upadate Pembelian</h3>
             <?php echo validation_errors(); ?>  
             <!-- BASIC FORM ELELEMNTS -->
             <div class="row mt">
