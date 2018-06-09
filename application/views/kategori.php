@@ -16,11 +16,15 @@ MAIN CONTENT
           <hr>
           <tbody>
             <tr>
+              <th>No</th>
               <th>Kategori</th>
               <th align="center">Edit | Delete</th>
             </tr>
-            <?php foreach ($kat as $key): ?>
+            <?php 
+            $no = 1;
+            foreach ($kat as $key): ?>
             <tr>
+              <th><?php echo $no++ ?></th>
               <th><?php echo $key->nama_kategori ?></th>
               <td>
                 <a class="btn btn-primary btn-xs" href="<?php echo base_url('index.php/kategori/update'); ?>/<?php echo $key->id_kategori ?>">

@@ -16,12 +16,16 @@ MAIN CONTENT
           <hr>
           <tbody>
             <tr>
+              <th>No</th>
               <th>Golongan</th>
               <th>Gaji Pokok</th>
               <th align="center">Edit | Delete</th>
             </tr>
-            <?php foreach ($gol as $key): ?>
+            <?php 
+            $no=1;
+            foreach ($gol as $key): ?>
             <tr>
+              <th><?php echo $no++ ?></th>
               <th><?php echo $key->nama_gol ?></th>
               <th><?php echo $key->gaji_pokok ?></th>
               <td>

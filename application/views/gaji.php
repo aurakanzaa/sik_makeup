@@ -16,6 +16,7 @@ MAIN CONTENT
           <hr>
           <tbody>
             <tr>
+              <th>No</th>
               <th>Id Gaji</th>
               <th>Total Gaji</th>
               <th>Tanggal</th>
@@ -23,8 +24,11 @@ MAIN CONTENT
               <th>Id Admin</th>
               <th align="center">Edit | Delete</th>
             </tr>
-            <?php foreach ($gaji as $key): ?>
+            <?php 
+            $no =1;
+            foreach ($gaji as $key): ?>
             <tr>
+              <th><?php echo $no++ ?></th>
               <th><?php echo $key->id_gaji ?></th>
               <th><?php echo $key->total_gaji ?></th>
               <th><?php echo $key->tanggal ?></th>

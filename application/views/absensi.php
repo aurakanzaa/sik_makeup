@@ -16,14 +16,19 @@ MAIN CONTENT
           <hr>
           <tbody>
             <tr>
+              <th>No</th>
               <th>Id Absen</th>
               <th>Absen Masuk</th>
               <th>Absen Keluar</th>
               <th>Id Admin</th>
               <th align="center">Edit | Delete</th>
             </tr>
-            <?php foreach ($absensi as $key): ?>
+            <?php 
+            $no = 1;
+            foreach ($absensi as $key): ?>
             <tr>
+
+              <th><?php echo $no++ ?></th>
               <th><?php echo $key->id_absen ?></th>
               <th><?php echo $key->tgl_masuk_jam ?></th>
               <th><?php echo $key->tgl_keluar_jam ?></th>

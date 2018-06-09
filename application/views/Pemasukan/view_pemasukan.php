@@ -17,7 +17,7 @@ MAIN CONTENT
           <th>Tanggal</th>
           <th>Kode </th>
           <th>Pesanan</th>
-          <th>Total Pemasukan</th>\
+          <th>Total Pemasukan</th>
           <th align="center">Edit | Delete</th>
         </tr>
         <?php 
