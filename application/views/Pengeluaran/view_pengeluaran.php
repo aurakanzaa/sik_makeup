@@ -25,7 +25,7 @@ MAIN CONTENT
         </tr>
         <?php 
         $no = 1;
-        foreach($pengeluaran as $key){ 
+        foreach($keluar as $key){ 
         ?>
         <tr>
           <td><?php echo $no++ ?></td>

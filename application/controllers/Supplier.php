@@ -10,7 +10,6 @@ class Supplier extends CI_Controller {
 		$this->load->library('form_validation');
 		$this->load->model('kategori_model');
 		$this->load->model('supplier_model');
-		$this->load->model('kategori_model');
 		$this->load->helper('html');
 		$this->load->library('image_lib');
 	}

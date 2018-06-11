@@ -126,7 +126,7 @@ class User extends CI_Controller {
                 
                 if($this->form_validation->run()==FALSE){
 
-                $object['role']=$this->role_model->getDataRole();
+                    $object['role']=$this->role_model->getDataRole();
                     $object['user']=$this->user_model->getDataUser();
                 
                      $cek['status'] = array(

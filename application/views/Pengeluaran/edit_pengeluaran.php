@@ -20,7 +20,7 @@
                               <div class="col-sm-5">
                                   <select class="form-control" name="id_user">
                                   <?php foreach ($user as $key) {?>
-                                    <?php if ($key->id==$pengeluaran[0]->id_user) {?>
+                                    <?php if ($key->id==$keluar[0]->id_user) {?>
                                     <option selected value="<?php echo $key->id; ?>"><?php echo $key->nama; ?></option>
                                     <?php } ?>
                                   <option value="<?php echo $key->id; ?>"><?php echo $key->nama; ?></option>
@@ -32,28 +32,28 @@
                          <div class="form-group">
                               <label class="col-sm-2 col-sm-2 control-label">Nama Barang</label>
                               <div class="col-sm-5">
-                                  <input type="text" name="nama_barang" class="form-control" value="<?php echo $pengeluaran[0]->nama_barang ?>">
+                                  <input type="text" name="nama_barang" class="form-control" value="<?php echo $keluar[0]->nama_barang ?>">
                               </div>
                           </div>
 
                           <div class="form-group">
                               <label class="col-sm-2 col-sm-2 control-label">Harga Satuan</label>
                               <div class="col-sm-5">
-                                  <input type="number" name="harga_satuan" class="form-control" value="<?php echo $pengeluaran[0]->harga_satuan ?>">
+                                  <input type="number" name="harga_satuan" class="form-control" value="<?php echo $keluar[0]->harga_satuan ?>">
                               </div>
                           </div>
 
                           <div class="form-group">
                               <label class="col-sm-2 col-sm-2 control-label">Qty</label>
                               <div class="col-sm-5">
-                                  <input type="number" name="qty" class="form-control" value="<?php echo $pengeluaran[0]->qty ?>">
+                                  <input type="number" name="qty" class="form-control" value="<?php echo $keluar[0]->qty ?>">
                               </div>
                           </div>
 
                           <div class="form-group">
                               <label class="col-sm-2 col-sm-2 control-label">Total Harga</label>
                               <div class="col-sm-5">
-                                  <input type="number" name="total_harga" class="form-control" value="<?php echo $pengeluaran[0]->total_harga ?>">
+                                  <input type="number" name="total_harga" class="form-control" value="<?php echo $keluar[0]->total_harga ?>">
                               </div>
                           </div>
 
@@ -62,7 +62,7 @@
                           <div class="form-group">
                               <label class="col-sm-2 col-sm-2 control-label">Tanggal Pengeluaran</label>
                               <div class="col-sm-5">
-                                  <input type="date" name="tanggal_pengeluaran" class="form-control" value="<?php echo $pengeluaran[0]->tanggal_pengeluaran ?>">
+                                  <input type="date" name="tanggal_pengeluaran" class="form-control" value="<?php echo $keluar[0]->tanggal_pengeluaran ?>">
                               </div>
                           </div>
 
