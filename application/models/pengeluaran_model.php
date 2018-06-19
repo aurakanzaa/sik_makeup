@@ -40,7 +40,7 @@ class Pengeluaran_model extends CI_Model {
 			'tanggal_pengeluaran' => $this->input->post('tanggal_pengeluaran'),
 			);
 		$this->db->where('id_pengeluaran',$id);
-		$this->db->update('pengeluaran',$data);
+		$this->db->update('pengeluaran',$object);
 		if($this->db->affected_rows()==1){
 			return true;
 		}else{

@@ -43,13 +43,19 @@
                               </div>
                           </div>
 
-                          <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">Id Admin</label>
+                           <div class="form-group">
+                              <label class="col-sm-2 col-sm-2 control-label">Admin</label>
                               <div class="col-sm-5">
-                                  <input type="number" name="id_admin" class="form-control" value="<?php echo $gaji[0]->id_admin; ?>">
+                                  <select class="form-control" name="id_admin">
+                                  <?php foreach ($admin as $key) {?>
+                                    <?php if ($key->id==$gaji[0]->id_admin) {?>
+                                    <option selected value="<?php echo $key->id; ?>"><?php echo $key->username; ?></option>
+                                    <?php } ?>
+                                  <option value="<?php echo $key->id; ?>"><?php echo $key->username; ?></option>
+                                  <?php } ?>
+                                  </select>
                               </div>
                           </div>
-
 
                          
                            

@@ -25,13 +25,11 @@ class User_model extends CI_Model {
 	{
 		$this->db->where('id',$id);
 		$query = $this->db->get('user');
-
-		
 		return $query->result();
 	}	
 
 	public function UpdateById($id){
-		$data=array
+		$object=array
 		(
 			
 			'id_role' => $this->input->post('id_role'),
@@ -43,7 +41,7 @@ class User_model extends CI_Model {
 			
 			);
 		$this->db->where('id',$id);
-		$this->db->update('user',$data);
+		$this->db->update('user',$object);
 		if($this->db->affected_rows()==1){
 			return true;
 		}else{

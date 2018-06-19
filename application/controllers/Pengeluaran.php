@@ -72,8 +72,7 @@ class Pengeluaran extends CI_Controller {
 	}
 
 	public function create(){
-		$object['keluar']=$this->pengeluaran_model->getDataPengeluaran();
-                $object['user']=$this->user_model->getDataUser();
+		
 
 		$this->form_validation->set_rules('id_user','Id User','trim|required');
                 $this->form_validation->set_rules('nama_barang','Nama Barang','trim|required');
@@ -82,12 +81,12 @@ class Pengeluaran extends CI_Controller {
                 $this->form_validation->set_rules('total_harga','Total Harga','trim|required');
                 $this->form_validation->set_rules('tanggal_pengeluaran','Tanggal Pengeluaran','trim|required');
 
-		$this->load->model('pengeluaran_model');
 		
 		if($this->form_validation->run()==FALSE){
 			
 			$object['keluar']=$this->pengeluaran_model->getDataPengeluaran();
                         $object['user']=$this->user_model->getDataUser();
+
                         $cek['status'] = array(
                         'home'=>'',
                         'hrd'=>'',
@@ -114,9 +113,7 @@ class Pengeluaran extends CI_Controller {
 		}else{
 			
 			$this->pengeluaran_model->insertPengeluaran();
-			$this->load->view('component/header',$cek);
-			redirect('pengeluaran','refresh');
-			$this->load->view('component/footer');
+			 redirect('pengeluaran','refresh');
 		}
 	}
 
@@ -131,7 +128,7 @@ class Pengeluaran extends CI_Controller {
 		$object['keluar']=$this->pengeluaran_model->getPengeluaran($id);
 		
 		if($this->form_validation->run()==FALSE){
-			$object['keluar']=$this->pengeluaran_model->getDataPengeluaran();
+			$object['keluar']=$this->pengeluaran_model->getPengeluaran($id);
                         $object['user']=$this->user_model->getDataUser();
 
 		    	$cek['status'] = array(

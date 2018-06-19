@@ -129,7 +129,7 @@ class Produk extends CI_Controller {
 		$data['kategori']=$this->kategori_model->getDataKategori();
 
 		if($this->form_validation->run()==FALSE){
-			$object['pro']=$this->produk_model->getDataProduk();
+			$data['pro']=$this->produk_model->getDataProduk();
 			$data['kategori']=$this->kategori_model->getDataKategori();
 
 		    	$cek['status'] = array(
@@ -166,10 +166,6 @@ class Produk extends CI_Controller {
 		redirect('produk','refresh');
 	}
 
-	// public function insert(){
-	// 	$this->penjualan_model->insertData();
-	// 	redirect('home','refresh');
-	// }
 }
 
 /* End of file gaji.php */

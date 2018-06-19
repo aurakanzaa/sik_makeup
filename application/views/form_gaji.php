@@ -40,23 +40,14 @@
                               </div>
                           </div>
 
-                          <!-- <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">Id Admin</label>
-
+                          <div class="form-group">
+                              <label class="col-sm-2 col-sm-2 control-label">Admin</label>
                               <div class="col-sm-5">
-                                  <select class="form-control" name="id">
+                                  <select class="form-control" name="id_admin">
                                   <?php foreach ($admin as $key) {?>
-                                    <option value="<?php echo $key->id; ?>"><?php echo $key->admin; ?></option>
+                                    <option value="<?php echo $key->id; ?>"><?php echo $key->username; ?></option>
                                     <?php } ?>
                                   </select>
-                              </div>
-                          </div>
-                           -->
-                         
-                         <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">Id Admin</label>
-                              <div class="col-sm-5">
-                                  <input type="number" name="id_admin" class="form-control">
                               </div>
                           </div>
                            

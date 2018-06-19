@@ -110,7 +110,7 @@ class User extends CI_Controller {
                       $this->load->view('component/footer');
                 }else{
                         
-                        $this->user_model->insert();
+                        $this->user_model->insertUser();
                         redirect('user','refresh');
                 }
         }
@@ -127,7 +127,7 @@ class User extends CI_Controller {
                 if($this->form_validation->run()==FALSE){
 
                     $object['role']=$this->role_model->getDataRole();
-                    $object['user']=$this->user_model->getDataUser();
+                    $object['user']=$this->user_model->getUser($id);
                 
                      $cek['status'] = array(
                         'home'=>'',
@@ -154,7 +154,7 @@ class User extends CI_Controller {
                         $this->load->view('component/footer');
                 }else{
                         
-                        $this->user_model->update($id);
+                        $this->user_model->UpdateById($id);
                         redirect('user','refresh');
                 }
         }

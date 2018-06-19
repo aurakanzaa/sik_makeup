@@ -8,7 +8,7 @@ class Gaji extends CI_Controller {
 		parent::__construct();
 		$this->load->helper('url','form');
 		$this->load->library('form_validation');
-		// $this->load->model('admin_model');
+		$this->load->model('admin_model');
 		$this->load->model('gaji_model');
 		$this->load->helper('html');
 		$this->load->library('image_lib');
@@ -16,6 +16,8 @@ class Gaji extends CI_Controller {
 	public function index()
 	{
 		$object['gaji']=$this->gaji_model->getDataGaji();
+		$object['admin']=$this->admin_model->getDataAdmin();
+
 		$cek['status'] = array(
         		'home'=>'',
         		'hrd'=>'active',
@@ -46,6 +48,8 @@ class Gaji extends CI_Controller {
 
 	public function form_gaji(){
 		$object['gaji']=$this->gaji_model->getDataGaji();
+		$object['admin']=$this->admin_model->getDataAdmin();
+
 		$cek['status'] = array(
         		'home'=>'',
         		'hrd'=>'active',
@@ -75,6 +79,8 @@ class Gaji extends CI_Controller {
 
 	public function create(){
 		$object['gaji']=$this->gaji_model->getDataGaji();
+		$object['admin']=$this->admin_model->getDataAdmin();
+
 		$this->form_validation->set_rules('total_gaji','total_gaji','trim|required');
 		$this->form_validation->set_rules('tanggal','tanggal','trim|required');
 		$this->form_validation->set_rules('status','status','trim|required');
@@ -83,6 +89,8 @@ class Gaji extends CI_Controller {
 
 		if($this->form_validation->run()==FALSE){
 			$object['gaji']=$this->gaji_model->getDataGaji();
+			$object['admin']=$this->admin_model->getDataAdmin();
+
 			$cek['status'] = array(
         		'home'=>'',
         		'hrd'=>'active',
@@ -122,9 +130,11 @@ class Gaji extends CI_Controller {
 		$this->form_validation->set_rules('id_admin','id_admin','trim|required');
 
 		$data['gaji']=$this->gaji_model->getGaji($id);
+		$data['admin']=$this->admin_model->getDataAdmin();
 
 		if($this->form_validation->run()==FALSE){
 			$data['gaji']=$this->gaji_model->getGaji($id);
+			$data['admin']=$this->admin_model->getDataAdmin();
 			$cek['status'] = array(
         		'home'=>'',
         		'hrd'=>'active',
