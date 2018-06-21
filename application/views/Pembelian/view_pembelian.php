@@ -31,9 +31,9 @@ MAIN CONTENT
           <td><?php echo $no++ ?></td>
           <td><?php echo $key->id_pembelian ?></td>
           <td><?php echo $key->tgl_beli ?></td>
-          <td><?php echo $key->id_user ?></td>
-          <td><?php echo $key->id_produk ?></td>
-          <td><?php echo $key->id_supp ?></td>
+          <td><?php echo $key->username ?></td>
+          <td><?php echo $key->nama_produk ?></td>
+          <td><?php echo $key->nama ?></td>
           <td><?php echo $key->qty ?></td>
           <td><?php echo $key->harga_total ?></td>
         

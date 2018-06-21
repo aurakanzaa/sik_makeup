@@ -16,10 +16,10 @@ MAIN CONTENT
           <th>No</th>
           <th>Id Transaksi</th>
           <th>Id User</th>
-          <th>Id Pembayaran</th>
-          <th>Id Pengeluaran</th>
-          <th>Id Utang</th>
-          <th>Id Pembelian</th>
+          <th>PEMASUKAN</th>
+          <th>PENGELUARAN</th>
+          <th>UTANG</th>
+          <th>PEMBELIAN</th>
           <th align="center">Edit | Delete</th>
         </tr>
         <?php 
@@ -30,10 +30,10 @@ MAIN CONTENT
           <td><?php echo $no++ ?></td>
           <td><?php echo $key->id_transaksi ?></td>
           <td><?php echo $key->id_user ?></td>
-          <td><?php echo $key->id_pembayaran ?></td>
-          <td><?php echo $key->id_pengeluaran ?></td>
-          <td><?php echo $key->id_utang ?></td>
-          <td><?php echo $key->id_pembelian ?></td>
+          <td><?php echo $key->PEMASUKAN?></td>
+          <td><?php echo $key->PENGELUARAN ?></td>
+          <td><?php echo $key->UTANG ?></td>
+          <td><?php echo $key->PEMBELIAN ?></td>
         
           <td>
                 <a class="btn btn-primary btn-xs" href="<?php echo site_url('cashflow/update/').$key->id_transaksi ?>">

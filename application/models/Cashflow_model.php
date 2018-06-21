@@ -16,7 +16,7 @@ class Cashflow_model extends CI_Model {
 	}
 	public function getDataCashflow()
 	{
-		$query = $this->db->query("SELECT id_transaksi, id_user, id_pembayaran, id_pengeluaran, id_utang, id_pembelian from cash_flow");
+		$query = $this->db->query(" SELECT `cash_flow`.`id_transaksi`,cash_flow.id_user,pembayaran.Total_pembayaran as PEMASUKAN,pengeluaran.total_harga as PENGELUARAN,utang.total_utang as UTANG,pembelian.harga_total as PEMBELIAN FROM `cash_flow` join pembayaran on cash_flow.id_pembayaran=pembayaran.id_pembayaran join pengeluaran on cash_flow.id_Pengeluaran=pengeluaran.id_pengeluaran join utang on utang.id_utang = cash_flow.id_utang join pembelian on pembelian.id_pembelian = cash_flow.id_pembelian");
 		return $query->result();
 	}
 

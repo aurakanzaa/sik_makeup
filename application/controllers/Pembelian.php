@@ -107,6 +107,7 @@ class Pembelian extends CI_Controller {
 		}else{
 			
 		      $this->pembelian_model->insert();
+                      redirect('pembelian','refresh');
 		     
 		}
 	}

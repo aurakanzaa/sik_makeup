@@ -5,7 +5,8 @@ class Pembelian_model extends CI_Model {
 
 	public function getDataPembelian()
 	{
-		$query = $this->db->get('Pembelian');
+		//$query = $this->db->get('Pembelian');
+		$query = $this->db->query('Select pembelian.*,admin.username,produk.nama_produk,supplier.nama from pembelian join admin on pembelian.id_user=admin.id join produk on pembelian.id_produk = produk.id_produk join supplier on pembelian.id_supp=supplier.id_supplier');
 		return $query->result();
 	}
 	public function insert()
@@ -19,7 +20,19 @@ class Pembelian_model extends CI_Model {
 			'id_user' => $this->session->userdata('userSession')['id']
 			);
 		$this->db->insert('pembelian',$object);
-	
+		$this->db->query("update produk set stok = stok + ".$this->input->post('jumlah')." where id_produk= ".$this->input->post('id_produk'));
+		$object=$this->db->query("SELECT id_pembelian FROM pembelian ORDER BY id_pembelian DESC LIMIT 1;");	
+		$cash=array(
+
+				'id_pembelian'=>$object->result()[0]->id_pembelian,
+				'id_utang'=>'0',
+				'id_pembayaran'=>'0',
+				'id_pengeluaran'=>'0',
+				'id_user' => $this->session->userdata('userSession')['id']
+
+				);
+		$this->db->insert('cash_flow',$cash);
+				
 	}
 	public function getPembelian($id)
 	{
