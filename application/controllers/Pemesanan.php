@@ -13,6 +13,8 @@ class Pemesanan extends CI_Controller {
         $this->load->model('pemesanan_model');
 		$this->load->helper('html');
 		$this->load->library('image_lib');
+        $this->load->model('kategori_model');
+        $this->load->model('Model_login');
 	}
 
 	public function index()
@@ -42,39 +44,19 @@ class Pemesanan extends CI_Controller {
         		'kategori'=>'',
         		);
 		$this->load->view('component/header',$cek);
-		$this->load->view('pemesanan',$object);
+		$this->load->view('pemesanan/pemesanan',$object);
 		$this->load->view('component/footer');	
 	}
 
-	public function form_utang()
+	public function order($id)
 	{
-		$object['produk']=$this->produk_model->getDataProduk();
-        $object['pemesanan']=$this->pemesanan_model->getDataPemesanan();
+		$object['produk']=$this->produk_model->getProduk($id);
         $object['user']=$this->user_model->getDataUser();
+        $object['kategori'] = $this->kategori_model->getDataKategori();
 
-		$cek['status'] = array(
-        		'home'=>'',
-        		'hrd'=>'',
-        		'keuangan'=>'active',
-        		'produk'=>'',
-        		'pembelian'=>'',
-        		'pemasukan'=>'',
-        		'pengeluaran'=>'',
-        		'utang'=>'active',
-        		'cash_flow'=>'',
-        		'neraca'=>'',
-        		'admin'=>'',
-        		'gaji'=>'',
-        		'golongan'=>'',
-        		'absensi'=>'',
-        		'user'=>'',
-        		'barang'=>'',
-        		'supplier'=>'',
-        		'kategori'=>'',
-        		);
-		$this->load->view('component/header',$cek);
-		$this->load->view('form_pemesanan',$object);
-		$this->load->view('component/footer');	
+		$this->load->view('component/header_main',$object);
+        $this->load->view('pemesanan/order',$object);
+        $this->load->view('component/footer');  
 	}
 
 	public function create(){

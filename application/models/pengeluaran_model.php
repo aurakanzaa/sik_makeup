@@ -14,6 +14,19 @@ class Pengeluaran_model extends CI_Model {
 			'tanggal_pengeluaran' => $this->input->post('tanggal_pengeluaran'),
 			);
 		$this->db->insert('pengeluaran',$object);
+		$object=$this->db->query("SELECT id_pengeluaran FROM pengeluaran ORDER BY id_pengeluaran DESC LIMIT 1;");	
+		$cash=array(
+
+				'tgl_cashflow'=>$this->input->post('tanggal_pengeluaran'),
+				'id_pembelian'=>'0',
+				'id_utang'=>'0',
+				'id_pembayaran'=>'0',
+				'id_pengeluaran'=>$object->result()[0]->id_pengeluaran,
+				'keterangan'=>'Pembayaran '.$this->input->post('nama_barang'),
+				'id_user' => $this->session->userdata('userSession')['id']
+
+				);
+		$this->db->insert('cash_flow',$cash);
 	}
 	public function getDataPengeluaran()
 	{

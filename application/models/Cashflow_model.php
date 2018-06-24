@@ -16,11 +16,15 @@ class Cashflow_model extends CI_Model {
 	}
 	public function getDataCashflow()
 	{
-		$query = $this->db->query(" SELECT `cash_flow`.`id_transaksi`,cash_flow.id_user,pembayaran.Total_pembayaran as PEMASUKAN,pengeluaran.total_harga as PENGELUARAN,utang.total_utang as UTANG,pembelian.harga_total as PEMBELIAN FROM `cash_flow` join pembayaran on cash_flow.id_pembayaran=pembayaran.id_pembayaran join pengeluaran on cash_flow.id_Pengeluaran=pengeluaran.id_pengeluaran join utang on utang.id_utang = cash_flow.id_utang join pembelian on pembelian.id_pembelian = cash_flow.id_pembelian");
+		$query = $this->db->query("SELECT cash_flow.tgl_cashflow,cash_flow.keterangan,`cash_flow`.`id_transaksi`,cash_flow.id_user,pembayaran.Total_pembayaran as PEMASUKAN,pengeluaran.total_harga as PENGELUARAN,utang.total_utang as UTANG,pembelian.harga_total as PEMBELIAN FROM `cash_flow` join pembayaran on cash_flow.id_pembayaran=pembayaran.id_pembayaran join pengeluaran on cash_flow.id_Pengeluaran=pengeluaran.id_pengeluaran join utang on utang.id_utang = cash_flow.id_utang join pembelian on pembelian.id_pembelian = cash_flow.id_pembelian ORDER BY tgl_cashflow");
 		return $query->result();
 	}
 
-	
+	public function getDataTotalCashflow()
+	{
+		$query = $this->db->query("SELECT cash_flow.tgl_cashflow,cash_flow.keterangan,`cash_flow`.`id_transaksi`,cash_flow.id_user,sum(pembayaran.Total_pembayaran) as PEMASUKAN,sum(pengeluaran.total_harga) as PENGELUARAN,sum(utang.total_utang) as UTANG,sum(pembelian.harga_total) as PEMBELIAN FROM `cash_flow` join pembayaran on cash_flow.id_pembayaran=pembayaran.id_pembayaran join pengeluaran on cash_flow.id_Pengeluaran=pengeluaran.id_pengeluaran join utang on utang.id_utang = cash_flow.id_utang join pembelian on pembelian.id_pembelian = cash_flow.id_pembelian ORDER BY tgl_cashflow");
+		return $query->result();
+	}
 
 	public function getCashflow($id)
 	{

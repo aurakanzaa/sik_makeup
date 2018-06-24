@@ -13,6 +13,19 @@ class Utang_model extends CI_Model {
 			'sisa_utang' => $this->input->post('sisa_utang'),
 		);
 		$this->db->insert('utang',$object);
+		$object=$this->db->query("SELECT id_utang FROM utang ORDER BY id_utang DESC LIMIT 1;");
+		$cash=array(
+
+				'tgl_cashflow'=>date('Y-m-d'),
+				'id_pembelian'=>'0',
+				'id_utang'=>$object->result()[0]->id_utang,
+				'id_pembayaran'=>'0',
+				'id_pengeluaran'=>'0',
+				'keterangan'=>$this->input->post('nama_barang'),
+				'id_user' => $this->session->userdata('userSession')['id']
+
+				);
+		$this->db->insert('cash_flow',$cash);
 	}
 	public function getDataUtang()
 	{

@@ -14,12 +14,14 @@ MAIN CONTENT
         <h4><i class="fa fa-angle-right"></i> Daftar Cashflow</h4>
         <tr>
           <th>No</th>
+          <th>Tanggal</th>
           <th>Id Transaksi</th>
           <th>Id User</th>
           <th>PEMASUKAN</th>
           <th>PENGELUARAN</th>
           <th>UTANG</th>
           <th>PEMBELIAN</th>
+          <th>KETERANGAN</th>
           <th align="center">Edit | Delete</th>
         </tr>
         <?php 
@@ -28,12 +30,14 @@ MAIN CONTENT
         ?>
         <tr>
           <td><?php echo $no++ ?></td>
+          <td><?php echo $key->tgl_cashflow ?></td>
           <td><?php echo $key->id_transaksi ?></td>
           <td><?php echo $key->id_user ?></td>
           <td><?php echo $key->PEMASUKAN?></td>
           <td><?php echo $key->PENGELUARAN ?></td>
           <td><?php echo $key->UTANG ?></td>
           <td><?php echo $key->PEMBELIAN ?></td>
+          <td><?php echo $key->keterangan ?></td>
         
           <td>
                 <a class="btn btn-primary btn-xs" href="<?php echo site_url('cashflow/update/').$key->id_transaksi ?>">
@@ -45,6 +49,18 @@ MAIN CONTENT
           </td>
         </tr>
         <?php } ?>
+      <tfoot>
+        <tr>
+          <td></td>
+          <td></td>
+          <td><b>Total</b></td>
+          <td></td>
+          <td><b><?php echo $totalcashflow[0]->PEMASUKAN?></b></td>
+          <td><b><?php echo $totalcashflow[0]->PENGELUARAN ?></b></td>
+          <td><b><?php echo $totalcashflow[0]->UTANG ?></b></td>
+          <td><b><?php echo $totalcashflow[0]->PEMBELIAN ?></b></td>
+        </tr>
+      </tfoot>
       </table>
       </div>
       </div><!-- /col-md-12 -->

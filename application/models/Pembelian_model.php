@@ -21,13 +21,16 @@ class Pembelian_model extends CI_Model {
 			);
 		$this->db->insert('pembelian',$object);
 		$this->db->query("update produk set stok = stok + ".$this->input->post('jumlah')." where id_produk= ".$this->input->post('id_produk'));
-		$object=$this->db->query("SELECT id_pembelian FROM pembelian ORDER BY id_pembelian DESC LIMIT 1;");	
+		$object=$this->db->query("SELECT id_pembelian FROM pembelian ORDER BY id_pembelian DESC LIMIT 1;");
+		$prod=$this->db->query("SELECT * FROM produk where id_produk= ".$this->input->post('id_produk'));	
 		$cash=array(
 
+				'tgl_cashflow'=>$this->input->post('tanggal'),
 				'id_pembelian'=>$object->result()[0]->id_pembelian,
 				'id_utang'=>'0',
 				'id_pembayaran'=>'0',
 				'id_pengeluaran'=>'0',
+				'keterangan'=>'pembelian produk '.$prod->result()[0]->nama_produk,
 				'id_user' => $this->session->userdata('userSession')['id']
 
 				);

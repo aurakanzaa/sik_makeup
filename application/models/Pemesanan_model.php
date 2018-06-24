@@ -15,7 +15,7 @@ class Pemesanan_model extends CI_Model {
 	}
 	public function getDataPemesanan()
 	{
-		$query = $this->db->query("SELECT id_pemesanan, id_user, id_produk, qty,tanggal_pemesanan from pemesanan");
+		$query = $this->db->query("SELECT * from pemesanan");
 		return $query->result();
 	}
 

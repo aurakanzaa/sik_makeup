@@ -25,7 +25,8 @@ class Cashflow extends CI_Controller {
         $object['pengeluaran']=$this->pengeluaran_model->getDataPengeluaran();
         $object['user']=$this->user_model->getDataUser();
         $object['pembelian']=$this->pembelian_model->getDataPembelian();
-         $object['cashflow']=$this->cashflow_model->getDataCashflow();
+        $object['cashflow']=$this->cashflow_model->getDataCashflow();
+        $object['totalcashflow']=$this->cashflow_model->getDataTotalCashflow();
 
 
 		$cek['status'] = array(
