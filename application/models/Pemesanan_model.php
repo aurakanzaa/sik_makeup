@@ -3,13 +3,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Pemesanan_model extends CI_Model {
 
-	public function insertPemesanan()
+	public function insertPemesanan($id)
 	{
+		$kode=range(0,9);
+		$kode_pemesanan=array_rand($kode,5);
+		$kode_pembayaran=array_rand($kode,7);
+
 		$object = array(
-			'id_user' => $this->input->post('id_user'),
-			'id_produk' => $this->input->post('id_produk'),
+			'kode_pemesanan' => implode($kode_pemesanan),
+			'id_user' => '2',
+			'id_produk' => $id,
 			'qty' => $this->input->post('qty'),
-			'tanggal_pemesanan' => $this->input->post('tanggal_pemesanan'),
+			'tanggal_pemesanan' => date('Y-m-d'),
+			'total_pemesanan' => $this->input->post('totals'),
+			'kode_pembayaran' => implode($kode_pembayaran)
 		);
 		$this->db->insert('pemesanan',$object);
 	}
@@ -27,7 +34,21 @@ class Pemesanan_model extends CI_Model {
 		$query = $this->db->get('pemesanan');
 		return $query->result();
 	}	
+	public function getPemesananId($id)
+	{
+		$this->db->where('id_user',$id);
+		$query = $this->db->get('pemesanan');
+		return $query->result();
+	}
 
+	public function UpdateStatusPemesanan($id){
+		$object=array
+		(
+			'status_pemesanan' => '1',
+		);
+		$this->db->where('id_pemesanan',$id);
+		$this->db->update('pemesanan',$object);
+	}
 	public function UpdateById($id){
 		$object=array
 		(

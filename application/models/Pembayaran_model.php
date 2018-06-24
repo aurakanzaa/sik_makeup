@@ -3,12 +3,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Pembayaran_model extends CI_Model {
 
-	public function insertPembayaran()
+	public function insertPembayaran($id,$total)
 	{
 		$object = array(
-			'id_pemesanan' => $this->input->post('id_pemesanan'),
-			'total_pembayaran' => $this->input->post('total_pembayaran'),
-			'tgl_pembayaran' => $this->input->post('tgl_pembayaran'),
+			'id_pemesanan' => $id,
+			'total_pembayaran' => $total,
+			'tgl_pembayaran' => date('Ymd'),
+			'kode_pembayaran' => $this->input->post('kode_pembayaran')
 		);
 		$this->db->insert('pembayaran',$object);
 	}

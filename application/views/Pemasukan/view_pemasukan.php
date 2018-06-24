@@ -16,6 +16,7 @@ MAIN CONTENT
           <th>No</th>
           <th>Tanggal</th>
           <th>Kode </th>
+          <th>Kode Pembayaran</th>
           <th>Pesanan</th>
           <th>Total Pemasukan</th>
           <th align="center">Edit | Delete</th>
@@ -28,6 +29,7 @@ MAIN CONTENT
           <td><?php echo $no++ ?></td>
           <td><?php echo $key->tgl_pembayaran ?></td>
           <td><?php echo $key->id_pembayaran ?></td>
+          <td><?php echo $key->kode_pembayaran ?></td>
           <td><?php echo $key->id_pemesanan ?></td>
           <td><?php echo $key->total_pembayaran ?></td>
           <td>

@@ -12,6 +12,9 @@ class Pembayaran extends CI_Controller {
         $this->load->model('pemesanan_model');
 		$this->load->helper('html');
 		$this->load->library('image_lib');
+        $this->load->model('produk_model');
+        $this->load->model('user_model');
+        $this->load->model('kategori_model');
 	}
 
 	public function index()
@@ -74,11 +77,9 @@ class Pembayaran extends CI_Controller {
 		$this->load->view('component/footer');	
 	}
 
-	public function create(){
-		$this->form_validation->set_rules('id_pemesanan','id_pemesanan','trim|required');
-        $this->form_validation->set_rules('total_pembayaran','total_pembayaran','trim|required');
-        $this->form_validation->set_rules('tgl_pembayaran','tgl_pembayaran','trim|required');
-        
+	public function create($id){
+        $object['produk']=$this->pemesanan_model->getPemesanan($id);
+		$this->form_validation->set_rules('kode_pembayaran','Kode Pembayaran','trim|required'); 
                 $cek['status'] = array(
                         'home'=>'',
                         'hrd'=>'',
@@ -100,22 +101,17 @@ class Pembayaran extends CI_Controller {
                         'kategori'=>'',
                         );
 
-		if($this->form_validation->run()==FALSE){
-
-                $object['pembayaran']=$this->pembayaran_model->getDataPembayaran();
-                $object['pemesanan']=$this->pemesanan_model->getDataPemesanan();
-		
-		      
-		      $this->load->view('component/header',$cek);
-		      $this->load->view('form_pembayaran',$object);
+		if($this->form_validation->run()==FALSE || $object['produk'][0]->kode_pembayaran !=$this->input->post('kode_pembayaran')){
+              $object['user']=$this->user_model->getDataUser();
+              $object['kategori'] = $this->kategori_model->getDataKategori();
+		      $this->load->view('component/header_main',$object);
+		      $this->load->view('pemasukan/form_pembayaran',$object);
 		      $this->load->view('component/footer');
 		}else{
-			
-		      $this->pembayaran_model->insertPemayaran();
-                      $this->load->view('component/header',$cek);
-                      redirect('pembayaran','refresh');
-                      $this->load->view('component/footer');
-		     
+		      $this->pembayaran_model->insertPembayaran($id, $object['produk'][0]->total_pemesanan);
+               $this->pemesanan_model->updateStatusPemesanan($id);
+               redirect('homes','refresh');
+
 		}
 	}
 

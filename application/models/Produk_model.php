@@ -33,7 +33,10 @@ class Produk_model extends CI_Model {
 		$query = $this->db->get('produk');
 		return $query->result();
 	}	
-
+	public function updateStok($id,$qty)
+	{
+		$this->db->query("update produk set stok = stok - ".$qty." where id_produk= ".$id);
+	}
 	public function UpdateById($id){
 		$data=array
 		(
