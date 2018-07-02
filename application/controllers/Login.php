@@ -5,6 +5,11 @@ class Login extends CI_Controller{
     function __construct(){
         parent::__construct();     
         $this->load->model('Model_login');
+        $this->load->model('User_model');
+        $this->load->helper('url','form');
+        $this->load->library('form_validation');
+        $this->load->helper('html');
+        $this->load->library('image_lib');
  
     }
  
@@ -20,6 +25,7 @@ class Login extends CI_Controller{
             'password' => md5($password)
             );
         $cek = $this->Model_login->cek_login("admin",$where);
+        $check = $this->Model_login->cek_login("user",$where);
         if($cek){
             $data_session = array(
                 'nama' => $cek[0]->username,
@@ -32,7 +38,23 @@ class Login extends CI_Controller{
  
             redirect(base_url("index.php/Home"));
  
-        }else{
+        }
+        elseif ($check){
+            $data_session = array(
+                'username' => $check[0]->username,
+                'password' => $check[0]->password,
+                'status' => "login",
+                'id' => $check[0]->id,
+                
+                );
+ 
+            $this->session->set_userdata('userSession',$data_session);
+ 
+            redirect(base_url("index.php/Homes/content"));
+ 
+        }
+
+        else{
              $this->session->set_flashdata('failedLogin', 'Password/Username Salah');
             redirect('login');
         }
@@ -41,5 +63,25 @@ class Login extends CI_Controller{
     function logout(){
         $this->session->sess_destroy();
         redirect(base_url('index.php/Login'));
+    }
+
+    public function register()
+    {   
+        $this->form_validation->set_rules('nama','nama','trim|required');
+        $this->form_validation->set_rules('alamat','alamat','trim|required');
+        $this->form_validation->set_rules('email','email');
+        $this->form_validation->set_rules('jenis_kelamin','jenis_kelamin');
+        $this->form_validation->set_rules('no_telp','no_telp','trim|required');
+        $this->form_validation->set_rules('username','username','trim|required');
+        $this->form_validation->set_rules('password','password','trim|required');
+        
+
+        if($this->form_validation->run()==FALSE){
+            $this->load->view('register');
+        }else{
+            $this->User_model->register();
+            redirect('login');
+        }
+        
     }
 }

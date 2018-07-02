@@ -3,6 +3,35 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class User_model extends CI_Model {
 
+
+	public function Login($username,$password)
+	{
+		$this->db->where('username',$username);
+		$this->db->where('password',md5($password));
+		$query=$this->db->get('user');
+		if($query->num_rows()==1){
+			return $query->result();
+		}else{
+			return false;
+		}
+	}
+
+	public function register(){
+		$data = array(
+			'id_role' => $this->input->post('id_role'),
+			'nama' => $this->input->post('nama'),
+			'alamat' => $this->input->post('alamat'),
+			'email' => $this->input->post('email'),
+			'jenis_kelamin' => $this->input->post('jenis_kelamin'),
+			'no_telp' => $this->input->post('no_telp'),
+			'username' => $this->input->post('username'),
+			'password' => md5($this->input->post('password')),
+					
+		);
+			$this->db->insert('user',$data);
+	}
+
+
 	public function insertUser()
 	{
 		$object = array(
@@ -15,6 +44,18 @@ class User_model extends CI_Model {
 		);
 		$this->db->insert('user',$object);
 	}
+
+	function cek_login($table,$where)
+    {     
+        $query=$this->db->get_where($table,$where);
+        if($query->num_rows()==1){
+            return $query->result();
+        }else{
+            return false;
+        }
+    }  
+
+
 	public function getDataUser()
 	{
 		$query = $this->db->query("SELECT id,id_role,nama, alamat, email, jenis_kelamin, no_telp from user");
