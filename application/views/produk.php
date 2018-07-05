@@ -15,6 +15,7 @@ MAIN CONTENT
         <tr>
           <th>No</th>
           <th>Nama Produk</th>
+          <th>Gambar</th>
           <th>Stok</th>
           <th>Harga Beli</th>
           <th>Harga Jual</th>
@@ -29,6 +30,7 @@ MAIN CONTENT
         <tr>
           <td><?php echo $no++ ?></td>
           <td><?php echo $key->nama_produk ?></td>
+          <td><img src="<?=base_url()?>bower_components/uploads/<?=$key->gambar ?>" style="width:100px;heigth:100px" class="img-responsive"></td>
           <td><?php echo $key->stok ?></td>
           <td><?php echo $key->harga_beli ?></td>
           <td><?php echo $key->harga_jual ?></td>

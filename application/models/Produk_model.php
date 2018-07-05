@@ -3,21 +3,28 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Produk_model extends CI_Model {
 
+	public function __construct()
+	{
+		parent::__construct();
+	}
+	
 	public function insertProduk()
 	{
 		$object = array(
+			
 			'nama_produk' => $this->input->post('nama_produk'),
 			'stok' => $this->input->post('stok'),
 			'harga_jual' => $this->input->post('harga_jual'),
 			'harga_beli' => $this->input->post('harga_beli'),
 			'id_kategori' => $this->input->post('id_kategori'),
 			'deskripsi' => $this->input->post('deskripsi'),
+			'gambar' => $this->upload->data('file_name'),
 		);
 		$this->db->insert('produk',$object);
 	}
 	public function getDataProduk()
 	{
-		$query = $this->db->get('produk');
+		$query = $this->db->query("SELECT id_produk, nama_produk, stok, harga_jual, harga_beli, id_kategori, deskripsi, gambar from produk");
 		return $query->result();
 	}
 
@@ -40,12 +47,14 @@ class Produk_model extends CI_Model {
 	public function UpdateById($id){
 		$data=array
 		(
+			
 			'nama_produk' => $this->input->post('nama_produk'),
 			'stok' => $this->input->post('stok'),
 			'harga_jual' => $this->input->post('harga_jual'),
 			'harga_beli' => $this->input->post('harga_beli'),
 			'id_kategori' => $this->input->post('id_kategori'),
 			'deskripsi' => $this->input->post('deskripsi'),
+			'gambar' => $this->upload->data('file_name'),
 			);
 		$this->db->where('id_produk',$id);
 		$this->db->update('produk',$data);

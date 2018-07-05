@@ -79,6 +79,8 @@ class Produk extends CI_Controller {
 		$this->form_validation->set_rules('harga_beli','harga','trim|required');
 		$this->form_validation->set_rules('id_kategori','id_kategori','trim|required');
 		$this->form_validation->set_rules('deskripsi','deskripsi','trim|required');
+		
+
 		$this->load->model('produk_model');
 		$this->load->model('kategori_model');
 		$cek['status'] = array(
@@ -109,11 +111,38 @@ class Produk extends CI_Controller {
 			$this->load->view('form_produk',$object);
 			$this->load->view('component/footer');
 		}else{
+			$config['upload_path'] = 'bower_components/uploads/';
+			$config['allowed_types'] = 'gif|jpg|png';
+			$config['max_size']  = 1000000;
+			$config['max_width']  = 10240;
+			$config['max_height']  = 7680;
+			
+			$this->load->library('upload', $config);
+			
+			if ( ! $this->upload->do_upload('userfile')){
+				$error = array('error' => $this->upload->display_errors());
+				$this->load->view('form_produk',$error);
+			}
+			else{
+				//$data = array('upload_data' => $this->upload->data());
+
+				$upload = $this->upload->data();
+				$confi['image_library']='gd2';
+				$confi['source_image']=$upload['full_path'];
+				$confi['maintain_ratio']=TRUE;
+				$confi['height']=150;
+				$confi['width']=1500;
+
+				$this->load->library('image_lib',$config);
+				$this->image_lib->clear();
+				$this->image_lib->initialize($confi);
+				$this->image_lib->resize();
 			
 			$this->produk_model->insertProduk();
 			$this->load->view('component/header',$cek);
 			redirect('produk','refresh');
 			$this->load->view('component/footer');
+			}
 		}
 	}
 
@@ -124,13 +153,15 @@ class Produk extends CI_Controller {
 		$this->form_validation->set_rules('harga_beli','harga','trim|required');
 		$this->form_validation->set_rules('id_kategori','id_kategori','trim|required');
 		$this->form_validation->set_rules('deskripsi','deskripsi','trim|required');
+		
 
 		$data['pro']=$this->produk_model->getProduk($id);
 		$data['kategori']=$this->kategori_model->getDataKategori();
+		$filename='gambar';
 
 		if($this->form_validation->run()==FALSE){
-			$data['pro']=$this->produk_model->getDataProduk();
-			$data['kategori']=$this->kategori_model->getDataKategori();
+			// $data['pro']=$this->produk_model->getDataProduk();
+			// $data['kategori']=$this->kategori_model->getDataKategori();
 
 		    	$cek['status'] = array(
         		'home'=>'',
@@ -156,9 +187,39 @@ class Produk extends CI_Controller {
 			$this->load->view('edit_produk',$data);
 			$this->load->view('component/footer');
 		}else{
+			$config['upload_path'] = 'bower_components/uploads/';
+			$config['allowed_types'] = 'gif|jpg|png';
+			$config['max_size']  = 100000;
+			$config['max_width']  = 10240;
+			$config['max_height']  = 7680;
+			
+			$this->load->library('upload', $config);
+			
+			if ( ! $this->upload->do_upload()){
+				$error = array('error' => $this->upload->display_errors());
+				$this->load->view('edit_produk',$error);
+				
+			}
+			else{
+				$image_data=$this->upload->data();
+
+				$configer=array(
+					'image_library' =>'gd2',
+					'source_image' => $image_data['full_path'],
+					'maintain_ratio'=>TRUE,
+					'width'=> 150,
+					'height'=>150,
+
+					);
+				$this->load->library('image_lib',$config);
+				$this->image_lib->clear();
+				$this->image_lib->initialize($configer);
+				$this->image_lib->resize();
+
 			$this->produk_model->UpdateById($id);
 			redirect('produk','refresh');
 		}
+	}
 	}
 
 	public function delete($id){

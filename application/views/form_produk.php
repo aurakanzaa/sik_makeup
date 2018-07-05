@@ -21,6 +21,12 @@
                                   <input type="text" name="nama_produk" class="form-control">
                               </div>
                           </div>
+
+                          <div class="form-group">
+                              <label class="col-sm-3 col-sm-3 control-label">Gambar</label>
+                              <input type="file" name="userfile" size="30" >
+                            
+                          </div>
                          
                          <div class="form-group">
                               <label class="col-sm-2 col-sm-2 control-label">Stok</label>

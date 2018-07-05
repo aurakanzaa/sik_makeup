@@ -22,6 +22,13 @@
                                   <input type="text" name="nama_produk" class="form-control" value="<?php echo $pro[0]->nama_produk; ?>">
                               </div>
                           </div>
+
+                          <div class="form-group">
+                              <label class="col-sm-2 col-sm-2 control-label">Gambar</label>
+                              <img src=<?=base_url("bower_components/uploads/").$pro[0]->gambar; ?> alt="">
+                              <input type="file" name="userfile" size="20" >
+                            
+                          </div>
                          
                          <div class="form-group">
                               <label class="col-sm-2 col-sm-2 control-label">Stok</label>
