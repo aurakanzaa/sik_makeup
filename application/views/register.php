@@ -11,12 +11,14 @@
 	<link rel="icon" href="<?php echo base_url('/assets/img/cashier.png'); ?> ">
     <!-- Bootstrap core CSS -->
     <link href="<?php echo base_url('/assets/css/bootstrap.css') ?> " rel="stylesheet">
+    <link href="<?php echo base_url('/assets/css/button.css') ?> " rel="stylesheet">
     <!--external css-->
     <link href="<?php echo base_url('/assets/font-awesome/css/font-awesome.css'); ?>" rel="stylesheet" />
         
     <!-- Custom styles for this template -->
     <link href="<?php echo base_url('/assets/css/style.css'); ?>" rel="stylesheet">
     <link href="<?php echo base_url('/assets/css/style-responsive.css'); ?>" rel="stylesheet">
+
 
   </head>
 
@@ -41,13 +43,24 @@
 		            <input type="text" class="form-control" placeholder="Alamat" name="alamat" autofocus>
 		            <br>
 		            <input type="text" class="form-control" placeholder="Email" name="email" autofocus>
-		            <br>
-		            <select name="jenis_kelamin">
+		            
+		            <!-- <select name="jenis_kelamin">
 		            	<option>Jenis Kelamin</option>
 		            	<option value="Laki-laki">Laki-Laki</option>
 		            	<option value="Perempuan">Perempuan</option>
-		            </select>
-		            <br><br>
+		            </select> -->
+					<br>
+					<label>Jenis Kelamin :</label>
+					<br>
+			            <div class="radio">
+			            
+						  <label><input type="radio" name="jenis_kelamin" value="Laki-Laki">Laki-Laki</label>
+						  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						  <label><input type="radio" name="jenis_kelamin" value="Perempuan">Perempuan</label>
+						</div>
+
+						
+		            
 		            <input type="text" class="form-control" placeholder="telp" name="no_telp" autofocus>
 		            <br>
 		            <input type="text" class="form-control" placeholder="username" name="username" autofocus>
