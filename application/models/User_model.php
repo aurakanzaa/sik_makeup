@@ -18,7 +18,7 @@ class User_model extends CI_Model {
 
 	public function register(){
 		$data = array(
-			'id_role' => $this->input->post('id_role'),
+			'id_role' => '2',
 			'nama' => $this->input->post('nama'),
 			'alamat' => $this->input->post('alamat'),
 			'email' => $this->input->post('email'),
@@ -35,7 +35,7 @@ class User_model extends CI_Model {
 	public function insertUser()
 	{
 		$object = array(
-			'id_role' => $this->input->post('id_role'),
+			'id_role' => '2',
 			'nama' => $this->input->post('nama'),
 			'alamat' => $this->input->post('alamat'),
 			'email' => $this->input->post('email'),
@@ -44,18 +44,7 @@ class User_model extends CI_Model {
 		);
 		$this->db->insert('user',$object);
 	}
-
-	function cek_login($table,$where)
-    {     
-        $query=$this->db->get_where($table,$where);
-        if($query->num_rows()==1){
-            return $query->result();
-        }else{
-            return false;
-        }
-    }  
-
-
+ 
 	public function getDataUser()
 	{
 		$query = $this->db->query("SELECT id,id_role,nama, alamat, email, jenis_kelamin, no_telp from user");

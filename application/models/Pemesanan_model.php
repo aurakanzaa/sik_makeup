@@ -11,7 +11,7 @@ class Pemesanan_model extends CI_Model {
 
 		$object = array(
 			'kode_pemesanan' => implode($kode_pemesanan),
-			'id_user' => '2',
+			'id_user' => $this->session->userdata('userSession')['id'],
 			'id_produk' => $id,
 			'qty' => $this->input->post('qty'),
 			'tanggal_pemesanan' => date('Y-m-d'),

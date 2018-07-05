@@ -84,4 +84,29 @@ class Login extends CI_Controller{
         }
         
     }
+
+    public function loginUser()
+    {
+        $username = $this->input->post('username');
+        $password = $this->input->post('password');
+        $where = array(
+            'username' => $username,
+            'password' => md5($password)
+            );
+        $cek = $this->Model_login->cek_login("user",$where);
+        if($cek){
+            $data_session = array(
+                'nama' => $cek[0]->username,
+                'id' => $cek[0]->id,
+                );
+ 
+            $this->session->set_userdata('userSession',$data_session);
+ 
+            redirect("Homes");
+        }
+        else
+        {
+             $this->load->view('login/LoginUser');
+        }
+    }
 }

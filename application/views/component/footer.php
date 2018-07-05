@@ -41,12 +41,6 @@ $data['ava'] = $session_data['ava'];
     <script src="<?php echo base_url('assets/js/jquery.scrollTo.min.js'); ?>"></script>
     <script src="<?php echo base_url('assets/js/jquery.nicescroll.js'); ?>" type="text/javascript"></script>
 
-
-    <!--common script for all pages-->
-    <script src="<?php echo base_url('assets/js/common-scripts.js'); ?>"></script>
-
-    <!--script for this page-->
-
   </body>
 </html>
     <script type="text/javascript">

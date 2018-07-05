@@ -80,7 +80,7 @@ class Pemesanan extends CI_Controller {
 			
 		      $this->pemesanan_model->insertPemesanan($id);
               $this->produk_model->updateStok($id, $this->input->post('qty'));
-              redirect('homes','refresh');
+              redirect('Pemesanan/dataPemesananUser/'.$this->session->userdata('userSession')['id'],'refresh');
 		     
 		}
 	}

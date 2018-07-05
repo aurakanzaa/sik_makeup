@@ -35,13 +35,12 @@
 		        <h2 class="form-login-heading">register now</h2>
 		    <?php echo validation_errors(); ?>    
 		        <div class="login-wrap">
-		            <input type="text" class="form-control" placeholder="Id Role" name="id_role" autofocus>
-		            <br>
+		            
 		            <input type="text" class="form-control" placeholder="Nama" name="nama" autofocus>
 		            <br>
 		            <input type="text" class="form-control" placeholder="Alamat" name="alamat" autofocus>
 		            <br>
-		            <input type="email" class="form-control" placeholder="Email" name="email" autofocus>
+		            <input type="text" class="form-control" placeholder="Email" name="email" autofocus>
 		            <br>
 		            <select name="jenis_kelamin">
 		            	<option>Jenis Kelamin</option>

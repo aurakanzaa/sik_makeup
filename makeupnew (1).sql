@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
--- https://www.phpmyadmin.net/
+-- version 4.5.1
+-- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 22, 2018 at 12:58 AM
--- Server version: 10.1.21-MariaDB
--- PHP Version: 7.1.1
+-- Generation Time: 24 Jun 2018 pada 14.33
+-- Versi Server: 10.1.16-MariaDB
+-- PHP Version: 5.6.24
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -23,7 +23,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `absensi`
+-- Struktur dari tabel `absensi`
 --
 
 CREATE TABLE `absensi` (
@@ -36,7 +36,7 @@ CREATE TABLE `absensi` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admin`
+-- Struktur dari tabel `admin`
 --
 
 CREATE TABLE `admin` (
@@ -49,86 +49,95 @@ CREATE TABLE `admin` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `admin`
+-- Dumping data untuk tabel `admin`
 --
 
 INSERT INTO `admin` (`id`, `id_role`, `id_golongan`, `username`, `password`, `foto`) VALUES
-(2, 1, 1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'fr-11.jpg'),
-(4, 1, 1, 'adminc', '21232f297a57a5a743894a0e4a801fc3', 'fr-11.jpg');
+(2, 1, 1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'fr-11.jpg');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cash_flow`
+-- Struktur dari tabel `cash_flow`
 --
 
 CREATE TABLE `cash_flow` (
   `id_transaksi` int(10) NOT NULL,
   `id_user` int(10) DEFAULT NULL,
   `id_pembayaran` int(10) DEFAULT NULL,
-  `id_pengeluaran` int(10) DEFAULT NULL,
+  `id_Pengeluaran` int(10) DEFAULT NULL,
   `id_utang` int(10) DEFAULT NULL,
-  `id_pembelian` int(11) DEFAULT NULL
+  `id_pembelian` int(11) DEFAULT NULL,
+  `tgl_cashflow` date NOT NULL,
+  `keterangan` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `cash_flow`
+-- Dumping data untuk tabel `cash_flow`
 --
 
-INSERT INTO `cash_flow` (`id_transaksi`, `id_user`, `id_pembayaran`, `id_pengeluaran`, `id_utang`, `id_pembelian`) VALUES
-(21, 2, 2, 7, 1, 3),
-(22, 2, 1, 1, 1, 2);
+INSERT INTO `cash_flow` (`id_transaksi`, `id_user`, `id_pembayaran`, `id_Pengeluaran`, `id_utang`, `id_pembelian`, `tgl_cashflow`, `keterangan`) VALUES
+(8, 2, 1, 0, 0, 0, '0000-00-00', ''),
+(9, 2, 2, 0, 0, 0, '0000-00-00', ''),
+(15, 2, 0, 2, 0, 0, '0000-00-00', ''),
+(17, 2, 0, 0, 1, 0, '0000-00-00', ''),
+(18, 2, 0, 0, 0, 1, '0000-00-00', ''),
+(19, 2, 0, 0, 0, 2, '0000-00-00', ''),
+(20, 2, 0, 1, 0, 0, '0000-00-00', ''),
+(21, 2, 0, 0, 0, 9, '0000-00-00', ''),
+(22, 2, 0, 0, 0, 10, '0000-00-00', ''),
+(23, 2, 0, 4, 0, 0, '0000-00-00', ''),
+(24, 2, 0, 5, 0, 0, '0000-00-00', ''),
+(25, 2, 0, 6, 0, 0, '2018-06-22', ''),
+(26, 2, 0, 7, 0, 0, '2018-06-16', 'Pembayaran galon air'),
+(27, 2, 0, 0, 0, 11, '2018-06-19', 'pembelian produk '),
+(28, 2, 0, 0, 0, 12, '2018-06-15', 'pembelian produk blush on'),
+(30, 2, 0, 0, 0, 13, '2018-06-22', 'pembelian produk Lipstik Oriflame');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gaji`
+-- Struktur dari tabel `gaji`
 --
 
 CREATE TABLE `gaji` (
   `id_gaji` int(3) NOT NULL,
   `total_gaji` int(11) NOT NULL,
   `tanggal` date NOT NULL,
-  `status` varchar(15) NOT NULL,
+  `status` varchar(10) NOT NULL,
   `id_admin` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `gaji`
+-- Dumping data untuk tabel `gaji`
 --
 
 INSERT INTO `gaji` (`id_gaji`, `total_gaji`, `tanggal`, `status`, `id_admin`) VALUES
-(2, 1900000, '2018-06-13', 'aktif', 2);
+(2, 1000000, '2018-06-13', 'aktif', 2);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `golongan`
+-- Struktur dari tabel `golongan`
 --
 
 CREATE TABLE `golongan` (
   `id_gol` int(11) NOT NULL,
-  `nama_gol` varchar(20) NOT NULL,
+  `nama_gol` varchar(15) NOT NULL,
   `gaji_pokok` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `golongan`
+-- Dumping data untuk tabel `golongan`
 --
 
 INSERT INTO `golongan` (`id_gol`, `nama_gol`, `gaji_pokok`) VALUES
-(1, 'Super Admin', 4000000),
-(2, 'admin hrd', 2000000),
-(3, 'admin logistik', 2200000),
-(4, 'admin keuangan', 2700000),
-(5, 'karyawan logist', 1500000),
-(6, 'karyawan hrd', 1500000),
-(7, 'karyawan keuangan', 1500000);
+(1, 'SUper User', 10000);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `kategori`
+-- Struktur dari tabel `kategori`
 --
 
 CREATE TABLE `kategori` (
@@ -137,7 +146,7 @@ CREATE TABLE `kategori` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `kategori`
+-- Dumping data untuk tabel `kategori`
 --
 
 INSERT INTO `kategori` (`id_kategori`, `nama_kategori`) VALUES
@@ -145,12 +154,13 @@ INSERT INTO `kategori` (`id_kategori`, `nama_kategori`) VALUES
 (2, 'lips'),
 (3, 'face'),
 (4, 'beauty & skin care'),
+(6, 'alololoy'),
 (7, 'Makeup Cair');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `labarugi`
+-- Struktur dari tabel `labarugi`
 --
 
 CREATE TABLE `labarugi` (
@@ -171,7 +181,7 @@ CREATE TABLE `labarugi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `labarugi`
+-- Dumping data untuk tabel `labarugi`
 --
 
 INSERT INTO `labarugi` (`id_labarugi`, `id_user`, `penjualan`, `retur_penjualan`, `potongan_penjualan`, `jml_retur_potongan_penjualan`, `penjualan_bersih`, `harga_pokok_penjualan`, `laba_bruto`, `biaya_operasional`, `biaya_adm_umum`, `total_biaya`, `laba_usaha_bersih`, `tanggal`) VALUES
@@ -180,7 +190,7 @@ INSERT INTO `labarugi` (`id_labarugi`, `id_user`, `penjualan`, `retur_penjualan`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `neraca`
+-- Struktur dari tabel `neraca`
 --
 
 CREATE TABLE `neraca` (
@@ -193,31 +203,48 @@ CREATE TABLE `neraca` (
   `keterangan` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data untuk tabel `neraca`
+--
+
+INSERT INTO `neraca` (`id_neraca`, `id_user`, `id_transaksi`, `Activa`, `Pasiva`, `tgl_neraca`, `keterangan`) VALUES
+(4, 2, 8, 1, 0, '2018-04-20', 'pemasukan penjualan'),
+(5, 2, 9, 1, 0, '2018-04-20', 'PEMASUKAN'),
+(6, 2, 15, 0, 1, '2018-04-13', 'BAYAR LISTRIK'),
+(7, 2, 20, 1, 0, '2018-04-20', 'BELI MEJA'),
+(13, 2, 17, 0, 1, '2018-04-20', 'UTANG'),
+(14, 2, 18, 0, 1, '2018-04-20', 'BELI PRODUK'),
+(15, 2, 19, 0, 1, '2018-04-20', 'BELI PRODUK');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pembayaran`
+-- Struktur dari tabel `pembayaran`
 --
 
 CREATE TABLE `pembayaran` (
   `id_pembayaran` int(11) NOT NULL,
   `id_pemesanan` int(11) NOT NULL,
   `total_pembayaran` int(11) NOT NULL,
-  `tgl_pembayaran` date NOT NULL
+  `tgl_pembayaran` date NOT NULL,
+  `kode_pembayaran` varchar(7) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `pembayaran`
+-- Dumping data untuk tabel `pembayaran`
 --
 
-INSERT INTO `pembayaran` (`id_pembayaran`, `id_pemesanan`, `total_pembayaran`, `tgl_pembayaran`) VALUES
-(1, 3, 100000, '2018-04-21'),
-(2, 2, 300000, '2018-04-19');
+INSERT INTO `pembayaran` (`id_pembayaran`, `id_pemesanan`, `total_pembayaran`, `tgl_pembayaran`, `kode_pembayaran`) VALUES
+(0, 0, 0, '2018-04-01', ''),
+(1, 3, 100000, '2018-04-21', ''),
+(2, 2, 300000, '2018-04-19', ''),
+(6, 9, 50000, '2018-06-24', '0125689'),
+(7, 11, 500000, '2018-06-24', '0135689');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pembelian`
+-- Struktur dari tabel `pembelian`
 --
 
 CREATE TABLE `pembelian` (
@@ -231,42 +258,59 @@ CREATE TABLE `pembelian` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `pembelian`
+-- Dumping data untuk tabel `pembelian`
 --
 
 INSERT INTO `pembelian` (`id_pembelian`, `id_user`, `id_produk`, `qty`, `harga_total`, `id_supp`, `tgl_beli`) VALUES
+(0, 2, 1, 0, 0, 1, '2018-04-01'),
 (1, 2, 1, 100, 3000000, 1, '2018-04-20'),
-(2, 2, 2, 20, 1892121, 5, '2018-04-20'),
-(3, 2, 8, 12, 12, 3, '2018-06-10');
+(2, 2, 2, 20, 1892121, 2, '2018-04-20'),
+(5, 2, 1, 100, 1000000, 1, '2018-06-26'),
+(6, 2, 1, 100, 1000000, 1, '2018-06-20'),
+(7, 2, 1, 50, 500000, 1, '2018-06-06'),
+(8, 2, 1, 50, 500000, 1, '2018-06-16'),
+(9, 2, 1, 50, 500000, 1, '2018-06-16'),
+(10, 2, 2, 32, 1000000, 1, '2018-06-01'),
+(11, 2, 1, 500, 5000000, 1, '2018-06-19'),
+(12, 2, 1, 10, 50000, 1, '2018-06-15'),
+(13, 2, 4, 50, 3500000, 2, '2018-06-22');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pemesanan`
+-- Struktur dari tabel `pemesanan`
 --
 
 CREATE TABLE `pemesanan` (
   `id_pemesanan` int(10) NOT NULL,
+  `kode_pemesanan` varchar(5) NOT NULL,
   `id_user` int(11) NOT NULL,
   `id_produk` int(10) NOT NULL,
   `qty` int(10) NOT NULL,
-  `tanggal_pemesanan` date NOT NULL
+  `tanggal_pemesanan` date NOT NULL,
+  `total_pemesanan` int(11) NOT NULL,
+  `status_pemesanan` int(11) NOT NULL DEFAULT '0',
+  `kode_pembayaran` varchar(7) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `pemesanan`
+-- Dumping data untuk tabel `pemesanan`
 --
 
-INSERT INTO `pemesanan` (`id_pemesanan`, `id_user`, `id_produk`, `qty`, `tanggal_pemesanan`) VALUES
-(0, 2, 1, 0, '2018-04-01'),
-(1, 2, 1, 1, '2018-04-20'),
-(2, 2, 2, 2, '2018-04-20'),
-(3, 2, 2, 1, '2018-04-21');
+INSERT INTO `pemesanan` (`id_pemesanan`, `kode_pemesanan`, `id_user`, `id_produk`, `qty`, `tanggal_pemesanan`, `total_pemesanan`, `status_pemesanan`, `kode_pembayaran`) VALUES
+(0, '', 2, 1, 0, '2018-04-01', 0, 0, ''),
+(1, '', 2, 1, 1, '2018-04-20', 0, 0, ''),
+(2, '', 2, 2, 2, '2018-04-20', 0, 0, ''),
+(3, '', 2, 2, 1, '2018-04-21', 0, 0, ''),
+(8, '04569', 2, 2, 104, '2018-06-24', 10400000, 0, '1235789'),
+(9, '12467', 2, 1, 1, '2018-06-24', 50000, 1, '0125689'),
+(10, '45678', 2, 1, 1, '2018-06-24', 50000, 0, '0245678'),
+(11, '34789', 2, 3, 50, '2018-06-24', 500000, 1, '0135689');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pengeluaran`
+-- Struktur dari tabel `pengeluaran`
 --
 
 CREATE TABLE `pengeluaran` (
@@ -280,19 +324,22 @@ CREATE TABLE `pengeluaran` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `pengeluaran`
+-- Dumping data untuk tabel `pengeluaran`
 --
 
 INSERT INTO `pengeluaran` (`id_pengeluaran`, `id_user`, `nama_barang`, `harga_satuan`, `qty`, `total_harga`, `tanggal_pengeluaran`) VALUES
-(1, 2, 'c', 500000, 1, 500000, '2018-12-31'),
-(2, 2, 'b', 500000, 15, 500000, '2018-12-31'),
-(7, 2, 'a', 500000, 1, 500000, '2018-12-31'),
-(8, 2, 'co', 9, 9, 9, '2018-12-31');
+(0, 2, '0', 0, 0, 0, '0000-00-00'),
+(1, 2, 'sewa ruangan', 500000, 1, 500000, '0000-00-00'),
+(2, 2, 'bayar listrik', 80000, 1, 80000, '0000-00-00'),
+(4, 2, 'Beli Nota', 6000, 100, 600000, '2018-06-16'),
+(5, 2, 'beli kardus', 500, 1000, 500000, '2018-06-21'),
+(6, 2, 'makan', 12310, 10, 123100, '2018-06-22'),
+(7, 2, 'galon air', 19000, 3, 57000, '2018-06-16');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `perubahan_modal`
+-- Struktur dari tabel `perubahan_modal`
 --
 
 CREATE TABLE `perubahan_modal` (
@@ -307,7 +354,7 @@ CREATE TABLE `perubahan_modal` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `perubahan_modal`
+-- Dumping data untuk tabel `perubahan_modal`
 --
 
 INSERT INTO `perubahan_modal` (`id_perubahan_modal`, `id_user`, `id_laba`, `modal_awal`, `laba_bersih`, `prive`, `total`, `modal_akhir`) VALUES
@@ -316,7 +363,7 @@ INSERT INTO `perubahan_modal` (`id_perubahan_modal`, `id_user`, `id_laba`, `moda
 -- --------------------------------------------------------
 
 --
--- Table structure for table `produk`
+-- Struktur dari tabel `produk`
 --
 
 CREATE TABLE `produk` (
@@ -330,20 +377,19 @@ CREATE TABLE `produk` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `produk`
+-- Dumping data untuk tabel `produk`
 --
 
 INSERT INTO `produk` (`id_produk`, `nama_produk`, `stok`, `harga_jual`, `harga_beli`, `id_kategori`, `deskripsi`) VALUES
-(1, 'blush on', 100, 50000, 0, 2, 'pemerah pipi'),
-(2, 'mascara maybeline', 20, 100000, 0, 1, 'lala'),
-(3, 'Barang Baru', 100, 10000, 9000, 1, 'sfjksdf sdfkjsdkf'),
-(4, 'po', 6, 120000, 90000, 2, 'klklklk'),
-(8, 'tt', 11, 12, 11, 1, 'wwqwqw');
+(1, 'blush on', 861, 50000, 0, 2, 'pemerah pipi'),
+(2, 'mascara maybeline', 0, 100000, 0, 1, 'lala'),
+(3, 'Barang Baru', 50, 10000, 9000, 1, 'sfjksdf sdfkjsdkf'),
+(4, 'Lipstik Oriflame', 50, 85000, 70000, 2, 'product baru asli dari oriflame yg sada sdasa');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `role`
+-- Struktur dari tabel `role`
 --
 
 CREATE TABLE `role` (
@@ -352,7 +398,7 @@ CREATE TABLE `role` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `role`
+-- Dumping data untuk tabel `role`
 --
 
 INSERT INTO `role` (`id_role`, `nama_role`) VALUES
@@ -362,7 +408,7 @@ INSERT INTO `role` (`id_role`, `nama_role`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `struk`
+-- Struktur dari tabel `struk`
 --
 
 CREATE TABLE `struk` (
@@ -374,7 +420,7 @@ CREATE TABLE `struk` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `supplier`
+-- Struktur dari tabel `supplier`
 --
 
 CREATE TABLE `supplier` (
@@ -385,19 +431,20 @@ CREATE TABLE `supplier` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `supplier`
+-- Dumping data untuk tabel `supplier`
 --
 
 INSERT INTO `supplier` (`id_supplier`, `nama`, `alamat`, `no_telp`) VALUES
-(1, 'makmur jaya', 'jombang', '3214331'),
+(1, 'makmur jaya', 'malang', '321433'),
 (2, 'sato jaya', 'jakarta', '989898'),
 (3, 'amanah', 'surabaya', '76778'),
-(5, 'maju', 'malang', '89890');
+(4, 'sentosa jaya', 'surabaya', '456789'),
+(5, 'sumber rejeko', 'malang', '345678');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Struktur dari tabel `user`
 --
 
 CREATE TABLE `user` (
@@ -411,17 +458,16 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `user`
+-- Dumping data untuk tabel `user`
 --
 
 INSERT INTO `user` (`id`, `id_role`, `nama`, `alamat`, `email`, `jenis_kelamin`, `no_telp`) VALUES
-(2, 1, 'admin', 'malang', 'admin@admin.com', 'Perempuan', 3214336),
-(3, 2, 'ara cantik', 'malang', 'admin@admin.com', 'Perempuan', 678);
+(2, 1, 'admin', 'malang', 'admin@admin.com', 'p', 321433);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `utang`
+-- Struktur dari tabel `utang`
 --
 
 CREATE TABLE `utang` (
@@ -434,14 +480,13 @@ CREATE TABLE `utang` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `utang`
+-- Dumping data untuk tabel `utang`
 --
 
 INSERT INTO `utang` (`id_utang`, `id_user`, `nama_barang`, `total_utang`, `jml_utang`, `sisa_utang`) VALUES
+(0, 2, '0', 0, 0, 0),
 (1, 2, 'laptop', 1000000, 3000000, 2000000),
-(2, 2, 'kipas', 80000, 900000, 90),
-(4, 2, 'ka', 9, 9, 9),
-(6, 3, 'u', 7, 7, 7);
+(3, 2, 'utang bank', 10000000, 100000000, 90000000);
 
 --
 -- Indexes for dumped tables
@@ -469,7 +514,7 @@ ALTER TABLE `cash_flow`
   ADD PRIMARY KEY (`id_transaksi`),
   ADD KEY `id_user` (`id_user`),
   ADD KEY `id_pembayaran` (`id_pembayaran`),
-  ADD KEY `id_Pengeluaran` (`id_pengeluaran`),
+  ADD KEY `id_Pengeluaran` (`id_Pengeluaran`),
   ADD KEY `id_utang` (`id_utang`,`id_pembelian`),
   ADD KEY `id_pembelian` (`id_pembelian`);
 
@@ -600,12 +645,12 @@ ALTER TABLE `absensi`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `cash_flow`
 --
 ALTER TABLE `cash_flow`
-  MODIFY `id_transaksi` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id_transaksi` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 --
 -- AUTO_INCREMENT for table `gaji`
 --
@@ -615,7 +660,7 @@ ALTER TABLE `gaji`
 -- AUTO_INCREMENT for table `golongan`
 --
 ALTER TABLE `golongan`
-  MODIFY `id_gol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_gol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `kategori`
 --
@@ -630,27 +675,27 @@ ALTER TABLE `labarugi`
 -- AUTO_INCREMENT for table `neraca`
 --
 ALTER TABLE `neraca`
-  MODIFY `id_neraca` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_neraca` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT for table `pembayaran`
 --
 ALTER TABLE `pembayaran`
-  MODIFY `id_pembayaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_pembayaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `pembelian`
 --
 ALTER TABLE `pembelian`
-  MODIFY `id_pembelian` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_pembelian` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `pemesanan`
 --
 ALTER TABLE `pemesanan`
-  MODIFY `id_pemesanan` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_pemesanan` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `pengeluaran`
 --
 ALTER TABLE `pengeluaran`
-  MODIFY `id_pengeluaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_pengeluaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `perubahan_modal`
 --
@@ -660,7 +705,7 @@ ALTER TABLE `perubahan_modal`
 -- AUTO_INCREMENT for table `produk`
 --
 ALTER TABLE `produk`
-  MODIFY `id_produk` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_produk` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `role`
 --
@@ -680,116 +725,115 @@ ALTER TABLE `supplier`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `utang`
 --
 ALTER TABLE `utang`
-  MODIFY `id_utang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_utang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
--- Constraints for dumped tables
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
 
 --
--- Constraints for table `absensi`
+-- Ketidakleluasaan untuk tabel `absensi`
 --
 ALTER TABLE `absensi`
-  ADD CONSTRAINT `absensi_ibfk_1` FOREIGN KEY (`id_admin`) REFERENCES `admin` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `absensi_ibfk_1` FOREIGN KEY (`id_admin`) REFERENCES `admin` (`id`);
 
 --
--- Constraints for table `admin`
+-- Ketidakleluasaan untuk tabel `admin`
 --
 ALTER TABLE `admin`
-  ADD CONSTRAINT `admin_ibfk_1` FOREIGN KEY (`id_role`) REFERENCES `role` (`id_role`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `admin_ibfk_2` FOREIGN KEY (`id_golongan`) REFERENCES `golongan` (`id_gol`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `admin_ibfk_1` FOREIGN KEY (`id_role`) REFERENCES `role` (`id_role`),
+  ADD CONSTRAINT `admin_ibfk_2` FOREIGN KEY (`id_golongan`) REFERENCES `golongan` (`id_gol`);
 
 --
--- Constraints for table `cash_flow`
+-- Ketidakleluasaan untuk tabel `cash_flow`
 --
 ALTER TABLE `cash_flow`
-  ADD CONSTRAINT `cash_flow_ibfk_3` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `cash_flow_ibfk_4` FOREIGN KEY (`id_pembelian`) REFERENCES `pembelian` (`id_pembelian`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `cash_flow_ibfk_5` FOREIGN KEY (`id_pembayaran`) REFERENCES `pembayaran` (`id_pembayaran`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `cash_flow_ibfk_6` FOREIGN KEY (`id_pengeluaran`) REFERENCES `pengeluaran` (`id_pengeluaran`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `cash_flow_ibfk_7` FOREIGN KEY (`id_utang`) REFERENCES `utang` (`id_utang`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `cash_flow_ibfk_3` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`),
+  ADD CONSTRAINT `cash_flow_ibfk_4` FOREIGN KEY (`id_pembelian`) REFERENCES `pembelian` (`id_pembelian`),
+  ADD CONSTRAINT `cash_flow_ibfk_5` FOREIGN KEY (`id_pembayaran`) REFERENCES `pembayaran` (`id_pembayaran`),
+  ADD CONSTRAINT `cash_flow_ibfk_6` FOREIGN KEY (`id_Pengeluaran`) REFERENCES `pengeluaran` (`id_pengeluaran`),
+  ADD CONSTRAINT `cash_flow_ibfk_7` FOREIGN KEY (`id_utang`) REFERENCES `utang` (`id_utang`);
 
 --
--- Constraints for table `gaji`
+-- Ketidakleluasaan untuk tabel `gaji`
 --
 ALTER TABLE `gaji`
-  ADD CONSTRAINT `gaji_ibfk_1` FOREIGN KEY (`id_admin`) REFERENCES `admin` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `gaji_ibfk_1` FOREIGN KEY (`id_admin`) REFERENCES `admin` (`id`);
 
 --
--- Constraints for table `labarugi`
+-- Ketidakleluasaan untuk tabel `labarugi`
 --
 ALTER TABLE `labarugi`
-  ADD CONSTRAINT `labarugi_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `labarugi_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`);
 
 --
--- Constraints for table `neraca`
+-- Ketidakleluasaan untuk tabel `neraca`
 --
 ALTER TABLE `neraca`
-  ADD CONSTRAINT `neraca_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `neraca_ibfk_2` FOREIGN KEY (`id_transaksi`) REFERENCES `cash_flow` (`id_transaksi`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `neraca_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`),
+  ADD CONSTRAINT `neraca_ibfk_2` FOREIGN KEY (`id_transaksi`) REFERENCES `cash_flow` (`id_transaksi`);
 
 --
--- Constraints for table `pembayaran`
+-- Ketidakleluasaan untuk tabel `pembayaran`
 --
 ALTER TABLE `pembayaran`
-  ADD CONSTRAINT `pembayaran_ibfk_1` FOREIGN KEY (`id_pemesanan`) REFERENCES `pemesanan` (`id_pemesanan`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `pembayaran_ibfk_1` FOREIGN KEY (`id_pemesanan`) REFERENCES `pemesanan` (`id_pemesanan`);
 
 --
--- Constraints for table `pembelian`
+-- Ketidakleluasaan untuk tabel `pembelian`
 --
 ALTER TABLE `pembelian`
   ADD CONSTRAINT `pembelian_ibfk_2` FOREIGN KEY (`id_supp`) REFERENCES `supplier` (`id_supplier`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `pembelian_ibfk_4` FOREIGN KEY (`id_produk`) REFERENCES `produk` (`id_produk`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `pembelian_ibfk_5` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `pembelian_ibfk_4` FOREIGN KEY (`id_produk`) REFERENCES `produk` (`id_produk`),
+  ADD CONSTRAINT `pembelian_ibfk_5` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`);
 
 --
--- Constraints for table `pemesanan`
+-- Ketidakleluasaan untuk tabel `pemesanan`
 --
 ALTER TABLE `pemesanan`
-  ADD CONSTRAINT `pemesanan_ibfk_1` FOREIGN KEY (`id_produk`) REFERENCES `produk` (`id_produk`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `pemesanan_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `pemesanan_ibfk_1` FOREIGN KEY (`id_produk`) REFERENCES `produk` (`id_produk`),
+  ADD CONSTRAINT `pemesanan_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`);
 
 --
--- Constraints for table `pengeluaran`
+-- Ketidakleluasaan untuk tabel `pengeluaran`
 --
 ALTER TABLE `pengeluaran`
-  ADD CONSTRAINT `pengeluaran_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `pengeluaran_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`);
 
 --
--- Constraints for table `perubahan_modal`
+-- Ketidakleluasaan untuk tabel `perubahan_modal`
 --
 ALTER TABLE `perubahan_modal`
-  ADD CONSTRAINT `perubahan_modal_ibfk_1` FOREIGN KEY (`id_laba`) REFERENCES `labarugi` (`id_labarugi`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `perubahan_modal_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `perubahan_modal_ibfk_1` FOREIGN KEY (`id_laba`) REFERENCES `labarugi` (`id_labarugi`),
+  ADD CONSTRAINT `perubahan_modal_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`);
 
 --
--- Constraints for table `produk`
+-- Ketidakleluasaan untuk tabel `produk`
 --
 ALTER TABLE `produk`
   ADD CONSTRAINT `produk_ibfk_1` FOREIGN KEY (`id_kategori`) REFERENCES `kategori` (`id_kategori`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `struk`
+-- Ketidakleluasaan untuk tabel `struk`
 --
 ALTER TABLE `struk`
-  ADD CONSTRAINT `struk_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `struk_ibfk_3` FOREIGN KEY (`id_transaksi`) REFERENCES `cash_flow` (`id_transaksi`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `struk_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `user`
+-- Ketidakleluasaan untuk tabel `user`
 --
 ALTER TABLE `user`
-  ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`id_role`) REFERENCES `role` (`id_role`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`id_role`) REFERENCES `role` (`id_role`);
 
 --
--- Constraints for table `utang`
+-- Ketidakleluasaan untuk tabel `utang`
 --
 ALTER TABLE `utang`
-  ADD CONSTRAINT `utang_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `utang_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
