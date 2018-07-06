@@ -12,7 +12,7 @@
 							<div class="col-lg-4 col-md-4 col-sm-4 mb">
 							<div class="product-panel-2 pn" style="height: 300px">
 								<div class="badge badge-hot bg-success">Ready</div>
-								<img src="<?php echo base_url('assets/img/product.jpg') ?>" width="200" alt="">
+								<img src="<?php echo base_url('bower_components/uploads/'.$key->gambar) ?>" width="200" height="100px">
 								<h4 class="mt"><?php echo $key->nama_produk ?></h4>
 								<h3 class="text-primary"><b>Rp <?php echo $key->harga_jual ?>,-</b></h3>
 								<h5>STOK: <?php echo $key->stok ?></h5>

@@ -25,7 +25,6 @@ class Login extends CI_Controller{
             'password' => md5($password)
             );
         $cek = $this->Model_login->cek_login("admin",$where);
-        $check = $this->Model_login->cek_login("user",$where);
         if($cek){
             $data_session = array(
                 'nama' => $cek[0]->username,
@@ -37,20 +36,6 @@ class Login extends CI_Controller{
             $this->session->set_userdata('userSession',$data_session);
  
             redirect(base_url("index.php/Home"));
- 
-        }
-        elseif ($check){
-            $data_session = array(
-                'username' => $check[0]->username,
-                'password' => $check[0]->password,
-                'status' => "login",
-                'id' => $check[0]->id,
-                
-                );
- 
-            $this->session->set_userdata('userSession',$data_session);
- 
-            redirect(base_url("index.php/Homes/content"));
  
         }
 
