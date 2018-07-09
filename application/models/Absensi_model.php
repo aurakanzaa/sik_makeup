@@ -1,17 +1,21 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+date_default_timezone_set('Asia/Jakarta');
 
 class Absensi_model extends CI_Model {
 
 	public function insertAbsensi()
 	{
 		$object = array(
-			'tgl_masuk_jam' => $this->input->post('tgl_masuk_jam'),
-			'tgl_keluar_jam' => $this->input->post('tgl_keluar_jam'),
+			'tgl_masuk_jam' => date("Y-m-d H:i:s"),
+			'tgl_pulang_jam' => NULL,
 			'id_admin' => $this->input->post('id_admin'),
 		);
 		$this->db->insert('absensi',$object);
 	}
+
+	
+
 	public function getDataAbsensi()
 	{
 		$query = $this->db->get('absensi');
@@ -28,8 +32,8 @@ class Absensi_model extends CI_Model {
 	public function UpdateById($id){
 		$data=array
 		(
-			'tgl_masuk_jam' => $this->input->post('tgl_masuk_jam'),
-			'tgl_keluar_jam' => $this->input->post('tgl_keluar_jam'),
+			// 'tgl_masuk_jam' => $this->input->post('tgl_masuk_jam'),
+			'tgl_pulang_jam' => date("Y-m-d H:i:s"),
 			'id_admin' => $this->input->post('id_admin'),
 			);
 		$this->db->where('id_absen',$id);

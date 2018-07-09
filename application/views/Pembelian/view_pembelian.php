@@ -1,7 +1,11 @@
-<!-- **********************************************************************************************************************************************************
-MAIN CONTENT
-*********************************************************************************************************************************************************** -->
-<!--main content start-->
+<?php 
+function rupiah($angka){
+  
+  $hasil_rupiah = "Rp " . number_format($angka,2,',','.');
+  return $hasil_rupiah;
+ 
+}
+?>
 <section id="main-content">
   <section class="wrapper site-min-height">
     <br>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -35,7 +39,7 @@ MAIN CONTENT
           <td><?php echo $key->nama_produk ?></td>
           <td><?php echo $key->nama ?></td>
           <td><?php echo $key->qty ?></td>
-          <td><?php echo $key->harga_total ?></td>
+          <td><?php echo rupiah($key->harga_total) ?></td>
         
           <td>
                 <a class="btn btn-primary btn-xs" href="<?php echo site_url('pembelian/update/').$key->id_pembelian ?>">

@@ -1,4 +1,11 @@
-<!-- **********************************************************************************************************************************************************
+<?php 
+function rupiah($angka){
+  
+  $hasil_rupiah = "Rp " . number_format($angka,2,',','.');
+  return $hasil_rupiah;
+ 
+}
+?><!-- **********************************************************************************************************************************************************
 MAIN CONTENT
 *********************************************************************************************************************************************************** -->
 <!--main content start-->
@@ -33,10 +40,10 @@ MAIN CONTENT
           <td><?php echo $key->tgl_cashflow ?></td>
           <td><?php echo $key->id_transaksi ?></td>
           <td><?php echo $key->id_user ?></td>
-          <td><?php echo $key->PEMASUKAN?></td>
-          <td><?php echo $key->PENGELUARAN ?></td>
-          <td><?php echo $key->UTANG ?></td>
-          <td><?php echo $key->PEMBELIAN ?></td>
+          <td><?php echo rupiah($key->PEMASUKAN)?></td>
+          <td><?php echo rupiah($key->PENGELUARAN) ?></td>
+          <td><?php echo rupiah($key->UTANG)?></td>
+          <td><?php echo rupiah($key->PEMBELIAN) ?></td>
           <td><?php echo $key->keterangan ?></td>
         
           <td>
@@ -55,10 +62,10 @@ MAIN CONTENT
           <td></td>
           <td><b>Total</b></td>
           <td></td>
-          <td><b><?php echo $totalcashflow[0]->PEMASUKAN?></b></td>
-          <td><b><?php echo $totalcashflow[0]->PENGELUARAN ?></b></td>
-          <td><b><?php echo $totalcashflow[0]->UTANG ?></b></td>
-          <td><b><?php echo $totalcashflow[0]->PEMBELIAN ?></b></td>
+          <td><b><?php echo rupiah($totalcashflow[0]->PEMASUKAN)?></b></td>
+          <td><b><?php echo rupiah($totalcashflow[0]->PENGELUARAN) ?></b></td>
+          <td><b><?php echo rupiah($totalcashflow[0]->UTANG) ?></b></td>
+          <td><b><?php echo rupiah($totalcashflow[0]->PEMBELIAN) ?></b></td>
         </tr>
       </tfoot>
       </table>
