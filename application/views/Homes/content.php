@@ -17,9 +17,9 @@ function rupiah($angka){
 					<div class="row">
 						<?php foreach ($produk as $key): ?>
 							<div class="col-lg-4 col-md-4 col-sm-4 mb">
-							<div class="product-panel-2 pn" style="height: 300px">
+							<div class="product-panel-2 pn" style="height: 350px; background-color:white; padding-top: 20px; ">
 								<div class="badge badge-hot bg-success">Ready</div>
-								<img src="<?php echo base_url('bower_components/uploads/'.$key->gambar) ?>" width="200" height="100px">
+								<img src="<?php echo base_url('bower_components/uploads/'.$key->gambar) ?>"height="100px">
 								<h4 class="mt"><?php echo $key->nama_produk ?></h4>
 								<h3 class="text-primary"><b><?php echo rupiah($key->harga_jual); ?>,-</b></h3>
 								<h5>STOK: <?php echo $key->stok ?></h5>

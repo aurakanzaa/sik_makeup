@@ -17,9 +17,9 @@ MAIN CONTENT
     <br>-->
     
       <div class="content-panel col-md-12" style="height: 100%; padding-top:40px;padding-bottom:30px; margin-top: 50px">
-        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" align="center">
           <h2><?php echo $produk[0]->nama_produk ?></h2>
-          <img src="<?php echo base_url('assets/img/product.jpg') ?>" alt="">
+          <img src="<?php echo base_url('bower_components/uploads/'.$produk[0]->gambar) ?>" alt="">
         </div>
         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
           <h2>--------------------------</h2>
