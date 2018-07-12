@@ -1,3 +1,11 @@
+<?php 
+function rupiah($angka){
+  
+  $hasil_rupiah = "Rp " . number_format($angka,2,',','.');
+  return $hasil_rupiah;
+ 
+}
+?>
 <!-- **********************************************************************************************************************************************************
 MAIN CONTENT
 *********************************************************************************************************************************************************** -->
@@ -31,7 +39,7 @@ MAIN CONTENT
           <td><?php echo $key->id_pembayaran ?></td>
           <td><?php echo $key->kode_pembayaran ?></td>
           <td><?php echo $key->id_pemesanan ?></td>
-          <td><?php echo $key->total_pembayaran ?></td>
+          <td><?php echo rupiah($key->total_pembayaran) ?></td>
           <td>
                 <a class="btn btn-primary btn-xs" href="<?php echo site_url('pembelian/update/').$key->id_pembayaran ?>">
                   <i class="fa fa-pencil"></i>

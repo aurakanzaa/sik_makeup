@@ -1,3 +1,11 @@
+<?php 
+function rupiah($angka){
+  
+  $hasil_rupiah = "Rp " . number_format($angka,2,',','.');
+  return $hasil_rupiah;
+ 
+}
+?>
 <!-- **********************************************************************************************************************************************************
 MAIN CONTENT
 *********************************************************************************************************************************************************** -->
@@ -29,9 +37,9 @@ MAIN CONTENT
           <td><?php echo $no++ ?></td>
           <td><?php echo $key->id_user ?></td>
           <td><?php echo $key->nama_barang ?></td>
-          <td><?php echo $key->total_utang ?></td>
-          <td><?php echo $key->jml_utang ?></td>
-          <td><?php echo $key->sisa_utang ?></td>
+          <td><?php echo rupiah($key->total_utang) ?></td>
+          <td><?php echo rupiah($key->jml_utang) ?></td>
+          <td><?php echo rupiah($key->sisa_utang) ?></td>
         
           <td>
                 <a class="btn btn-primary btn-xs" href="<?php echo site_url('utang/update/').$key->id_utang ?>">

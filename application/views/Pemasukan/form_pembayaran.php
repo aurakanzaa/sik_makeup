@@ -9,12 +9,12 @@
             <?php echo validation_errors(); ?>  
            
 
-            
+            <!-- src="<?php echo base_url('bower_components/uploads/'.$produk[0]->gambar) ?>" -->
                 
             
                 <div class="form-group row">
                     <div class="col-xs-3 ">
-                        <img class="img-responsive" src="<?php echo base_url('assets/img/product.jpg') ?>" alt="">
+                        <img class="img-responsive" src="<?php echo base_url('bower_components/uploads/'.$produk[0]->gambar) ?>" alt="">
                     </div>
                     <div class="col-xs-4" style=" padding-left: 100px">
                         <h5>Kode Pemesanan</h5>

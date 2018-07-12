@@ -1,3 +1,11 @@
+<?php 
+function rupiah($angka){
+  
+  $hasil_rupiah = "Rp " . number_format($angka,2,',','.');
+  return $hasil_rupiah;
+ 
+}
+?>
 <!-- **********************************************************************************************************************************************************
 MAIN CONTENT
 *********************************************************************************************************************************************************** -->
@@ -32,9 +40,9 @@ MAIN CONTENT
           <td><?php echo $key->id_pengeluaran ?></td>
           <td><?php echo $key->id_user ?></td>
           <td><?php echo $key->nama_barang ?></td>
-          <td><?php echo $key->harga_satuan ?></td>
+          <td><?php echo rupiah($key->harga_satuan) ?></td>
           <td><?php echo $key->qty ?></td>
-          <td><?php echo $key->total_harga ?></td>
+          <td><?php echo rupiah($key->total_harga) ?></td>
           <td><?php echo $key->tanggal_pengeluaran?></td>
         
           <td>

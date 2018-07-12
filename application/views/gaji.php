@@ -1,3 +1,11 @@
+<?php 
+function rupiah($angka){
+  
+  $hasil_rupiah = "Rp " . number_format($angka,2,',','.');
+  return $hasil_rupiah;
+ 
+}
+?>
 <!-- **********************************************************************************************************************************************************
 MAIN CONTENT
 *********************************************************************************************************************************************************** -->
@@ -30,7 +38,7 @@ MAIN CONTENT
             <tr>
               <th><?php echo $no++ ?></th>
               <th><?php echo $key->id_gaji ?></th>
-              <th><?php echo $key->total_gaji ?></th>
+              <th><?php echo rupiah($key->total_gaji) ?></th>
               <th><?php echo $key->tanggal ?></th>
               <th><?php echo $key->status ?></th>
               <th><?php echo $key->id_admin ?></th>

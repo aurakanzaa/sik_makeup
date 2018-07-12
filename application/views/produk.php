@@ -1,3 +1,11 @@
+<?php 
+function rupiah($angka){
+  
+  $hasil_rupiah = "Rp " . number_format($angka,2,',','.');
+  return $hasil_rupiah;
+ 
+}
+?>
 <!-- **********************************************************************************************************************************************************
 MAIN CONTENT
 *********************************************************************************************************************************************************** -->
@@ -32,8 +40,8 @@ MAIN CONTENT
           <td><?php echo $key->nama_produk ?></td>
           <td><img src="<?=base_url()?>bower_components/uploads/<?=$key->gambar ?>" style="width:100px;heigth:100px" class="img-responsive"></td>
           <td><?php echo $key->stok ?></td>
-          <td><?php echo $key->harga_beli ?></td>
-          <td><?php echo $key->harga_jual ?></td>
+          <td><?php echo rupiah($key->harga_beli) ?></td>
+          <td><?php echo rupiah($key->harga_jual) ?></td>
           <td><?php echo $key->id_kategori ?></td>
           <td><?php echo $key->deskripsi ?></td>
           <td>

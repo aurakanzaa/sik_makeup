@@ -1,3 +1,11 @@
+<?php 
+function rupiah($angka){
+  
+  $hasil_rupiah = "Rp " . number_format($angka,2,',','.');
+  return $hasil_rupiah;
+ 
+}
+?>
 <!-- **********************************************************************************************************************************************************
 MAIN CONTENT
 *********************************************************************************************************************************************************** -->
@@ -27,7 +35,7 @@ MAIN CONTENT
             <tr>
               <th><?php echo $no++ ?></th>
               <th><?php echo $key->nama_gol ?></th>
-              <th><?php echo $key->gaji_pokok ?></th>
+              <th><?php echo rupiah($key->gaji_pokok) ?></th>
               <td>
                 <a class="btn btn-primary btn-xs" href="<?php echo base_url('index.php/golongan/update'); ?>/<?php echo $key->id_gol ?>">
                   <i class="fa fa-pencil"></i>
