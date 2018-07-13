@@ -43,11 +43,30 @@ $session_data = $this->session->userdata('userSession');
                   <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
               </div>
             <!--logo start-->
-            <a href="index.html" class="logo"><b>MAKEUP</b></a>
+            <a href="<?php echo site_url('homes') ?>" class="logo"><b>MAKEUP</b></a>
             <!--logo end-->
                     <!-- settings end -->
-                   
-            </div>
+            <div class="nav notify-row" id="top_menu">
+                <!--  notification start -->
+                <ul class="nav top-menu">
+                    <!-- settings start -->
+                    <?php if ($session_data!=null) { ?>  
+                    <li class="dropdown">
+                        <a  class="dropdown-toggle" href="<?php echo site_url('user/profil/'.$session_data['nama']); ?>">
+                            <i class="fa fa-user-o"></i>
+                        </a>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" href="<?php echo site_url('Pemesanan/dataPemesananUser/'.$session_data['id']) ?>">
+                            <i class="fa fa-envelope-o"></i>
+                            <span class="badge bg-theme"><?php echo $dataPesanan[0]->total ?></span>
+                        </a>
+                    </li>
+                    <?php }?>
+                
+                  </ul>
+                <!--  notification end -->
+            </div> 
             <div class="top-menu">
             	<ul class="nav pull-right top-menu">
                 <?php if ($session_data==null) { ?>
@@ -55,7 +74,6 @@ $session_data = $this->session->userdata('userSession');
                 <?php } else {?>
                     <li><a class="logout" href="<?php echo base_url(); ?>index.php/login/logoutUser">Logout</a></li>
                 <?php }  ?>
-                    <li><a class="logout" href="<?php echo base_url(); ?>index.php/login/logoutUser">Keranjang</a></li>
             	</ul>
             </div>
         </header>
@@ -74,7 +92,7 @@ $session_data = $this->session->userdata('userSession');
                   <p class="centered"><a href="profile.html"><img src=<?php echo base_url('/assets/img/cosmetics.png') ?> class="img-circle" width="100"></a></p>
                   <?php foreach ($kategori as $key){?>   
                   <li class="sub-menu">
-                      <a class="" href="<?php echo site_url('home') ?>">
+                      <a class="" href="<?php echo site_url('homes/kategori/'.$key->id_kategori) ?>">
                           <i class="fa fa-dashboard"></i>
                           <span><?php echo $key->nama_kategori?></span>
                       </a>

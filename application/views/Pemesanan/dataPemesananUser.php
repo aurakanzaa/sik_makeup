@@ -2,6 +2,13 @@
 MAIN CONTENT
 *********************************************************************************************************************************************************** -->
 <!--main content start-->
+<?php 
+function rupiah($angka){
+  
+  $hasil_rupiah = "Rp " . number_format($angka,2,',','.');
+  return $hasil_rupiah;
+}
+?>
 <section id="main-content">
   <section class="wrapper site-min-height">
     <!--<br>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -16,8 +23,7 @@ MAIN CONTENT
           <th>No</th>
           <th>Tanggal</th>
           <th>Kode Pemesanan</th>>
-          <th>User</th>
-          <th>Kode Produk</th>
+          <th>Produk</th>
           <th>Jumlah</th>
           <th>Total</th>
           <th>Status</th>
@@ -31,18 +37,32 @@ MAIN CONTENT
           <td><?php echo $no++ ?></td>
           <td><?php echo $key->tanggal_pemesanan ?></td>
           <td><?php echo $key->kode_pemesanan?></td>
-          <td><?php echo $key->id_user ?></td>
-          <td><?php echo $key->id_produk ?></td>
+          <td><?php echo $key->nama_produk ?></td>
           <td><?php echo $key->qty ?></td>
-          <td><?php echo $key->total_pemesanan ?></td>
-          <td><?php echo $key->status_pemesanan ?></td>
+          <td><?php echo rupiah($key->total_pemesanan) ?></td>
+          <?php $status ='Belum dibayar '; $type='red';
+          if ($key->status_pemesanan == 1)
+            {
+               $status = 'Sudah dibayar';
+               $type = 'green';
+            } ?>
+          <td style="color: <?php echo $type ?>"><?php echo $status ?></td>
           <td>
+                <?php if ($key->status_pemesanan==1) {?>
+                <button disabled class="btn btn-success btn-xs" href="<?php echo site_url('pembayaran/create/').$key->id_pemesanan ?>">
+                  <i class="fa fa-money" ></i> Bayar
+                </button>&nbsp;&nbsp;&nbsp;&nbsp;
+                <button disabled class="btn btn-danger btn-xs" href="<?php echo site_url('pembelian/delete/').$key->id_pemesanan ?>">
+                  <i class="fa fa-cross-o"></i> Batalkan
+                </button>
+                <?php } else { ?>
                 <a class="btn btn-success btn-xs" href="<?php echo site_url('pembayaran/create/').$key->id_pemesanan ?>">
                   <i class="fa fa-money"></i> Bayar
                 </a>&nbsp;&nbsp;&nbsp;&nbsp;
                 <a class="btn btn-danger btn-xs" href="<?php echo site_url('pembelian/delete/').$key->id_pemesanan ?>">
                   <i class="fa fa-cross-o"></i> Batalkan
-                </a>  
+                </a>
+                <?php } ?>  
           </td>
         </tr>
         <?php } ?>

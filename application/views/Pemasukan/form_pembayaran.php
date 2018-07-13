@@ -8,15 +8,11 @@
             <h3><i class="fa fa-angle-right"></i> Masukan Kode Pembayaran</h3><hr>
             <?php echo validation_errors(); ?>  
            
-
-            <!-- src="<?php echo base_url('bower_components/uploads/'.$produk[0]->gambar) ?>" -->
-                
-            
                 <div class="form-group row">
-                    <div class="col-xs-3 ">
-                        <img class="img-responsive" src="<?php echo base_url('bower_components/uploads/'.$produk[0]->gambar) ?>" alt="">
+                    <div class="col-xs-3 " align="center">
+                        <img class="img-responsive" src="<?php echo base_url('bower_components/uploads/'.$produk[0]->gambar) ?>" >
                     </div>
-                    <div class="col-xs-4" style=" padding-left: 100px">
+                    <div class="col-xs-4" style=" padding-left: 50px">
                         <h5>Kode Pemesanan</h5>
                         <h3><?php echo $produk[0]->kode_pemesanan; ?></h3>
                         <h5>Jumlah : <?php echo $produk[0]->qty; ?></h5>   

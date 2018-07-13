@@ -49,6 +49,15 @@ class Pemesanan extends CI_Controller {
 	}
     public function dataPemesananUser($id)
     {
+        if ($this->session->userdata('userSession')!=null)
+            {
+                $object['dataPesanan']=$this->pemesanan_model->getStatusPemesanan($this->session->userdata('userSession')['id']);
+           
+            }
+        else
+            {
+                $object['dataPesanan']=0;
+            }
         $object['pemesanan']=$this->pemesanan_model->getPemesananId($id);
         $object['produk']=$this->produk_model->getProduk($id);
         $object['user']=$this->user_model->getDataUser();
@@ -62,6 +71,15 @@ class Pemesanan extends CI_Controller {
 
 	public function order($id)
 	{
+        if ($this->session->userdata('userSession')!=null)
+            {
+                $object['dataPesanan']=$this->pemesanan_model->getStatusPemesanan($this->session->userdata('userSession')['id']);
+           
+            }
+        else
+            {
+                $object['dataPesanan']=0;
+            }
 		$object['produk']=$this->produk_model->getProduk($id);
         $object['user']=$this->user_model->getDataUser();
         $object['kategori'] = $this->kategori_model->getDataKategori();

@@ -33,6 +33,11 @@ class Produk_model extends CI_Model {
 		$query = $this->db->query("SELECT id_kategori,nama_kategori from kategori");
 		return $query->result();
 	}
+	public function getDataProdukKat($id)
+	{
+		$query = $this->db->query("SELECT * from produk where id_kategori = '$id' ");
+		return $query->result();
+	}
 
 	public function getProduk($id)
 	{

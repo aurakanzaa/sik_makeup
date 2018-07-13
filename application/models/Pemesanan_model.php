@@ -25,19 +25,20 @@ class Pemesanan_model extends CI_Model {
 		$query = $this->db->query("SELECT * from pemesanan");
 		return $query->result();
 	}
-
-	
+	public function getStatusPemesanan($id)
+	{
+		$query = $this->db->query("SELECT count(status_pemesanan) as total from pemesanan where id_user='$id' and status_pemesanan = '0' ");
+		return $query->result();
+	}	
 
 	public function getPemesanan($id)
 	{
-		$this->db->where('id_pemesanan',$id);
-		$query = $this->db->get('pemesanan');
+		$query = $this->db->query("SELECT A.* ,B.gambar from pemesanan as A join produk as B on A.id_produk = B.id_produk where A.id_pemesanan='$id'");
 		return $query->result();
 	}	
 	public function getPemesananId($id)
 	{
-		$this->db->where('id_user',$id);
-		$query = $this->db->get('pemesanan');
+		$query = $this->db->query("SELECT A.* ,B.* from pemesanan as A join produk as B on A.id_produk = B.id_produk where A.id_user='$id'");
 		return $query->result();
 	}
 

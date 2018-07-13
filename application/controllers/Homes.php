@@ -15,6 +15,7 @@ class Homes extends CI_Controller {
 		$this->load->model('Model_login');
         $this->load->model('kategori_model');
         $this->load->model('produk_model');
+        $this->load->model('pemesanan_model');
 	}
 
 	public function index()
@@ -23,6 +24,15 @@ class Homes extends CI_Controller {
             'username' => 'admin',
             'password' => md5('admin')
             );
+        if ($this->session->userdata('userSession')!=null)
+            {
+                $cek['dataPesanan']=$this->pemesanan_model->getStatusPemesanan($this->session->userdata('userSession')['id']);
+           
+            }
+        else
+            {
+                $cek['dataPesanan']=0;
+            }
         $cek['kategori'] = $this->kategori_model->getDataKategori();
         $cek['dat'] = $this->Model_login->cek_login("admin",$where);
         $cek['produk'] = $this->produk_model->getDataProduk();
@@ -51,6 +61,50 @@ class Homes extends CI_Controller {
 		$this->load->view('homes/content',$cek);
 		$this->load->view('component/footer');
 	}
+    public function kategori($id)
+    {
+        $where = array(
+            'username' => 'admin',
+            'password' => md5('admin')
+            );
+        if ($this->session->userdata('userSession')!=null)
+            {
+                $cek['dataPesanan']=$this->pemesanan_model->getStatusPemesanan($this->session->userdata('userSession')['id']);
+           
+            }
+        else
+            {
+                $cek['dataPesanan']=0;
+            }
+        $cek['kategori'] = $this->kategori_model->getDataKategori();
+        $cek['dat'] = $this->Model_login->cek_login("admin",$where);
+        $cek['produk'] = $this->produk_model->getDataProdukKat($id);
+        $cek['status'] = array(
+                'home'=>'active',
+                'hrd'=>'',
+                'keuangan'=>'',
+                'produk'=>'',
+                'pembelian'=>'',
+                'pemasukan'=>'',
+                'pengeluaran'=>'',
+                'utang'=>'',
+                'cash_flow'=>'',
+                'neraca'=>'',
+                'admin'=>'',
+                'gaji'=>'',
+                'golongan'=>'',
+                'absensi'=>'',
+                'user'=>'',
+                'barang'=>'',
+                'supplier'=>'',
+                'kategori'=>'',
+                );
+
+        $this->load->view('component/header_main',$cek);
+        $this->load->view('homes/content',$cek);
+        $this->load->view('component/footer');
+    }
+    
 
 
 }

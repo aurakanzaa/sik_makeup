@@ -55,7 +55,7 @@ $data['ava'] = $session_data['ava'];
             // (bool | optional) if you want it to fade out on its own or just sit there
             sticky: false,
             // (int | optional) the time you want it to be alive for before fading out
-            time: 3,
+            time: 100,
             // (string | optional) the class name you want to apply to that specific message
             class_name: 'my-sticky-class'
         });

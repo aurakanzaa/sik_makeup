@@ -18,6 +18,8 @@
                           <div class="form-group">
                               <label class="col-sm-2 col-sm-2 control-label">Role</label>
                               <div class="col-sm-5">
+                                <?php if ($this->session->userdata('userSession')['role']==2){ ?>
+                                  <input type="hidden" name="id_role" class="form-control" value="<?php echo $user[0]->id_role ?>" ><?php } else { ?>
                                   <select class="form-control" name="id_role">
                                   <?php foreach ($role as $key) {?>
                                     <?php if ($key->id_role==$user[0]->id_role) {?>
@@ -26,6 +28,7 @@
                                   <option value="<?php echo $key->id_role; ?>"><?php echo $key->nama_role; ?></option>
                                   <?php } ?>
                                   </select>
+                                  <?php } ?>
                               </div>
                           </div>
 

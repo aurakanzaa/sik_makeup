@@ -12,6 +12,9 @@ class User extends CI_Controller {
                 $this->load->model('role_model');
                 $this->load->helper('html');
                 $this->load->library('image_lib');
+                $this->load->model('kategori_model');
+                $this->load->model('produk_model');
+                $this->load->model('pemesanan_model');
         }
 
         public function index()
@@ -40,6 +43,45 @@ class User extends CI_Controller {
                         );
                 $this->load->view('component/header',$cek);
                 $this->load->view('user',$object);
+                $this->load->view('component/footer');  
+        }
+
+        public function profil($username)
+        {
+            if ($this->session->userdata('userSession')!=null)
+            {
+                $cek['dataPesanan']=$this->pemesanan_model->getStatusPemesanan($this->session->userdata('userSession')['id']);
+           
+            }
+        else
+            {
+                $cek['dataPesanan']=0;
+            }
+            $cek['kategori'] = $this->kategori_model->getDataKategori();
+            $cek['produk'] = $this->produk_model->getDataProduk();
+                $object['user']=$this->user_model->getUser($this->session->userdata('userSession')['id']);
+                $cek['status'] = array(
+                        'home'=>'',
+                        'hrd'=>'active',
+                        'keuangan'=>'',
+                        'produk'=>'',
+                        'pembelian'=>'',
+                        'pemasukan'=>'',
+                        'pengeluaran'=>'',
+                        'utang'=>'',
+                        'cash_flow'=>'',
+                        'neraca'=>'',
+                        'admin'=>'',
+                        'gaji'=>'',
+                        'golongan'=>'',
+                        'absensi'=>'',
+                        'user'=>'active',
+                        'barang'=>'',
+                        'supplier'=>'',
+                        'kategori'=>'',
+                        );
+                $this->load->view('component/header_main',$cek);
+                $this->load->view('userfol/data_user',$object);
                 $this->load->view('component/footer');  
         }
 
@@ -126,8 +168,20 @@ class User extends CI_Controller {
                 
                 if($this->form_validation->run()==FALSE){
 
+
                     $object['role']=$this->role_model->getDataRole();
                     $object['user']=$this->user_model->getUser($id);
+                    $cek['kategori'] = $this->kategori_model->getDataKategori();
+                     $cek['produk'] = $this->produk_model->getDataProduk();
+                     if ($this->session->userdata('userSession')!=null)
+                    {
+                        $cek['dataPesanan']=$this->pemesanan_model->getStatusPemesanan($this->session->userdata('userSession')['id']);
+           
+                    }
+                    else
+                    {
+                        $cek['dataPesanan']=0;
+                    }
                 
                      $cek['status'] = array(
                         'home'=>'',
@@ -149,15 +203,29 @@ class User extends CI_Controller {
                         'supplier'=>'',
                         'kategori'=>'',
                         );
-                        $this->load->view('component/header',$cek);
+                        if ($this->session->userdata('userSession')['role']==2) {
+                                 $this->load->view('component/header_main',$cek);
+                             }
+                        else{
+                            $this->load->view('component/header',$cek); 
+                        }
                         $this->load->view('edit_user',$object);
                         $this->load->view('component/footer');
-                }else{
                         
-                        $this->user_model->UpdateById($id);
-                        redirect('user','refresh');
+                     }
+                 else{
+
+                    $this->user_model->UpdateById($id);
+                    if ($this->session->userdata('userSession')['role']==2)
+                        {
+                             redirect('user/profil/'.$this->session->userdata('userSession')['nama'],'refresh');
+                        }
+                    else{
+                            redirect('user','refresh'); 
+                        }
+                        
+                    }
                 }
-        }
 
         public function delete($id)
         {

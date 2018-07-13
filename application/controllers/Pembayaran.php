@@ -102,6 +102,15 @@ class Pembayaran extends CI_Controller {
                         );
 
 		if($this->form_validation->run()==FALSE || $object['produk'][0]->kode_pembayaran !=$this->input->post('kode_pembayaran')){
+              if ($this->session->userdata('userSession')!=null)
+            {
+                $object['dataPesanan']=$this->pemesanan_model->getStatusPemesanan($this->session->userdata('userSession')['id']);
+           
+            }
+        else
+            {
+                $object['dataPesanan']=0;
+            }
               $object['user']=$this->user_model->getDataUser();
               $object['kategori'] = $this->kategori_model->getDataKategori();
 		      $this->load->view('component/header_main',$object);

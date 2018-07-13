@@ -30,7 +30,8 @@ class Login extends CI_Controller{
                 'nama' => $cek[0]->username,
                 'status' => "login",
                 'id' => $cek[0]->id,
-                'foto' => $cek[0]->foto
+                'foto' => $cek[0]->foto,
+                'role' => $cek[0]->id_role
                 );
  
             $this->session->set_userdata('userSession',$data_session);
@@ -87,6 +88,7 @@ class Login extends CI_Controller{
             $data_session = array(
                 'nama' => $cek[0]->username,
                 'id' => $cek[0]->id,
+                'role' => $cek[0]->id_role
                 );
  
             $this->session->set_userdata('userSession',$data_session);

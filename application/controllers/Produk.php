@@ -130,8 +130,8 @@ class Produk extends CI_Controller {
 				$confi['image_library']='gd2';
 				$confi['source_image']=$upload['full_path'];
 				$confi['maintain_ratio']=TRUE;
-				$confi['height']=150;
-				$confi['width']=1500;
+				$confi['height']=300;
+				$confi['width']=600;
 
 				$this->load->library('image_lib',$config);
 				$this->image_lib->clear();
@@ -207,8 +207,8 @@ class Produk extends CI_Controller {
 					'image_library' =>'gd2',
 					'source_image' => $image_data['full_path'],
 					'maintain_ratio'=>TRUE,
-					'width'=> 150,
-					'height'=>150,
+					'width'=> 300,
+					'height'=>600,
 
 					);
 				$this->load->library('image_lib',$config);
