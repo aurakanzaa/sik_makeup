@@ -81,6 +81,7 @@ class Pemesanan extends CI_Controller {
                 $object['dataPesanan']=0;
             }
 		$object['produk']=$this->produk_model->getProduk($id);
+        $object['pro']=$this->produk_model->getDataProduk();
         $object['user']=$this->user_model->getDataUser();
         $object['kategori'] = $this->kategori_model->getDataKategori();
 

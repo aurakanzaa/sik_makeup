@@ -80,7 +80,7 @@ class Pemasukan extends CI_Controller {
 		if($this->form_validation->run()==FALSE){
 			$object['produk']=$this->produk_model->getDataProduk();
 		$object['supplier']=$this->supplier_model->getDataSupplier();
-		
+		$object['produk']=$this->produk_model->getDataProduk();
 		$cek['status'] = array(
         		'home'=>'',
         		'hrd'=>'',

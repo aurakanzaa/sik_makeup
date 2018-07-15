@@ -3,8 +3,7 @@
 $session_data = $this->session->userdata('userSession');
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
+<! lang="en">
   <head>
     <title>Makeup</title>
     <link rel="icon" href="<?php echo base_url('/assets/img/cosmetics.png'); ?> ">
@@ -89,7 +88,7 @@ $session_data = $this->session->userdata('userSession');
               <!-- sidebar menu start-->
               <ul class="sidebar-menu" id="nav-accordion">
               
-                  <p class="centered"><a href="profile.html"><img src=<?php echo base_url('/assets/img/cosmetics.png') ?> class="img-circle" width="100"></a></p>
+                  <p class="centered"><a href="<?php echo site_url('homes/') ?>"><img src=<?php echo base_url('/assets/img/cosmetics.png') ?> class="img-circle" width="100"></a></p>
                   <?php foreach ($kategori as $key){?>   
                   <li class="sub-menu">
                       <a class="" href="<?php echo site_url('homes/kategori/'.$key->id_kategori) ?>">
