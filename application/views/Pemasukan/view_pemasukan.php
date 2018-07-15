@@ -13,7 +13,7 @@ MAIN CONTENT
 <section id="main-content">
   <section class="wrapper site-min-height">
     <br>&nbsp;&nbsp;&nbsp;&nbsp;
-    <a href="<?php echo base_url('index.php/pembelian/form_pembelian'); ?>"><button type="button" class="btn btn-success "><i class="fa fa-plus"> </i> Tambah Pemasukan</button></a>
+    <a href="<?php echo site_url('pemasukan/form_pemasukan'); ?>"><button type="button" class="btn btn-success "><i class="fa fa-plus"> </i> Tambah Pemasukan</button></a>
     <br>
     
     <div class="col-md-12 mt">
@@ -23,9 +23,9 @@ MAIN CONTENT
         <tr>
           <th>No</th>
           <th>Tanggal</th>
-          <th>Kode </th>
-          <th>Kode Pembayaran</th>
-          <th>Pesanan</th>
+          <th>User</th>
+          <th>Nama Pemasukan </th>
+          <th>Pembayaran</th>
           <th>Total Pemasukan</th>
           <th align="center">Edit | Delete</th>
         </tr>
@@ -35,16 +35,16 @@ MAIN CONTENT
         ?>
         <tr>
           <td><?php echo $no++ ?></td>
-          <td><?php echo $key->tgl_pembayaran ?></td>
-          <td><?php echo $key->id_pembayaran ?></td>
-          <td><?php echo $key->kode_pembayaran ?></td>
-          <td><?php echo $key->id_pemesanan ?></td>
-          <td><?php echo rupiah($key->total_pembayaran) ?></td>
+          <td><?php echo $key->tgl_pemasukan ?></td>
+          <td><?php echo $key->user ?></td>
+          <td><?php echo $key->id_pemasukan ?></td>
+          <td><?php echo $key->nama_pemasukan ?></td>
+          <td><?php echo rupiah($key->total_pemasukan) ?></td>
           <td>
-                <a class="btn btn-primary btn-xs" href="<?php echo site_url('pembelian/update/').$key->id_pembayaran ?>">
+                <a class="btn btn-primary btn-xs" href="<?php echo site_url('pemasukan/update/').$key->id_pemasukan ?>">
                   <i class="fa fa-pencil"></i>
                 </a>&nbsp;&nbsp;&nbsp;&nbsp;
-                <a class="btn btn-danger btn-xs" href="<?php echo site_url('pembelian/delete/').$key->id_pembayaran ?>">
+                <a class="btn btn-danger btn-xs" href="<?php echo site_url('pemasukan/delete/').$key->id_pemasukan ?>">
                   <i class="fa fa-trash-o"></i>
                 </a>  
           </td>

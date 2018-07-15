@@ -43,17 +43,15 @@ class Pemasukan extends CI_Controller {
 		$this->load->view('component/footer');	
 	}
 
-	public function form_pembelian()
+	public function form_pemasukan()
 	{
-		$object['produk']=$this->produk_model->getDataProduk();
-		$object['supplier']=$this->supplier_model->getDataSupplier();
 		$cek['status'] = array(
         		'home'=>'',
         		'hrd'=>'',
         		'keuangan'=>'active',
         		'produk'=>'',
-        		'pembelian'=>'active',
-        		'pemasukan'=>'',
+        		'pembelian'=>'',
+        		'pemasukan'=>'active',
         		'pengeluaran'=>'',
         		'utang'=>'',
         		'cash_flow'=>'',
@@ -68,94 +66,62 @@ class Pemasukan extends CI_Controller {
         		'kategori'=>'',
         		);
 		$this->load->view('component/header',$cek);
-		$this->load->view('Pembelian/form_pembelian',$object);
+		$this->load->view('Pemasukan/form_pemasukan');
 		$this->load->view('component/footer');	
 	}
 
 	public function create(){
-		$this->form_validation->set_rules('id_produk','nama produk','trim|required');
-		$this->form_validation->set_rules('jumlah','Jumlah','trim|required');
-		$this->form_validation->set_rules('harga_total','Harga Total','trim|required');
+		$this->form_validation->set_rules('total_pemasukan','Harga Total','trim|required');
 		$this->form_validation->set_rules('tanggal','Tanggal','trim|required');
 		if($this->form_validation->run()==FALSE){
-			$object['produk']=$this->produk_model->getDataProduk();
-		$object['supplier']=$this->supplier_model->getDataSupplier();
-		$object['produk']=$this->produk_model->getDataProduk();
-		$cek['status'] = array(
-        		'home'=>'',
-        		'hrd'=>'',
-        		'keuangan'=>'active',
-        		'produk'=>'',
-        		'pembelian'=>'active',
-        		'pemasukan'=>'',
-        		'pengeluaran'=>'',
-        		'utang'=>'',
-        		'cash_flow'=>'',
-        		'neraca'=>'',
-        		'admin'=>'',
-        		'gaji'=>'',
-        		'golongan'=>'',
-        		'absensi'=>'',
-        		'user'=>'',
-        		'barang'=>'',
-        		'supplier'=>'',
-        		'kategori'=>'',
-        		);
-		$this->load->view('component/header',$cek);
-		$this->load->view('Pembelian/form_pembelian',$object);
-		$this->load->view('component/footer');
+			redirect('pemasukan/form_pemasukan','refresh');
 		}else{
 			
-			$this->pembelian_model->insert();
-			redirect('pembelian','refresh');
+			$this->pemasukan_model->insert();
+			redirect('pemasukan','refresh');
 		}
 	}
 
 	public function update($id){
-		$this->form_validation->set_rules('id_produk','nama produk','trim|required');
-		$this->form_validation->set_rules('jumlah','Jumlah','trim|required');
-		$this->form_validation->set_rules('harga_total','Harga Total','trim|required');
-		$this->form_validation->set_rules('tanggal','Tanggal','trim|required');
-		
+		$this->form_validation->set_rules('total_pemasukan','Harga Total','trim|required');
+                $this->form_validation->set_rules('tanggal','Tanggal','trim|required');
 		if($this->form_validation->run()==FALSE){
 
-			$object['pembelian']=$this->pembelian_model->getPembelian($id);
-			$object['produk']=$this->produk_model->getDataProduk();
-			$object['supplier']=$this->supplier_model->getDataSupplier();
 			$cek['status'] = array(
-        		'home'=>'',
-        		'hrd'=>'',
-        		'keuangan'=>'active',
-        		'produk'=>'',
-        		'pembelian'=>'active',
-        		'pemasukan'=>'',
-        		'pengeluaran'=>'',
-        		'utang'=>'',
-        		'cash_flow'=>'',
-        		'neraca'=>'',
-        		'admin'=>'',
-        		'gaji'=>'',
-        		'golongan'=>'',
-        		'absensi'=>'',
-        		'user'=>'',
-        		'barang'=>'',
-        		'supplier'=>'',
-        		'kategori'=>'',
-        		);
-			$this->load->view('component/header',$cek);
-			$this->load->view('Pembelian/form_update_pembelian',$object);
-			$this->load->view('component/footer');
+                        'home'=>'',
+                        'hrd'=>'',
+                        'keuangan'=>'active',
+                        'produk'=>'',
+                        'pembelian'=>'',
+                        'pemasukan'=>'active',
+                        'pengeluaran'=>'',
+                        'utang'=>'',
+                        'cash_flow'=>'',
+                        'neraca'=>'',
+                        'admin'=>'',
+                        'gaji'=>'',
+                        'golongan'=>'',
+                        'absensi'=>'',
+                        'user'=>'',
+                        'barang'=>'',
+                        'supplier'=>'',
+                        'kategori'=>'',
+                        );
+                $object['pemasukan']=$this->pemasukan_model->getDataPemasukanId($id);
+                $this->load->view('component/header',$cek);
+                $this->load->view('Pemasukan/edit_pemasukan',$object);
+                $this->load->view('component/footer');
 		}else{
 			
-			$this->pembelian_model->update($id);
-			redirect('pembelian','refresh');
+			$this->pemasukan_model->update($id);
+			redirect('pemasukan','refresh');
 		}
 	}
 
 	public function delete($id)
 	{
-		$this->pembelian_model->delete($id);
-		redirect('pembelian','refresh');
+		$this->pemasukan_model->delete($id);
+		redirect('pemasukan','refresh');
 	}
 
 }

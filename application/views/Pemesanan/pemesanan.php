@@ -2,6 +2,14 @@
 MAIN CONTENT
 *********************************************************************************************************************************************************** -->
 <!--main content start-->
+<?php 
+function rupiah($angka){
+  
+  $hasil_rupiah = "Rp " . number_format($angka,2,',','.');
+  return $hasil_rupiah;
+ 
+}
+?>
 <section id="main-content">
   <section class="wrapper site-min-height">
     <!--<br>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -33,11 +41,17 @@ MAIN CONTENT
           <td><?php echo $key->tanggal_pemesanan ?></td>
           <td><?php echo $key->kode_pemesanan?></td>
           <td><?php echo $key->kode_pembayaran?></td>
-          <td><?php echo $key->id_user ?></td>
-          <td><?php echo $key->id_produk ?></td>
+          <td><?php echo $key->nama ?></td>
+          <td><?php echo $key->nama_produk ?></td>
           <td><?php echo $key->qty ?></td>
-          <td><?php echo $key->total_pemesanan ?></td>
-          <td><?php echo $key->status_pemesanan ?></td>
+          <td><?php echo rupiah($key->total_pemesanan) ?></td>
+          <?php $status ='Belum dibayar '; $type='red';
+          if ($key->status_pemesanan == 1)
+            {
+               $status = 'Sudah dibayar';
+               $type = 'green';
+            } ?>
+          <td style="color: <?php echo $type ?>"><?php echo $status ?></td>
           <td>
                 <a class="btn btn-primary btn-xs" href="<?php echo site_url('pembelian/update/').$key->id_pemesanan ?>">
                   <i class="fa fa-pencil"></i>

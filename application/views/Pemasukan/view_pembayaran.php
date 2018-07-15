@@ -13,43 +13,38 @@ MAIN CONTENT
 <section id="main-content">
   <section class="wrapper site-min-height">
     <br>&nbsp;&nbsp;&nbsp;&nbsp;
-    <a href="<?php echo base_url('index.php/pengeluaran/form_pengeluaran'); ?>"><button type="button" class="btn btn-success "><i class="fa fa-plus"> </i> Tambah Data</button></a>
+    <a href="<?php echo base_url('index.php/pembelian/form_pembelian'); ?>"><button type="button" class="btn btn-success "><i class="fa fa-plus"> </i> Tambah Pemasukan</button></a>
     <br>
     
     <div class="col-md-12 mt">
       <div class="content-panel">
         <table class="table table-hover">
-        <h4><i class="fa fa-angle-right"></i> Daftar Pengeluaran</h4>
+        <h4><i class="fa fa-angle-right"></i> Daftar Pemasukan</h4>
         <tr>
           <th>No</th>
-          <th>Id Pengeluaran </th>
-          <th>Id User</th>
-          <th>Nama Barang</th>
-          <th>Harga Satuan</th>
-          <th>Qty</th>
-          <th>Total Harga</th>
-          <th>Tanggal Pengeluaran</th>
+          <th>Tanggal</th>
+          <th>Kode </th>
+          <th>Kode Pembayaran</th>
+          <th>Pesanan</th>
+          <th>Total Pemasukan</th>
           <th align="center">Edit | Delete</th>
         </tr>
         <?php 
         $no = 1;
-        foreach($keluar as $key){ 
+        foreach($pemasukan as $key){ 
         ?>
         <tr>
           <td><?php echo $no++ ?></td>
-          <td><?php echo $key->id_pengeluaran ?></td>
-          <td><?php echo $key->username ?></td>
-          <td><?php echo $key->nama_barang ?></td>
-          <td><?php echo rupiah($key->harga_satuan) ?></td>
-          <td><?php echo $key->qty ?></td>
-          <td><?php echo rupiah($key->total_harga) ?></td>
-          <td><?php echo $key->tanggal_pengeluaran?></td>
-        
+          <td><?php echo $key->tgl_pembayaran ?></td>
+          <td><?php echo $key->id_pembayaran ?></td>
+          <td><?php echo $key->kode_pembayaran ?></td>
+          <td><?php echo $key->id_pemesanan ?></td>
+          <td><?php echo rupiah($key->total_pembayaran) ?></td>
           <td>
-                <a class="btn btn-primary btn-xs" href="<?php echo site_url('pengeluaran/update/').$key->id_pengeluaran ?>">
+                <a class="btn btn-primary btn-xs" href="<?php echo site_url('pembelian/update/').$key->id_pembayaran ?>">
                   <i class="fa fa-pencil"></i>
                 </a>&nbsp;&nbsp;&nbsp;&nbsp;
-                <a class="btn btn-danger btn-xs" href="<?php echo site_url('pengeluaran/delete/').$key->id_pengeluaran ?>">
+                <a class="btn btn-danger btn-xs" href="<?php echo site_url('pembelian/delete/').$key->id_pembayaran ?>">
                   <i class="fa fa-trash-o"></i>
                 </a>  
           </td>

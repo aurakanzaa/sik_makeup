@@ -22,7 +22,7 @@ class Pemesanan_model extends CI_Model {
 	}
 	public function getDataPemesanan()
 	{
-		$query = $this->db->query("SELECT * from pemesanan");
+		$query = $this->db->query("SELECT A.* ,B.*,C.nama from pemesanan as A join produk as B on A.id_produk = B.id_produk join User as C on A.id_user = C.id order by tanggal_pemesanan desc");
 		return $query->result();
 	}
 	public function getStatusPemesanan($id)

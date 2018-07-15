@@ -11,9 +11,6 @@ MAIN CONTENT
 <!--main content start-->
 <section id="main-content">
   <section class="wrapper site-min-height">
-    <br>&nbsp;&nbsp;&nbsp;&nbsp;
-    <a href="<?php echo base_url('index.php/cashflow/form_cashflow'); ?>"><button type="button" class="btn btn-success "><i class="fa fa-plus"> </i> Tambah Data Cashflow</button></a>
-    <br>
     
     <div class="col-md-12 mt">
       <div class="content-panel">
@@ -23,13 +20,11 @@ MAIN CONTENT
           <th>No</th>
           <th>Tanggal</th>
           <th>Id Transaksi</th>
-          <th>Id User</th>
           <th>PEMASUKAN</th>
           <th>PENGELUARAN</th>
           <th>UTANG</th>
           <th>PEMBELIAN</th>
           <th>KETERANGAN</th>
-          <th align="center">Edit | Delete</th>
         </tr>
         <?php 
         $no = 1;
@@ -39,21 +34,12 @@ MAIN CONTENT
           <td><?php echo $no++ ?></td>
           <td><?php echo $key->tgl_cashflow ?></td>
           <td><?php echo $key->id_transaksi ?></td>
-          <td><?php echo $key->id_user ?></td>
           <td><?php echo rupiah($key->PEMASUKAN)?></td>
           <td><?php echo rupiah($key->PENGELUARAN) ?></td>
           <td><?php echo rupiah($key->UTANG)?></td>
           <td><?php echo rupiah($key->PEMBELIAN) ?></td>
           <td><?php echo $key->keterangan ?></td>
         
-          <td>
-                <a class="btn btn-primary btn-xs" href="<?php echo site_url('cashflow/update/').$key->id_transaksi ?>">
-                  <i class="fa fa-pencil"></i>
-                </a>&nbsp;&nbsp;&nbsp;&nbsp;
-                <a class="btn btn-danger btn-xs" href="<?php echo site_url('cashflow/delete/').$key->id_transaksi ?>">
-                  <i class="fa fa-trash-o"></i>
-                </a>  
-          </td>
         </tr>
         <?php } ?>
       <tfoot>

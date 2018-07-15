@@ -30,7 +30,7 @@ class Pengeluaran_model extends CI_Model {
 	}
 	public function getDataPengeluaran()
 	{
-		$query = $this->db->query("SELECT id_pengeluaran, id_user, nama_barang, harga_satuan, qty, total_harga, tanggal_pengeluaran from pengeluaran");
+		$query = $this->db->query("SELECT A.* , B.username from pengeluaran as A join admin as B on A.id_user = B.id");
 		return $query->result();
 	}
 
@@ -62,6 +62,8 @@ class Pengeluaran_model extends CI_Model {
 	}
 
 	public function delete($id){
+		$this->db->where('id_pengeluaran',$id);
+		$this->db->delete('cash_flow');
 		$this->db->where('id_pengeluaran',$id);
 		$this->db->delete('pengeluaran');
 		

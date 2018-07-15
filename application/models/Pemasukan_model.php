@@ -5,46 +5,58 @@ class Pemasukan_model extends CI_Model {
 
 	public function getDataPemasukan()
 	{
-		$query = $this->db->get('Pembayaran');
+		$query = $this->db->query("select A.*, B.username as user from pemasukan as A join admin as B on A.id_user = B.id ");
 		return $query->result();
 	}
 	public function insert()
 	{
 		$object = array(
-			'id_produk' => $this->input->post('id_produk'),
-			'qty' => $this->input->post('jumlah'),
-			'harga_total' => $this->input->post('harga_total'),
-			'id_supp' => $this->input->post('id_supplier'),
-			'tgl_beli' => $this->input->post('tanggal'),
+			
+			'total_pemasukan' => $this->input->post('total_pemasukan'),
+			'tgl_pemasukan' => $this->input->post('tanggal'),
+			'nama_pemasukan' => $this->input->post('nama'),
 			'id_user' => $this->session->userdata('userSession')['id']
 			);
-		$this->db->insert('pembelian',$object);
+		$this->db->insert('pemasukan',$object);
+		$object=$this->db->query("SELECT id_pemasukan FROM pemasukan ORDER BY id_pemasukan DESC LIMIT 1;");
+		$cash=array(
+
+				'tgl_cashflow'=>date('Y-m-d'),
+				'id_pembelian'=>'0',
+				'id_utang'=>'0',
+				'id_pembayaran'=>$object->result()[0]->id_pemasukan,
+				'id_pengeluaran'=>'0',
+				'keterangan'=>$this->input->post('nama'),
+				'id_user' => $this->session->userdata('userSession')['id']
+
+				);
+		$this->db->insert('cash_flow',$cash);
 	
 	}
-	public function getPembelian($id)
+	public function getDataPemasukanId($id)
 	{
-		$this->db->where('id_pembelian',$id);
-		$query = $this->db->get('pembelian');
+		$this->db->where('id_pemasukan',$id);
+		$query = $this->db->get('pemasukan');
 		return $query->result();
 	}
 	public function update($id)
 	{
 		$object = array(
-			'id_produk' => $this->input->post('id_produk'),
-			'qty' => $this->input->post('jumlah'),
-			'harga_total' => $this->input->post('harga_total'),
-			'id_supp' => $this->input->post('id_supplier'),
-			'tgl_beli' => $this->input->post('tanggal'),
+			'total_pemasukan' => $this->input->post('total_pemasukan'),
+			'tgl_pemasukan' => $this->input->post('tanggal'),
+			'nama_pemasukan' => $this->input->post('nama'),
 			'id_user' => $this->session->userdata('userSession')['id']
 			);
-		$this->db->where('id_pembelian', $id);
-		$this->db->update('pembelian',$object);
+		$this->db->where('id_pemasukan', $id);
+		$this->db->update('pemasukan',$object);
 
 	
 	}
 	public function delete($id)
 	{
-		$this->db->query("delete from pembelian where id_pembelian='$id'");	
+
+		$this->db->query("delete from cash_flow where id_pembayaran='$id'");	
+		$this->db->query("delete from pemasukan where id_pemasukan='$id'");	
 	}	
 
 }

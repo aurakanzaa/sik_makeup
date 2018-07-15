@@ -35,7 +35,7 @@ MAIN CONTENT
         ?>
         <tr>
           <td><?php echo $no++ ?></td>
-          <td><?php echo $key->id_user ?></td>
+          <td><?php echo $key->username ?></td>
           <td><?php echo $key->nama_barang ?></td>
           <td><?php echo rupiah($key->total_utang) ?></td>
           <td><?php echo rupiah($key->jml_utang) ?></td>

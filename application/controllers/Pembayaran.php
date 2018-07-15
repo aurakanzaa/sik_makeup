@@ -18,34 +18,32 @@ class Pembayaran extends CI_Controller {
 	}
 
 	public function index()
-	{
-		$object['pembayaran']=$this->pembayaran_model->getDataPembayaran();
-        $object['pemesanan']=$this->pemesanan_model->getDataPemesanan();
-
-		$cek['status'] = array(
-        		'home'=>'',
-        		'hrd'=>'',
-        		'keuangan'=>'active',
-        		'produk'=>'',
-        		'pembelian'=>'',
-        		'pemasukan'=>'',
-        		'pengeluaran'=>'',
-        		'utang'=>'active',
-        		'cash_flow'=>'',
-        		'neraca'=>'',
-        		'admin'=>'',
-        		'gaji'=>'',
-        		'golongan'=>'',
-        		'absensi'=>'',
-        		'user'=>'',
-        		'barang'=>'',
-        		'supplier'=>'',
-        		'kategori'=>'',
-        		);
-		$this->load->view('component/header',$cek);
-		$this->load->view('pembayaran',$object);
-		$this->load->view('component/footer');	
-	}
+    {
+        $object['pemasukan']=$this->pembayaran_model->getDataPembayaran();
+        $cek['status'] = array(
+                'home'=>'',
+                'hrd'=>'',
+                'keuangan'=>'active',
+                'produk'=>'',
+                'pembelian'=>'',
+                'pemasukan'=>'',
+                'pengeluaran'=>'',
+                'utang'=>'',
+                'cash_flow'=>'',
+                'neraca'=>'',
+                'admin'=>'',
+                'gaji'=>'',
+                'golongan'=>'',
+                'absensi'=>'',
+                'user'=>'',
+                'barang'=>'',
+                'supplier'=>'',
+                'kategori'=>'',
+                );
+        $this->load->view('component/header',$cek);
+        $this->load->view('Pemasukan/view_pembayaran',$object);
+        $this->load->view('component/footer');  
+    }
 
 	public function form_utang()
 	{

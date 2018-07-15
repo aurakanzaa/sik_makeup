@@ -29,7 +29,7 @@ class Utang_model extends CI_Model {
 	}
 	public function getDataUtang()
 	{
-		$query = $this->db->query("SELECT id_utang,id_user, nama_barang,total_utang, jml_utang,sisa_utang from utang");
+		$query = $this->db->query("SELECT A.* , B.username from utang as A join admin as B on A.id_user = B.id");
 		return $query->result();
 	}
 
@@ -61,6 +61,8 @@ class Utang_model extends CI_Model {
 	}
 
 	public function delete($id){
+		$this->db->where('id_utang',$id);
+		$this->db->delete('cash_flow');
 		$this->db->where('id_utang',$id);
 		$this->db->delete('utang');
 		
