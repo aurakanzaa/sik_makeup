@@ -28,6 +28,8 @@ class Pembayaran extends CI_Controller {
                 'pembelian'=>'',
                 'pemasukan'=>'',
                 'pengeluaran'=>'',
+                'pembayaran'=>'active',
+                'pemesanan'=>'',
                 'utang'=>'',
                 'cash_flow'=>'',
                 'neraca'=>'',
@@ -58,7 +60,9 @@ class Pembayaran extends CI_Controller {
         		'pembelian'=>'',
         		'pemasukan'=>'',
         		'pengeluaran'=>'',
-        		'utang'=>'active',
+        		'utang'=>'',
+                'pembayaran'=>'active',
+                'pemesanan'=>'',
         		'cash_flow'=>'',
         		'neraca'=>'',
         		'admin'=>'',
@@ -86,7 +90,9 @@ class Pembayaran extends CI_Controller {
                         'pembelian'=>'',
                         'pemasukan'=>'',
                         'pengeluaran'=>'',
-                        'utang'=>'active',
+                        'utang'=>'',
+                        'pembayaran'=>'active',
+                        'pemesanan'=>'',
                         'cash_flow'=>'',
                         'neraca'=>'',
                         'admin'=>'',
@@ -117,7 +123,7 @@ class Pembayaran extends CI_Controller {
 		}else{
 		      $this->pembayaran_model->insertPembayaran($id, $object['produk'][0]->total_pemesanan);
                $this->pemesanan_model->updateStatusPemesanan($id);
-               redirect('homes','refresh');
+               redirect('struk','refresh');
 
 		}
 	}
@@ -141,9 +147,11 @@ class Pembayaran extends CI_Controller {
         		      'pembelian'=>'',
         		      'pemasukan'=>'',
         		      'pengeluaran'=>'',
-        		      'utang'=>'active',
+        		      'utang'=>'',
+                      'pembayaran'=>'active',
         		      'cash_flow'=>'',
         		      'neraca'=>'',
+                      'pemesanan'=>'',
         		      'admin'=>'',
         		      'gaji'=>'',
         		      'golongan'=>'',

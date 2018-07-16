@@ -11,6 +11,8 @@ class Struk extends CI_Controller {
         $this->load->model('cashflow_model');
 		$this->load->model('user_model');
         $this->load->model('struk_model');
+        $this->load->model('pembayaran_model');
+        $this->load->model('pemesanan_model');
 		$this->load->helper('html');
 		$this->load->library('image_lib');
 	}
@@ -19,7 +21,10 @@ class Struk extends CI_Controller {
 	{
         $object['user']=$this->user_model->getDataUser();
         $object['struk']=$this->struk_model->getDataStruk();
-        $object['cashflow']=$this->cashflow_model->getDataCashflow();
+        $object['bayar']=$this->pembayaran_model->getDataPembayaran();
+        $object['pesan']=$this->pemesanan_model->getDataPemesanan();
+        $object['totalstruk']=$this->struk_model->getDataTotalStruk();
+
 
 
 		$cek['status'] = array(
@@ -33,6 +38,8 @@ class Struk extends CI_Controller {
         		'utang'=>'',
         		'cash_flow'=>'active',
         		'neraca'=>'',
+                'pemesanan'=>'',
+                'pembayaran'=>'',
         		'admin'=>'',
         		'gaji'=>'',
         		'golongan'=>'',
@@ -43,15 +50,17 @@ class Struk extends CI_Controller {
         		'kategori'=>'',
         		);
 		$this->load->view('component/header',$cek);
-		$this->load->view('struk',$object);
-		$this->load->view('component/footer');	
+		$this->load->view('struk/struk_view',$object);
+		$this->load->view('component/footer_afterLogin');	
 	}
 
-	public function form_cashflow()
+	public function form_struk()
 	{
-		$object['user']=$this->user_model->getDataUser();
+		 $object['user']=$this->user_model->getDataUser();
         $object['struk']=$this->struk_model->getDataStruk();
-        $object['cashflow']=$this->cashflow_model->getDataCashflow();
+        $object['bayar']=$this->pembayaran_model->getDataPembayaran();
+        $object['pesan']=$this->pemesanan_model->getDataPemesanan();
+        $object['totalstruk']=$this->struk_model->getDataTotalStruk();
 
 		$cek['status'] = array(
                 'home'=>'',
@@ -61,6 +70,8 @@ class Struk extends CI_Controller {
                 'pembelian'=>'',
                 'pemasukan'=>'',
                 'pengeluaran'=>'',
+                'pemesanan'=>'',
+                'pembayaran'=>'',
                 'utang'=>'',
                 'cash_flow'=>'active',
                 'neraca'=>'',
@@ -82,6 +93,12 @@ class Struk extends CI_Controller {
         $this->form_validation->set_rules('id_transaksi','id transaksi','trim|required');
         $this->form_validation->set_rules('id_user','id user','trim|required');
 
+        $object['user']=$this->user_model->getDataUser();
+        $object['struk']=$this->struk_model->getDataStruk();
+        $object['bayar']=$this->pembayaran_model->getDataPembayaran();
+        $object['pesan']=$this->pemesanan_model->getDataPemesanan();
+        $object['totalstruk']=$this->struk_model->getDataTotalStruk();
+
             $cek['status'] = array(
                 'home'=>'',
                 'hrd'=>'',
@@ -92,6 +109,8 @@ class Struk extends CI_Controller {
                 'pengeluaran'=>'',
                 'utang'=>'',
                 'cash_flow'=>'active',
+                'pemesanan'=>'',
+                'pembayaran'=>'',
                 'neraca'=>'',
                 'admin'=>'',
                 'gaji'=>'',
@@ -104,11 +123,6 @@ class Struk extends CI_Controller {
                 );
 
 		if($this->form_validation->run()==FALSE){
-
-            $object['user']=$this->user_model->getDataUser();
-            $object['struk']=$this->struk_model->getDataStruk();
-            $object['cashflow']=$this->cashflow_model->getDataCashflow();
-		
 		      
 		      $this->load->view('component/header',$cek);
 		      $this->load->view('form_struk',$object);
@@ -127,6 +141,11 @@ class Struk extends CI_Controller {
 		$this->form_validation->set_rules('id_transaksi','id transaksi','trim|required');
         $this->form_validation->set_rules('id_user','id user','trim|required');
         
+        $object['user']=$this->user_model->getDataUser();
+        $object['struk']=$this->struk_model->getStruk($id);
+        $object['bayar']=$this->pembayaran_model->getDataPembayaran();
+        $object['pesan']=$this->pemesanan_model->getDataPemesanan();
+        $object['totalstruk']=$this->struk_model->getDataTotalStruk();
 
         $cek['status'] = array(
                 'home'=>'',
@@ -139,6 +158,8 @@ class Struk extends CI_Controller {
                 'utang'=>'',
                 'cash_flow'=>'active',
                 'neraca'=>'',
+                'pemesanan'=>'',
+                'pembayaran'=>'',
                 'admin'=>'',
                 'gaji'=>'',
                 'golongan'=>'',
@@ -150,9 +171,6 @@ class Struk extends CI_Controller {
                 );
 		
 		if($this->form_validation->run()==FALSE){
-            $object['user']=$this->user_model->getDataUser();
-            $object['struk']=$this->struk_model->getDataStruk();
-            $object['cashflow']=$this->cashflow_model->getDataCashflow();
 
 			$this->load->view('component/header',$cek);
 			$this->load->view('edit_struk',$object);

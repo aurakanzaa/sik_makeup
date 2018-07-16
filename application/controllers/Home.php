@@ -32,6 +32,8 @@ class Home extends CI_Controller {
         		'pengeluaran'=>'',
         		'utang'=>'',
         		'cash_flow'=>'',
+                'pemesanan'=>'',
+                'pembayaran'=>'',
         		'neraca'=>'',
         		'admin'=>'',
         		'gaji'=>'',
