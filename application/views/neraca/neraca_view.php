@@ -174,6 +174,10 @@ MAIN CONTENT
           <td></td>
           <td></td>
           <td><b>Total</b></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
         </tr>
       </tfoot>
       </table>

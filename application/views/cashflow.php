@@ -84,6 +84,7 @@ MAIN CONTENT
           <td><b><?php echo rupiah($totalcashflow[0]->PENGELUARAN) ?></b></td>
           <td><b><?php echo rupiah($totalcashflow[0]->UTANG) ?></b></td>
           <td><b><?php echo rupiah($totalcashflow[0]->PEMBELIAN) ?></b></td>
+          <td></td>
         </tr>
       </tfoot>
       </table>

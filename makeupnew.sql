@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 15, 2018 at 10:35 AM
+-- Generation Time: Jul 16, 2018 at 10:48 AM
 -- Server version: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -172,12 +172,19 @@ CREATE TABLE `labarugi` (
 CREATE TABLE `neraca` (
   `id_neraca` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
-  `id_transaksi` int(11) NOT NULL,
-  `Activa` int(11) NOT NULL,
-  `Pasiva` int(11) NOT NULL,
+  `jenis` int(1) NOT NULL,
+  `total_transaksi` int(11) NOT NULL,
   `tgl_neraca` date NOT NULL,
   `keterangan` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `neraca`
+--
+
+INSERT INTO `neraca` (`id_neraca`, `id_user`, `jenis`, `total_transaksi`, `tgl_neraca`, `keterangan`) VALUES
+(1, 1, 1, 11400230, '2018-01-08', 'Modal tahun 2017'),
+(2, 1, 3, 9632000, '2018-07-13', 'Pengadaan Investasi');
 
 -- --------------------------------------------------------
 
@@ -516,8 +523,7 @@ ALTER TABLE `labarugi`
 --
 ALTER TABLE `neraca`
   ADD PRIMARY KEY (`id_neraca`),
-  ADD KEY `id_user` (`id_user`),
-  ADD KEY `id_transaksi` (`id_transaksi`);
+  ADD KEY `id_user` (`id_user`);
 
 --
 -- Indexes for table `pemasukan`
@@ -655,13 +661,13 @@ ALTER TABLE `labarugi`
 -- AUTO_INCREMENT for table `neraca`
 --
 ALTER TABLE `neraca`
-  MODIFY `id_neraca` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_neraca` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `pemasukan`
 --
 ALTER TABLE `pemasukan`
-  MODIFY `id_pemasukan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_pemasukan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `pembayaran`
@@ -772,8 +778,7 @@ ALTER TABLE `labarugi`
 -- Constraints for table `neraca`
 --
 ALTER TABLE `neraca`
-  ADD CONSTRAINT `neraca_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`),
-  ADD CONSTRAINT `neraca_ibfk_2` FOREIGN KEY (`id_transaksi`) REFERENCES `cash_flow` (`id_transaksi`);
+  ADD CONSTRAINT `neraca_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`);
 
 --
 -- Constraints for table `pembayaran`
