@@ -3,22 +3,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Neraca_model extends CI_Model {
 
-	public function insertNeraca()
+	public function insert()
 	{
 		$object=array
 		(
-			'id_user' => $this->input->post('id_user'),
-			'id_transaksi' => $this->input->post('id_transaksi'),
-			'activa' => $this->input->post('activa'),
-			'pasiva' => $this->input->post('pasiva'),
-			'tgl_neraca' => $this->input->post('tgl_neraca'),
-			'keterangan' => $this->input->post('keterangan'),
+			'id_user' => $this->session->userdata('userSession')['id'],
+			'jenis' => $this->input->post('jenis'),
+			'tgl_neraca' => $this->input->post('tanggal'),
+			'keterangan' => $this->input->post('nama'),
+			'total_transaksi' => $this->input->post('total')
 			);
 		$this->db->insert('neraca',$object);
 	}
 	public function getDataNeraca()
 	{
-		$query = $this->db->query("SELECT id_neraca,id_user, activa, pasiva, tgl_neraca, keterangan from neraca");
+		$query = $this->db->query("SELECT * from neraca");
 		return $query->result();
 	}
 

@@ -21,10 +21,7 @@ class Cashflow extends CI_Controller {
 	public function index()
 	{
 		$object['utang']=$this->utang_model->getDataUtang();
-        $object['pembayaran']=$this->pembayaran_model->getDataPembayaran();
-        $object['pengeluaran']=$this->pengeluaran_model->getDataPengeluaran();
         $object['user']=$this->user_model->getDataUser();
-        $object['pembelian']=$this->pembelian_model->getDataPembelian();
         $object['cashflow']=$this->cashflow_model->getDataCashflow();
         $object['totalcashflow']=$this->cashflow_model->getDataTotalCashflow();
 
@@ -53,7 +50,44 @@ class Cashflow extends CI_Controller {
 		$this->load->view('cashflow',$object);
 		$this->load->view('component/footer');	
 	}
+    public function Filter()
+    {
+       $this->form_validation->set_rules('tahun','Tahun','trim|required');
 
+            $cek['status'] = array(
+                'home'=>'',
+                'hrd'=>'',
+                'keuangan'=>'active',
+                'produk'=>'',
+                'pembelian'=>'',
+                'pemasukan'=>'',
+                'pengeluaran'=>'',
+                'utang'=>'',
+                'cash_flow'=>'active',
+                'neraca'=>'',
+                'admin'=>'',
+                'gaji'=>'',
+                'golongan'=>'',
+                'absensi'=>'',
+                'user'=>'',
+                'barang'=>'',
+                'supplier'=>'',
+                'kategori'=>'',
+                );
+
+        if($this->form_validation->run()==FALSE){
+
+            redirect('Cashflow','refresh');
+        }else{
+            
+            $object['cashflow']=$this->cashflow_model->getFilterCashflow($this->input->post('bulan'), $this->input->post('tahun'));
+            $object['totalcashflow']=$this->cashflow_model->getFilterTotalCashflow($this->input->post('bulan'), $this->input->post('tahun'));
+            $this->load->view('component/header',$cek);
+            $this->load->view('cashflow',$object);
+            $this->load->view('component/footer');
+             
+        }
+    }
 	public function form_cashflow()
 	{
 		$object['utang']=$this->utang_model->getDataUtang();

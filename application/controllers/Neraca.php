@@ -18,9 +18,6 @@ class Neraca extends CI_Controller {
 	public function index()
 	{
 		$object['neraca']=$this->neraca_model->getDataNeraca();
-        $object['user']=$this->user_model->getDataUser();
-        $object['cashflow']=$this->cashflow_model->getDataCashflow();
-
 		$cek['status'] = array(
         		'home'=>'',
         		'hrd'=>'',
@@ -29,7 +26,7 @@ class Neraca extends CI_Controller {
         		'pembelian'=>'',
         		'pemasukan'=>'',
         		'pengeluaran'=>'',
-        		'utang'=>'active',
+        		'utang'=>'',
         		'cash_flow'=>'',
         		'neraca'=>'',
         		'admin'=>'',
@@ -42,48 +39,41 @@ class Neraca extends CI_Controller {
         		'kategori'=>'',
         		);
 		$this->load->view('component/header',$cek);
-		$this->load->view('neraca',$object);
+		$this->load->view('neraca/neraca_view',$object);
 		$this->load->view('component/footer');	
 	}
 
 	public function form_neraca()
 	{
-		$object['neraca']=$this->neraca_model->getDataNeraca();
-        $object['user']=$this->user_model->getDataUser();
-        $object['cashflow']=$this->cashflow_model->getDataCashflow();
-
 		$cek['status'] = array(
-        		'home'=>'',
-        		'hrd'=>'',
-        		'keuangan'=>'active',
-        		'produk'=>'',
-        		'pembelian'=>'',
-        		'pemasukan'=>'',
-        		'pengeluaran'=>'',
-        		'utang'=>'active',
-        		'cash_flow'=>'',
-        		'neraca'=>'',
-        		'admin'=>'',
-        		'gaji'=>'',
-        		'golongan'=>'',
-        		'absensi'=>'',
-        		'user'=>'',
-        		'barang'=>'',
-        		'supplier'=>'',
-        		'kategori'=>'',
-        		);
+                'home'=>'',
+                'hrd'=>'',
+                'keuangan'=>'active',
+                'produk'=>'',
+                'pembelian'=>'',
+                'pemasukan'=>'',
+                'pengeluaran'=>'',
+                'utang'=>'',
+                'cash_flow'=>'',
+                'neraca'=>'',
+                'admin'=>'',
+                'gaji'=>'',
+                'golongan'=>'',
+                'absensi'=>'',
+                'user'=>'',
+                'barang'=>'',
+                'supplier'=>'',
+                'kategori'=>'',
+                );
 		$this->load->view('component/header',$cek);
-		$this->load->view('form_neraca',$object);
+		$this->load->view('neraca/neraca_form');
 		$this->load->view('component/footer');	
 	}
 
 	public function create(){
-        $this->form_validation->set_rules('id_user','id user','trim|required');
-        $this->form_validation->set_rules('id_transaksi','id_transaksi','trim|required');
-        $this->form_validation->set_rules('activa','activa','trim|required');
-        $this->form_validation->set_rules('pasiva','pasiva','trim|required');
-        $this->form_validation->set_rules('tgl_neraca','tgl_neraca','trim|required');
-         $this->form_validation->set_rules('keterangan','keterangan','trim|required');
+        $this->form_validation->set_rules('nama','Transaksi','trim|required');
+        $this->form_validation->set_rules('tanggal');
+        $this->form_validation->set_rules('total','total','trim|required');
 
                 $cek['status'] = array(
                         'home'=>'',
@@ -107,18 +97,10 @@ class Neraca extends CI_Controller {
                         );
 
 		if($this->form_validation->run()==FALSE){
-            $object['neraca']=$this->neraca_model->getDataNeraca();
-            $object['user']=$this->user_model->getDataUser();
-            $object['cashflow']=$this->cashflow_model->getDataCashflow();
-
-            $this->load->view('component/header',$cek);
-		    $this->load->view('form_neraca',$object);
-		    $this->load->view('component/footer');
+            redirect('neraca/form_neraca','refresh');
 		}else{
-            $this->neraca_model->insertNeraca();
-            $this->load->view('component/header',$cek);
+            $this->neraca_model->insert();
             redirect('neraca','refresh');
-            $this->load->view('component/footer');
 		     
 		}
 	}
