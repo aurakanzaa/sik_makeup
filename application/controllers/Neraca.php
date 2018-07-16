@@ -106,11 +106,7 @@ class Neraca extends CI_Controller {
 	}
 
 	public function update($id){
-        $this->form_validation->set_rules('id_user','id user','trim|required');
-        $this->form_validation->set_rules('id_transaksi','id_transaksi','trim|required');
-        $this->form_validation->set_rules('activa','activa','trim|required');
-        $this->form_validation->set_rules('pasiva','pasiva','trim|required');
-        $this->form_validation->set_rules('tgl_neraca','tgl_neraca','trim|required');
+        
         $this->form_validation->set_rules('keterangan','keterangan','trim|required');
 
 		if($this->form_validation->run()==FALSE){
@@ -139,7 +135,7 @@ class Neraca extends CI_Controller {
         		      'kategori'=>'',
         		      );
 			$this->load->view('component/header',$cek);
-			$this->load->view('edit_neraca',$object);
+			$this->load->view('neraca/edit_neraca',$object);
 			$this->load->view('component/footer');
 		}else{
 			

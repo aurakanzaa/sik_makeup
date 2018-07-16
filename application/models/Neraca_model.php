@@ -33,12 +33,11 @@ class Neraca_model extends CI_Model {
 	public function UpdateById($id){
 		$object=array
 		(
-			'id_user' => $this->input->post('id_user'),
-			'id_transaksi' => $this->input->post('id_transaksi'),
-			'activa' => $this->input->post('activa'),
-			'pasiva' => $this->input->post('pasiva'),
-			'tgl_neraca' => $this->input->post('tgl_neraca'),
+			'id_user' => $this->session->userdata('userSession')['id'],
+			'jenis' => $this->input->post('jenis'),
+			'tgl_neraca' => $this->input->post('tanggal'),
 			'keterangan' => $this->input->post('keterangan'),
+			'total_transaksi' => $this->input->post('total')
 			);
 		$this->db->where('id_neraca',$id);
 		$this->db->update('neraca',$object);

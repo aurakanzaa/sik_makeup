@@ -7,8 +7,8 @@
     <meta name="author" content="Dashboard">
     <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 
-    <title>DASHGUM - Bootstrap Admin Template</title>
-
+    <title>Makeup</title>
+    <link rel="icon" href="<?php echo base_url('/assets/img/cosmetics.png'); ?> ">
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/css/bootstrap.css">
     <!--external css-->
@@ -103,7 +103,7 @@
     <!-- You can use an image of whatever size. This script will stretch to fit in any screen size.-->
     <script type="text/javascript" src="<?php echo base_url()?>assets/js/jquery.backstretch.min.js"></script>
     <script>
-        $.backstretch("<?php echo base_url()?>assets/img/login-bg.jpg", {speed: 500});
+        $.backstretch("<?php echo base_url()?>assets/img/bg.jpg", {speed: 500});
     </script>
 
 
