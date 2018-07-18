@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.1
+-- version 4.6.5.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 16, 2018 at 10:48 AM
--- Server version: 10.1.33-MariaDB
--- PHP Version: 7.2.6
+-- Generation Time: Jul 18, 2018 at 12:58 PM
+-- Server version: 10.1.21-MariaDB
+-- PHP Version: 7.1.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -34,6 +32,13 @@ CREATE TABLE `absensi` (
   `tgl_pulang_jam` datetime DEFAULT NULL,
   `id_admin` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `absensi`
+--
+
+INSERT INTO `absensi` (`id_absen`, `tgl_masuk_jam`, `tgl_pulang_jam`, `id_admin`) VALUES
+(1, '2018-07-16 09:37:05', '2018-07-16 09:37:08', 1);
 
 -- --------------------------------------------------------
 
@@ -82,7 +87,8 @@ INSERT INTO `cash_flow` (`id_transaksi`, `id_user`, `id_pembayaran`, `id_Pengelu
 (3, 1, 0, 0, 0, 4, '2017-12-07', 'pembelian produk Lipstik Oriflame'),
 (7, 1, 4, 0, 0, 0, '2018-07-15', 'Pemasukan Minggu 1 Bulan Juli'),
 (10, 1, 0, 4, 0, 0, '2018-07-14', 'Pembayaran beli kardus bungkus'),
-(11, 1, 0, 0, 3, 0, '2018-07-15', 'utang toko');
+(11, 1, 0, 0, 3, 0, '2018-07-15', 'utang toko'),
+(14, 1, 0, 0, 4, 0, '2018-07-16', 'koi');
 
 -- --------------------------------------------------------
 
@@ -97,6 +103,13 @@ CREATE TABLE `gaji` (
   `status` varchar(10) NOT NULL,
   `id_admin` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `gaji`
+--
+
+INSERT INTO `gaji` (`id_gaji`, `total_gaji`, `tanggal`, `status`, `id_admin`) VALUES
+(1, 1200000, '2018-07-16', 'aktif', 1);
 
 -- --------------------------------------------------------
 
@@ -115,7 +128,10 @@ CREATE TABLE `golongan` (
 --
 
 INSERT INTO `golongan` (`id_gol`, `nama_gol`, `gaji_pokok`) VALUES
-(1, 'Super Admin', 10000000);
+(1, 'Super Admin', 10000000),
+(2, 'HRD', 8000000),
+(3, 'Logistik', 8000000),
+(4, 'Keuangan', 8000000);
 
 -- --------------------------------------------------------
 
@@ -137,8 +153,8 @@ INSERT INTO `kategori` (`id_kategori`, `nama_kategori`) VALUES
 (2, 'lips'),
 (3, 'face'),
 (4, 'beauty & skin care'),
-(6, 'alololoy'),
-(7, 'Makeup Cair');
+(6, 'Brush'),
+(7, 'Kutek');
 
 -- --------------------------------------------------------
 
@@ -222,6 +238,16 @@ CREATE TABLE `pembayaran` (
   `kode_pembayaran` varchar(7) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `pembayaran`
+--
+
+INSERT INTO `pembayaran` (`id_pembayaran`, `id_pemesanan`, `total_pembayaran`, `tgl_pembayaran`, `kode_pembayaran`) VALUES
+(1, 1, 268000, '2018-07-16', '0234579'),
+(2, 2, 2412000, '2018-07-16', '0234579'),
+(3, 3, 350000, '2018-07-16', '0245789'),
+(4, 4, 50000, '2018-07-16', '0123678');
+
 -- --------------------------------------------------------
 
 --
@@ -263,6 +289,16 @@ CREATE TABLE `pemesanan` (
   `status_pemesanan` int(11) NOT NULL DEFAULT '0',
   `kode_pembayaran` varchar(7) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pemesanan`
+--
+
+INSERT INTO `pemesanan` (`id_pemesanan`, `kode_pemesanan`, `id_user`, `id_produk`, `qty`, `tanggal_pemesanan`, `total_pemesanan`, `status_pemesanan`, `kode_pembayaran`) VALUES
+(1, '23789', 2, 32, 1, '2018-07-16', 268000, 1, '0234579'),
+(2, '13678', 2, 32, 9, '2018-07-16', 2412000, 1, '0234579'),
+(3, '34679', 2, 33, 1, '2018-07-16', 350000, 1, '0245789'),
+(4, '01378', 2, 1, 1, '2018-07-16', 50000, 1, '0123678');
 
 -- --------------------------------------------------------
 
@@ -327,7 +363,7 @@ CREATE TABLE `produk` (
 --
 
 INSERT INTO `produk` (`id_produk`, `nama_produk`, `stok`, `harga_jual`, `harga_beli`, `id_kategori`, `deskripsi`, `gambar`) VALUES
-(1, 'blush on', 95, 50000, 0, 1, 'pemerah pipi', '60x160_alamat_cakper_sidoarjo1.jpg'),
+(1, 'blush on', 94, 50000, 0, 1, 'pemerah pipi', '41XA2xlxl-L__SY355_1.jpg'),
 (2, 'mascara maybeline', -4, 100000, 0, 1, 'lala', 'brosur_sidoarjo1.jpg'),
 (3, 'Barang Baru', 5, 10000, 9000, 1, 'sfjksdf sdfkjsdkf', 'brosur_sidoarjo2.jpg'),
 (4, 'Lipstik Oriflame', 344, 85000, 70000, 1, 'product baru asli dari oriflame yg sada sdasa', '18.PNG'),
@@ -357,7 +393,10 @@ INSERT INTO `produk` (`id_produk`, `nama_produk`, `stok`, `harga_jual`, `harga_b
 (28, 'EVER GLAZE EG82341 I Wanna Be Your Lava', 5, 45000, 35000, 7, 'makeup cair', 'EVER_GLAZE_EG82341_I_Wanna_Be_Your_Lava.PNG'),
 (29, 'Holographic #1207 Take a Trek', 5, 70000, 60000, 7, 'makeup cair', 'Holographic_1207_Take_a_Trek.PNG'),
 (30, 'Icon Nails Gel Lacquer', 5, 150000, 120000, 7, 'makeup cair', 'Icon_Nails_Gel_Lacquer.PNG'),
-(31, 'Noir Noir Lacquers', 6, 120000, 90000, 7, 'makeup cair', 'Noir_Noir_Lacquers.PNG');
+(31, 'Noir Noir Lacquers', 6, 120000, 90000, 7, 'makeup cair', 'Noir_Noir_Lacquers.PNG'),
+(32, 'BH Cosmetics Bright White - 6 Piece Brush Set With', 0, 268000, 200000, 6, 'Add a dash of flash to your makeup vanity with our Bright White 6 Piece Brush Set, a brilliant option for use at home and on the road. The multipurpose collection features must-have makeup brushes for eyes and face, including foundation, dual-fiber powder', 'brush1.jpg'),
+(33, 'BH Cosmetics Chic - 14 Piece Brush Set With Cosmet', 9, 350000, 300000, 6, 'Blush, blend, line and define with our pale pink BH Chic 14 Piece Brush Set, a collection of professional-quality brush essentials for face, eyes, and lips. The two-tone synthetic brushes can be used with liquids, creams and powders to achieve precise mak', 'brush2.jpg'),
+(34, 'Real Techniques Sculpting Set', 10, 280000, 240000, 6, 'sclupting brush set', 'brush3.jpg');
 
 -- --------------------------------------------------------
 
@@ -386,8 +425,8 @@ INSERT INTO `role` (`id_role`, `nama_role`) VALUES
 
 CREATE TABLE `struk` (
   `id_struk` int(10) NOT NULL,
-  `id_transaksi` int(10) NOT NULL,
-  `id_user` int(10) NOT NULL
+  `id_pembayaran` int(10) NOT NULL,
+  `id_pemesanan` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -437,7 +476,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `id_role`, `nama`, `alamat`, `email`, `jenis_kelamin`, `no_telp`, `username`, `password`) VALUES
-(1, 2, 'Nafianta', 'jl Mergan Kel', '', 'Laki-Laki', 2147483647, 'nafi', '5bfb391e6148ab027d7389fed2427a86');
+(1, 2, 'Nafianta', 'jl Mergan Kel', 'nofalarema@gmail', 'Perempuan', 2147483647, 'nafi', '5bfb391e6148ab027d7389fed2427a86'),
+(2, 2, 'aura', 'malang', 'aurakanzaaa@gmail.com', 'Perempuan', 9879, 'ara', '636bfa0fb2716ff876f5e33854cc9648');
 
 -- --------------------------------------------------------
 
@@ -460,7 +500,8 @@ CREATE TABLE `utang` (
 
 INSERT INTO `utang` (`id_utang`, `id_user`, `nama_barang`, `total_utang`, `jml_utang`, `sisa_utang`) VALUES
 (0, 0, '0', 0, 0, 0),
-(3, 1, 'utang toko', 10000000, 10000000, 0);
+(3, 1, 'utang toko', 10000000, 10000000, 0),
+(4, 1, 'koi', 900000, 800000, 100000);
 
 --
 -- Indexes for dumped tables
@@ -588,8 +629,8 @@ ALTER TABLE `role`
 --
 ALTER TABLE `struk`
   ADD PRIMARY KEY (`id_struk`),
-  ADD KEY `id_transaksi` (`id_transaksi`),
-  ADD KEY `id_user` (`id_user`);
+  ADD KEY `id_transaksi` (`id_pembayaran`),
+  ADD KEY `id_user` (`id_pemesanan`);
 
 --
 -- Indexes for table `supplier`
@@ -619,122 +660,102 @@ ALTER TABLE `utang`
 -- AUTO_INCREMENT for table `absensi`
 --
 ALTER TABLE `absensi`
-  MODIFY `id_absen` int(11) NOT NULL AUTO_INCREMENT;
-
+  MODIFY `id_absen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
 --
 -- AUTO_INCREMENT for table `cash_flow`
 --
 ALTER TABLE `cash_flow`
-  MODIFY `id_transaksi` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
-
+  MODIFY `id_transaksi` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `gaji`
 --
 ALTER TABLE `gaji`
-  MODIFY `id_gaji` int(3) NOT NULL AUTO_INCREMENT;
-
+  MODIFY `id_gaji` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `golongan`
 --
 ALTER TABLE `golongan`
-  MODIFY `id_gol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
+  MODIFY `id_gol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `kategori`
 --
 ALTER TABLE `kategori`
   MODIFY `id_kategori` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
 --
 -- AUTO_INCREMENT for table `labarugi`
 --
 ALTER TABLE `labarugi`
   MODIFY `id_labarugi` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `neraca`
 --
 ALTER TABLE `neraca`
   MODIFY `id_neraca` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
 --
 -- AUTO_INCREMENT for table `pemasukan`
 --
 ALTER TABLE `pemasukan`
   MODIFY `id_pemasukan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
 --
 -- AUTO_INCREMENT for table `pembayaran`
 --
 ALTER TABLE `pembayaran`
-  MODIFY `id_pembayaran` int(11) NOT NULL AUTO_INCREMENT;
-
+  MODIFY `id_pembayaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `pembelian`
 --
 ALTER TABLE `pembelian`
   MODIFY `id_pembelian` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
 --
 -- AUTO_INCREMENT for table `pemesanan`
 --
 ALTER TABLE `pemesanan`
-  MODIFY `id_pemesanan` int(10) NOT NULL AUTO_INCREMENT;
-
+  MODIFY `id_pemesanan` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `pengeluaran`
 --
 ALTER TABLE `pengeluaran`
   MODIFY `id_pengeluaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
 --
 -- AUTO_INCREMENT for table `perubahan_modal`
 --
 ALTER TABLE `perubahan_modal`
   MODIFY `id_perubahan_modal` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `produk`
 --
 ALTER TABLE `produk`
-  MODIFY `id_produk` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
-
+  MODIFY `id_produk` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 --
 -- AUTO_INCREMENT for table `role`
 --
 ALTER TABLE `role`
   MODIFY `id_role` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
 --
 -- AUTO_INCREMENT for table `struk`
 --
 ALTER TABLE `struk`
   MODIFY `id_struk` int(10) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `supplier`
 --
 ALTER TABLE `supplier`
   MODIFY `id_supplier` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `utang`
 --
 ALTER TABLE `utang`
-  MODIFY `id_utang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
+  MODIFY `id_utang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- Constraints for dumped tables
 --
@@ -817,14 +838,14 @@ ALTER TABLE `produk`
 -- Constraints for table `struk`
 --
 ALTER TABLE `struk`
-  ADD CONSTRAINT `struk_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `struk_ibfk_1` FOREIGN KEY (`id_pembayaran`) REFERENCES `pembayaran` (`id_pembayaran`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `struk_ibfk_2` FOREIGN KEY (`id_pemesanan`) REFERENCES `pemesanan` (`id_pemesanan`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `user`
 --
 ALTER TABLE `user`
   ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`id_role`) REFERENCES `role` (`id_role`);
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
