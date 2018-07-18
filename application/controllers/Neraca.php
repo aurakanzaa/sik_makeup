@@ -18,6 +18,8 @@ class Neraca extends CI_Controller {
 	public function index()
 	{
 		$object['neraca']=$this->neraca_model->getDataNeraca();
+        $object['activa']=$this->neraca_model->getTotalActiva();
+        $object['pasiva']=$this->neraca_model->getTotalPasiva();
 		$cek['status'] = array(
         		'home'=>'',
         		'hrd'=>'',
@@ -44,6 +46,37 @@ class Neraca extends CI_Controller {
 		$this->load->view('neraca/neraca_view',$object);
 		$this->load->view('component/footer');	
 	}
+    public function filter()
+    {
+        $object['neraca']=$this->neraca_model->getDataNeracaTahun();
+        $object['activa']=$this->neraca_model->getTotalThActiva();
+        $object['pasiva']=$this->neraca_model->getTotalThPasiva();
+        $cek['status'] = array(
+                'home'=>'',
+                'hrd'=>'',
+                'keuangan'=>'active',
+                'produk'=>'',
+                'pembelian'=>'',
+                'pemasukan'=>'',
+                'pengeluaran'=>'',
+                'utang'=>'',
+                'cash_flow'=>'',
+                'neraca'=>'active',
+                'pemesanan'=>'',
+                'pembayaran'=>'',
+                'admin'=>'',
+                'gaji'=>'',
+                'golongan'=>'',
+                'absensi'=>'',
+                'user'=>'',
+                'barang'=>'',
+                'supplier'=>'',
+                'kategori'=>'',
+                );
+        $this->load->view('component/header',$cek);
+        $this->load->view('neraca/neraca_filter',$object);
+        $this->load->view('component/footer');  
+    }
 
 	public function form_neraca()
 	{

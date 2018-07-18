@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Pembayaran_model extends CI_Model {
 
-	public function getDataPemabayaran()
+	public function getDataPembayaran()
 	{
 		$query = $this->db->get('Pembayaran');
 		return $query->result();
@@ -19,13 +19,6 @@ class Pembayaran_model extends CI_Model {
 		);
 		$this->db->insert('pembayaran',$object);
 	}
-	public function getDataPembayaran()
-	{
-		$query = $this->db->query("SELECT id_pembayaran, id_pemesanan, total_pembayaran, tgl_pembayaran from pembayaran");
-		return $query->result();
-	}
-
-	
 
 	public function getPembayaran($id)
 	{

@@ -48,7 +48,10 @@ MAIN CONTENT
     <div class="col-md-12 mt">
       <div class="content-panel">
         <table class="table table-hover">
-        <h4><i class="fa fa-angle-right"></i> Daftar Cashflow Bulan <?php echo date('F',strtotime($cashflow[0]->tgl_cashflow)) ?> Tahun <?php echo date('Y',strtotime($cashflow[0]->tgl_cashflow)) ?> </h4>
+        <h4><i class="fa fa-angle-right">
+        <?php foreach ($cashflow as $key) {?>
+        </i> Daftar Cashflow Bulan <?php echo date('F',strtotime($key->tgl_cashflow)) ?> Tahun <?php echo date('Y',strtotime($key->tgl_cashflow)) ?> </h4>
+        <?php break;} ?>
         <tr>
           <th>No</th>
           <th>Tanggal</th>

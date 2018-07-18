@@ -13,7 +13,7 @@ MAIN CONTENT
   <section class="wrapper site-min-height">
     <br><br>
     <legend>Filter Cash Flow</legend>
-      <?php echo form_open('cashflow/filter'); ?>
+      <?php echo form_open('neraca/filter'); ?>
           <div class="form-group col-md-3">
             <label class="sr-only" for="">label</label>
             <select name="tahun" id="inputBulan" class="form-control" required="required">
@@ -26,106 +26,6 @@ MAIN CONTENT
           <button type="submit" class="btn btn-primary">Filter</button>
           <a href="<?php echo site_url('neraca/form_neraca') ?>" class="btn btn-success" ><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Transaksi</a>
         <?php echo form_close(); ?>
-        
-    <div class="col-md-12 mt">
-      <div class="content-panel col-md-12" style="padding left: : 20px">
-      <h4><i class="fa fa-angle-right"></i> Neraca </h4>
-      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" style="padding-right: 0">
-        <table class="table table-bordered ">
-        <tr>
-          <th colspan="3" style="text-align: center;">Activa</th>
-        </tr>
-        <tr>
-          <td colspan="3" align="center">Activa Lancar</td>
-        </tr>
-        <tr>
-          <td align="center">No</td>
-          <td align="center">Nama</td>
-          <td align="center">Total</td>         
-        </tr>
-        <tr>
-          <td align="center">##</td>
-          <td align="center">########</td>
-          <td align="center">########</td>
-        </tr>
-        <tr>
-          <td align="center">##</td>
-          <td align="center">########</td>
-          <td align="center">########</td>
-        </tr>
-        <tr>
-          <td colspan="3" align="center">Activa Tetap</td>
-        </tr>
-        <tr>
-          <td align="center">##</td>
-          <td align="center">########</td>
-          <td align="center">########</td>
-        </tr>
-        <tr>
-          <td align="center">##</td>
-          <td align="center">########</td>
-          <td align="center">########</td>
-        </tr>
-        <tfoot>
-          <td colspan="2" align="center">Total</td>
-          <td>#########</td>
-        </tfoot>
-      </table>
-      </div>
-      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" style="padding-left: 0">
-      <table class="table table-bordered" >
-        <tr>
-          <th colspan="4" style="text-align: center;">Pasiva</th>
-        </tr>
-        <tr>
-          <td colspan="4" align="center">Pasiva Lancar</td>
-        </tr>
-        <tr>
-          <td align="center">No</td>
-          <td align="center">Nama</td>
-          <td align="center">Qty</td>
-          <td align="center">Total</td>
-          
-        </tr>
-        <tr>
-          <td align="center">##</td>
-          <td align="center">########</td>
-          <td align="center">########</td>
-          <td align="center">########</td>
-        </tr>
-        <tr>
-          <td align="center">##</td>
-          <td align="center">########</td>
-          <td align="center">########</td>
-          <td align="center">########</td>
-        </tr>
-        <tr>
-          <td align="center">##</td>
-          <td align="center">########</td>
-          <td align="center">########</td>
-          <td align="center">########</td>
-        </tr>
-        <tr>
-          <td align="center">##</td>
-          <td align="center">########</td>
-          <td align="center">########</td>
-          <td align="center">########</td>
-        </tr>
-        <tr>
-          <td align="center">##</td>
-          <td align="center">########</td>
-          <td align="center">########</td>
-          <td align="center">########</td>
-        </tr>
-        <tfoot>
-          <td colspan="3" align="center">Total</td>
-          <td>#########</td>
-        </tfoot>
-      </table>
-      </div>
-      </div>
-      </div><!-- /col-md-12 -->
-
       <div class="col-md-12 mt">
       <div class="content-panel">
         <table class="table table-hover">
@@ -174,8 +74,8 @@ MAIN CONTENT
           <td></td>
           <td></td>
           <td><b>Total</b></td>
-          <td></td>
-          <td></td>
+          <td><b><?php echo rupiah($activa[0]->A); ?></b></td>
+          <td><b><?php echo rupiah($pasiva[0]->A); ?></b></td>
           <td></td>
           <td></td>
         </tr>

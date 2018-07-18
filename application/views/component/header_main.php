@@ -52,7 +52,7 @@ $session_data = $this->session->userdata('userSession');
                     <?php if ($session_data!=null) { ?>  
                     <li class="dropdown">
                         <a  class="dropdown-toggle" href="<?php echo site_url('user/profil/'.$session_data['nama']); ?>">
-                            <i class="fa fa-user-o"></i>
+                            <i class="fa fa-user"></i>
                         </a>
                     </li>
                     <li class="dropdown">

@@ -86,6 +86,7 @@ $data['ava'] = $session_data['ava'];
                           <li class="<?php echo $status['pembayaran'] ?>"><a  href="<?php echo site_url('pembayaran') ?>">Pembayaran</a></li>
                           <li class="<?php echo $status['cash_flow'] ?>"><a  href="<?php echo site_url('cashflow') ?>">Cash Flow</a></li>
                           <li class="<?php echo $status['neraca'] ?>" ><a  href="<?php echo site_url('neraca') ?>">Neraca</a></li>
+                           <li class="" ><a  href="<?php echo site_url('labarugi') ?>">Laba Rugi</a></li>
                       </ul>
                   </li>
                   <li class="sub-menu">

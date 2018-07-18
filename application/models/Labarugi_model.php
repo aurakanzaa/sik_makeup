@@ -7,25 +7,25 @@ class Labarugi_model extends CI_Model {
 	{
 		$object=array
 		(
-			'id_user' => $this->input->post('id_user'),
+			'id_user' => $this->session->userdata('userSession')['id'],
 			'penjualan' => $this->input->post('penjualan'),
 			'retur_penjualan' => $this->input->post('retur_penjualan'),
 			'potongan_penjualan' => $this->input->post('potongan_penjualan'),
-			'jml_retur_potongan_penjualan' => $this->input->post('jml_retur_potongan_penjualan'),
-			'penjualan_bersih' => $this->input->post('penjualan_bersih'),
+			'jml_retur_potongan_penjualan' => $this->input->post('retur_penjualan')+$this->input->post('potongan_penjualan'),
+			'penjualan_bersih' => $this->input->post('penjualan')-($this->input->post('retur_penjualan')+$this->input->post('potongan_penjualan')),
 			'harga_pokok_penjualan' => $this->input->post('harga_pokok_penjualan'),
-			'laba_bruto' => $this->input->post('laba_bruto'),
+			'laba_bruto' =>($this->input->post('penjualan')-($this->input->post('retur_penjualan')+$this->input->post('potongan_penjualan')))-$this->input->post('harga_pokok_penjualan'),
 			'biaya_operasional' => $this->input->post('biaya_operasional'),
-			'biaya_adm_umum' => $this->input->post('biaya_adm_umum'),
-			'total_biaya' => $this->input->post('total_biaya'),
-			'laba_usaha_bersih' => $this->input->post('laba_usaha_bersih'),
+			'biaya_adm_umum' => $this->input->post('biaya_admin'),
+			'total_biaya' => $this->input->post('biaya_admin')+$this->input->post('biaya_operasional'),
+			'laba_usaha_bersih' => (($this->input->post('penjualan')-($this->input->post('retur_penjualan')+$this->input->post('potongan_penjualan')))-$this->input->post('harga_pokok_penjualan'))-($this->input->post('biaya_admin')+$this->input->post('biaya_operasional')),
 			'tanggal' => $this->input->post('tanggal'),
 			);
 		$this->db->insert('labarugi',$object);
 	}
 	public function getDataLabarugi()
 	{
-		$query = $this->db->query("SELECT id_labarugi,id_user, penjualan, retur_penjualan, potongan_penjualan, jml_retur_potongan_penjualan, penjualan_bersih, harga_pokok_penjualan, laba_bruto, biaya_operasional, biaya_adm_umum, total_biaya, laba_usaha_bersih, tanggal from labarugi");
+		$query = $this->db->query("SELECT labarugi.*,admin.username from labarugi join admin on labarugi.id_user=admin.id");
 		return $query->result();
 	}
 
