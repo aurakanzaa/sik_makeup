@@ -72,10 +72,41 @@ MAIN CONTENT
         <tr>
           <td align="left"><B>LABA BERSIH</B></td>
           <td align="right"></td>
-          <td align="right" style="font-size: 14pt"><b><?php echo rupiah($labarugi[0]->laba_usaha_bersih); ?></b></td>         
+          <td align="right" style="font-size: 12pt"><b><?php echo rupiah($labarugi[0]->laba_usaha_bersih); ?></b></td>         
         </tr>
-
       </table>
-      </div><!-- /col-md-12 -->
+      
+        <h4><i class="fa fa-angle-right"></i> Perubahan Modal Tahun <?php foreach ($labarugi as $key) { echo date('Y',strtotime($key->tanggal));break; }?></h4>
+        <table class="table table-bordered">
+        <tr>
+          <td align="left"><B>Modal Awal Per <?php foreach ($labarugi as $key) { echo date('d F Y',strtotime($key->tanggal));break; }?></B></td>
+          <td align="right"></td>
+          <td align="right"><?php echo rupiah($perubahan[0]->modal_awal); ?></td>         
+        </tr>
+        <tr>
+          <td colspan="3" align="left"><B>Penambahan Modal</B></td>      
+        </tr>
+        <tr>
+          <td align="left">Laba Bersih</td>
+          <td align="right"><?php echo rupiah($labarugi[0]->laba_usaha_bersih); ?></td>
+          <td align="right"></td>         
+        </tr>
+        <tr>
+          <td align="left">Prive</td>
+          <td align="right"><?php echo rupiah($perubahan[0]->prive); ?></td>
+          <td align="right"></td>         
+        </tr>
+        <tr>
+          <td align="left"><b>Total</b></td>
+          <td align="right"></td>
+          <td align="right"><?php echo rupiah($perubahan[0]->prive+$labarugi[0]->laba_usaha_bersih); ?></td>         
+        </tr>
+        <tr>
+          <td align="left"><b>Modal Akhir 31 Desember <?php foreach ($labarugi as $key) { echo date('Y',strtotime($key->tanggal));break; }?></b></td>
+          <td align="right"></td>
+          <td align="right" style="font-size: 12pt"><b><?php echo rupiah($perubahan[0]->prive+$labarugi[0]->laba_usaha_bersih+$perubahan[0]->modal_awal); ?></b></td>         
+        </tr> 
+      </table>
+    </div><!-- /col-md-12 -->
     </section>
     </section><!-- /MAIN CONTENT -->

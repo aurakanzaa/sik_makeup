@@ -11,6 +11,7 @@ class Labarugi extends CI_Controller {
 		$this->load->model('labarugi_model');
 		$this->load->model('user_model');
 		$this->load->helper('html');
+        $this->load->model('perubahanmodal_model');
 		$this->load->library('image_lib');
 	}
 
@@ -47,6 +48,7 @@ class Labarugi extends CI_Controller {
     public function detail($id)
     {
         $object['labarugi']=$this->labarugi_model->getLabarugi($id);
+        $object['perubahan']=$this->perubahanmodal_model->getPerubahanModals($id);
         $object['user']=$this->user_model->getDataUser();
         $cek['status'] = array(
                 'home'=>'',
@@ -136,29 +138,17 @@ class Labarugi extends CI_Controller {
             redirect('labarugi','refresh');
 		}else{
             $this->labarugi_model->insertLabarugi();
+            $query=$this->labarugi_model->getLabarugiLast();
+            $this->perubahanmodal_model->insertPerubahanmodal($query[0]->id_labarugi);
             redirect('labarugi','refresh'); 
 		}
 	}
 
 	public function update($id){
-        $this->form_validation->set_rules('id_user','id user','trim|required');
         $this->form_validation->set_rules('penjualan','penjualan','trim|required');
-        $this->form_validation->set_rules('retur_penjualan','retur_penjualan','trim|required');
-        $this->form_validation->set_rules('potongan_penjualan','potongan_penjualan','trim|required');
-        $this->form_validation->set_rules('jml_retur_potongan_penjualan','jml_retur_potongan_penjualan','trim|required');
-        $this->form_validation->set_rules('penjualan_bersih','penjualan_bersih','trim|required');
-        $this->form_validation->set_rules('harga_pokok_penjualan','harga_pokok_penjualan','trim|required');
-        $this->form_validation->set_rules('laba_bruto','laba_bruto','trim|required');
-        $this->form_validation->set_rules('biaya_operasional','biaya_operasional','trim|required');
-        $this->form_validation->set_rules('biaya_adm_umum','biaya_adm_umum','trim|required');
-        $this->form_validation->set_rules('total_biaya','total_biaya','trim|required');
-        $this->form_validation->set_rules('laba_usaha_bersih','laba_usaha_bersih','trim|required');
-        $this->form_validation->set_rules('tanggal','tanggal','trim|required');
-
 		if($this->form_validation->run()==FALSE){
             $object['labarugi']=$this->labarugi_model->getLabarugi($id);
-            $object['user']=$this->user_model->getDataUser();
-
+            $object['perubahan']=$this->perubahanmodal_model->getPerubahanmodals($id);
 			$cek['status'] = array(
         		      'home'=>'',
         		      'hrd'=>'',
@@ -182,11 +172,12 @@ class Labarugi extends CI_Controller {
         		      'kategori'=>'',
         		      );
 			$this->load->view('component/header',$cek);
-			$this->load->view('edit_labarugi',$object);
+			$this->load->view('labarugi/edit_labarugi',$object);
 			$this->load->view('component/footer');
 		}else{
 			
 			$this->labarugi_model->updateById($id);
+            $this->perubahanmodal_model->UpdateById($id);
 			redirect('labarugi','refresh');
 		}
 	}

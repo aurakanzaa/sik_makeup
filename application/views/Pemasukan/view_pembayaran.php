@@ -12,10 +12,6 @@ MAIN CONTENT
 <!--main content start-->
 <section id="main-content">
   <section class="wrapper site-min-height">
-    <br>&nbsp;&nbsp;&nbsp;&nbsp;
-    <a href="<?php echo base_url('index.php/pembelian/form_pembelian'); ?>"><button type="button" class="btn btn-success "><i class="fa fa-plus"> </i> Tambah Pemasukan</button></a>
-    <br>
-    
     <div class="col-md-12 mt">
       <div class="content-panel">
         <table class="table table-hover">
@@ -37,7 +33,7 @@ MAIN CONTENT
           <td><?php echo $no++ ?></td>
           <td><?php echo $key->tgl_pembayaran ?></td>
           <td><?php echo $key->id_pembayaran ?></td>
-          <td><?php echo $key->kode_bayar?></td>
+          <td><?php echo $key->kode_pembayaran?></td>
           <td><?php echo $key->id_pemesanan ?></td>
           <td><?php echo rupiah($key->total_pembayaran) ?></td>
           <td>

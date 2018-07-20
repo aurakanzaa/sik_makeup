@@ -37,22 +37,26 @@ class Labarugi_model extends CI_Model {
 		$query = $this->db->get('labarugi');
 		return $query->result();
 	}	
-
+	public function getLabarugiLast()
+	{
+		$query = $this->db->query('SELECT id_labarugi from labarugi ORDER BY id_labarugi DESC LIMIT 1');
+		return $query->result();
+	}
 	public function UpdateById($id){
 		$object=array
 		(
-			'id_user' => $this->input->post('id_user'),
+			'id_user' => $this->session->userdata('userSession')['id'],
 			'penjualan' => $this->input->post('penjualan'),
 			'retur_penjualan' => $this->input->post('retur_penjualan'),
 			'potongan_penjualan' => $this->input->post('potongan_penjualan'),
-			'jml_retur_potongan_penjualan' => $this->input->post('jml_retur_potongan_penjualan'),
-			'penjualan_bersih' => $this->input->post('penjualan_bersih'),
+			'jml_retur_potongan_penjualan' => $this->input->post('retur_penjualan')+$this->input->post('potongan_penjualan'),
+			'penjualan_bersih' => $this->input->post('penjualan')-($this->input->post('retur_penjualan')+$this->input->post('potongan_penjualan')),
 			'harga_pokok_penjualan' => $this->input->post('harga_pokok_penjualan'),
-			'laba_bruto' => $this->input->post('laba_bruto'),
+			'laba_bruto' =>($this->input->post('penjualan')-($this->input->post('retur_penjualan')+$this->input->post('potongan_penjualan')))-$this->input->post('harga_pokok_penjualan'),
 			'biaya_operasional' => $this->input->post('biaya_operasional'),
-			'biaya_adm_umum' => $this->input->post('biaya_adm_umum'),
-			'total_biaya' => $this->input->post('total_biaya'),
-			'laba_usaha_bersih' => $this->input->post('laba_usaha_bersih'),
+			'biaya_adm_umum' => $this->input->post('biaya_admin'),
+			'total_biaya' => $this->input->post('biaya_admin')+$this->input->post('biaya_operasional'),
+			'laba_usaha_bersih' => (($this->input->post('penjualan')-($this->input->post('retur_penjualan')+$this->input->post('potongan_penjualan')))-$this->input->post('harga_pokok_penjualan'))-($this->input->post('biaya_admin')+$this->input->post('biaya_operasional')),
 			'tanggal' => $this->input->post('tanggal'),
 			);
 		$this->db->where('id_labarugi',$id);

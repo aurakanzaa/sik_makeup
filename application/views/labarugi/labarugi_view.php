@@ -37,8 +37,8 @@ MAIN CONTENT
           <td><?php echo $no++ ?></td>
           <td><?php echo date('Y',strtotime($key->tanggal)) ?></td>
           <td><?php echo $key->username ?></td>
-          <td><?php echo $key->penjualan ?></td>
-          <td><?php echo $key->harga_pokok_penjualan ?></td>
+          <td><?php echo  rupiah($key->penjualan) ?></td>
+          <td><?php echo  rupiah($key->harga_pokok_penjualan) ?></td>
           <td><?php echo rupiah($key->laba_usaha_bersih) ?></td>
           <td>
                 <a class="btn btn-primary btn-xs" href="<?php echo site_url('labarugi/update/').$key->id_labarugi ?>">
