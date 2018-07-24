@@ -1,10 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 <?php
-$session_data = $this->session->userdata('logged_in');
-$data['username'] = $session_data['username'];
-$data['ava'] = $session_data['ava'];
-
-
+$session_data = $this->session->userdata('userSession');
 ?>
 
 <!DOCTYPE html>
@@ -71,7 +67,7 @@ $data['ava'] = $session_data['ava'];
                           <span>Home</span>
                       </a>
                   </li>
-
+                  <?php if ($session_data['gol']== '1' || $session_data['gol']== '4' || $session_data['gol']== '6'  ){?>
                   <li class="sub-menu">
                       <a href="javascript:;" class="<?php echo $status['keuangan'] ?>">
                           <i class="fa fa-money"></i>
@@ -84,24 +80,39 @@ $data['ava'] = $session_data['ava'];
                           <li class="<?php echo $status['utang'] ?>"><a  href="<?php echo site_url('utang') ?>">Utang</a></li>
                           <li class="<?php echo $status['pemesanan'] ?>"><a  href="<?php echo site_url('pemesanan') ?>">Pemesanan</a></li>
                           <li class="<?php echo $status['pembayaran'] ?>"><a  href="<?php echo site_url('pembayaran') ?>">Pembayaran</a></li>
+                          <?php if ($session_data['gol']== '6') {} else {?>
                           <li class="<?php echo $status['cash_flow'] ?>"><a  href="<?php echo site_url('cashflow') ?>">Cash Flow</a></li>
-                          <li class="<?php echo $status['neraca'] ?>" ><a  href="<?php echo site_url('neraca') ?>">Neraca</a></li>
-                          <li class="" ><a  href="<?php echo site_url('labarugi') ?>">Laba Rugi & Perubahan Modal</a></li>
+                          <?php } ?>
+                          <?php if ($session_data['gol']== '6') {} else {?><li class="<?php echo $status['neraca'] ?>" ><a  href="<?php echo site_url('neraca') ?>">Neraca</a></li>
+                          <?php } ?>
+                          <?php if ($session_data['gol']== '6') {} else {?>
+                          <li class="" ><a  href="<?php echo site_url('labarugi') ?>">Laba Rugi & Per Modal</a></li>
+                          <?php } ?>
+                          <li class="<?php echo $status['absensi'] ?>"><a  href="<?php echo site_url('Absensi/user') ?>">Absensi</a>
+                          <?php if ($session_data['gol']== '6') {} else {?>
+                          <li class="<?php echo $status['admin'] ?>"><a  href="<?php echo site_url('Admin/karyawan/4/6') ?>">Karyawan</a>
+                          <?php } ?>
+                          </li>
                       </ul>
                   </li>
+                <?php } ?>
+                  <?php if ($session_data['gol']== '1' || $session_data['gol']== '2' || $session_data['gol']== '5'){?>
                   <li class="sub-menu">
                       <a href="javascript:;" class="<?php echo $status['hrd'] ?>">
-                          <i class="fa fa-drivers-license-o"></i>
+                          <i class="glyphicon glyphicon-user"></i>
                           <span>HRD</span>
                       </a>
                       <ul class="sub">
                           <li class="<?php echo $status['admin'] ?>"><a  href="<?php echo site_url('admin') ?>">Admin</a></li>
-                          <li class="<?php echo $status['absensi'] ?>"><a  href="<?php echo site_url('Absensi') ?>">Absensi</a></li>
+                          <!-- <li class="<?php echo $status['absensi'] ?>"><a  href="<?php echo site_url('Absensi') ?>">Absensi</a></li> -->
+                          <li class="<?php echo $status['absensi'] ?>"><a  href="<?php echo site_url('Absensi/user') ?>">Absensi</a>
                           <li class="<?php echo $status['gaji'] ?>"><a  href="<?php echo site_url('gaji') ?>">Gaji</a></li>
                           <li class="<?php echo $status['golongan'] ?>"><a  href="<?php echo site_url('Golongan') ?>">Golongan</a></li>
                           <li class="<?php echo $status['user'] ?>"><a  href="<?php echo site_url('user') ?>">User</a></li>
                       </ul>
                   </li>
+                <?php } ?>
+                <?php if ($session_data['gol']== '1' || $session_data['gol']== '3' || $session_data['gol']== '7'){?>
                   <li class="sub-menu">
                       <a href="javascript:;" class="<?php echo $status['produk'] ?>">
                           <i class=" fa fa-bar-chart-o"></i>
@@ -111,9 +122,15 @@ $data['ava'] = $session_data['ava'];
                           <li class="<?php echo $status['barang'] ?>"><a  href="<?php echo site_url('produk') ?>">Produk</a></li>
                           <li class="<?php echo $status['kategori'] ?>"><a  href="<?php echo site_url('Kategori') ?>">Kategori</a></li>
                           <li class="<?php echo $status['supplier'] ?>"><a  href="<?php echo site_url('Supplier') ?>">Supplier</a></li>
+                          <li class="<?php echo $status['absensi'] ?>"><a  href="<?php echo site_url('Absensi/user') ?>">Absensi</a>
+                          <?php if ($session_data['gol']== '6') {} else {?>
+                          <li class="<?php echo $status['admin'] ?>"><a  href="<?php echo site_url('Admin/karyawan/3/7') ?>">Karyawan</a>
+                          </li>
+                          <?php } ?>
+
                       </ul>
                   </li>
-
+                  <?php } ?>
               </ul>
               <!-- sidebar menu end-->
           </div>

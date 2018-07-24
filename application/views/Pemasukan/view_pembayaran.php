@@ -23,7 +23,6 @@ MAIN CONTENT
           <th>Kode Pembayaran</th>
           <th>Pesanan</th>
           <th>Total Pemasukan</th>
-          <th align="center">Edit | Delete</th>
         </tr>
         <?php 
         $no = 1;
@@ -36,14 +35,6 @@ MAIN CONTENT
           <td><?php echo $key->kode_pembayaran?></td>
           <td><?php echo $key->id_pemesanan ?></td>
           <td><?php echo rupiah($key->total_pembayaran) ?></td>
-          <td>
-                <a class="btn btn-primary btn-xs" href="<?php echo site_url('pembelian/update/').$key->id_pembayaran ?>">
-                  <i class="fa fa-pencil"></i>
-                </a>&nbsp;&nbsp;&nbsp;&nbsp;
-                <a class="btn btn-danger btn-xs" href="<?php echo site_url('pembelian/delete/').$key->id_pembayaran ?>">
-                  <i class="fa fa-trash-o"></i>
-                </a>  
-          </td>
         </tr>
         <?php } ?>
       </table>

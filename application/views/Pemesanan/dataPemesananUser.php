@@ -59,7 +59,7 @@ function rupiah($angka){
                 <a class="btn btn-success btn-xs" href="<?php echo site_url('pembayaran/create/').$key->id_pemesanan ?>">
                   <i class="fa fa-money"></i> Bayar
                 </a>&nbsp;&nbsp;&nbsp;&nbsp;
-                <a class="btn btn-danger btn-xs" href="<?php echo site_url('pembelian/delete/').$key->id_pemesanan ?>">
+                <a class="btn btn-danger btn-xs" href="<?php echo site_url('pemesanan/deletes/').$key->id_pemesanan ?>">
                   <i class="fa fa-cross-o"></i> Batalkan
                 </a>
                 <?php } ?>  

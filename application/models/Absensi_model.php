@@ -14,6 +14,16 @@ class Absensi_model extends CI_Model {
 		$this->db->insert('absensi',$object);
 	}
 
+	public function insertAbsensiUser()
+	{
+		$object = array(
+			'tgl_masuk_jam' => date("Y-m-d H:i:s"),
+			'tgl_pulang_jam' => NULL,
+			'id_admin' => $this->session->userdata('userSession')['id'],
+		);
+		$this->db->insert('absensi',$object);
+	}
+
 	
 
 	public function getDataAbsensi()
@@ -28,13 +38,16 @@ class Absensi_model extends CI_Model {
 		$query = $this->db->get('absensi');
 		return $query->result();
 	}	
-
+	public function getAbsensiId($id)
+	{
+		$this->db->where('id_admin',$id);
+		$query = $this->db->get('absensi');
+		return $query->result();
+	}
 	public function UpdateById($id){
 		$data=array
 		(
-			// 'tgl_masuk_jam' => $this->input->post('tgl_masuk_jam'),
 			'tgl_pulang_jam' => date("Y-m-d H:i:s"),
-			'id_admin' => $this->input->post('id_admin'),
 			);
 		$this->db->where('id_absen',$id);
 		$this->db->update('absensi',$data);
@@ -47,7 +60,7 @@ class Absensi_model extends CI_Model {
 
 	public function delete($id){
 		$this->db->where('id_absen',$id);
-		$this->db->delete('absensi');
+		$this->db->delete('absensi/user');
 		
 	}
 

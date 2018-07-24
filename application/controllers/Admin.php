@@ -48,6 +48,40 @@ class Admin extends CI_Controller {
 		$this->load->view('admin',$object);
 		$this->load->view('component/footer');	
 	}
+    public function Karyawan($id,$id2)
+    {
+        $object['admin']=$this->admin_model->getAdminGol($id,$id2);
+        $object['role']=$this->role_model->getDataRole();
+        $object['gol']=$this->golongan_model->getDataGolongan();
+
+
+        $cek['status'] = array(
+                'home'=>'',
+                'hrd'=>'active',
+                'keuangan'=>'active',
+                'produk'=>'active',
+                'pembelian'=>'',
+                'pemasukan'=>'',
+                'pengeluaran'=>'',
+                'utang'=>'',
+                'cash_flow'=>'',
+                'pemesanan'=>'',
+                'pembayaran'=>'',
+                'neraca'=>'',
+                'admin'=>'active',
+                'gaji'=>'',
+                'golongan'=>'',
+                'absensi'=>'',
+                'user'=>'',
+                'barang'=>'',
+                'supplier'=>'',
+                'kategori'=>'',
+                );
+        $this->load->view('component/header',$cek);
+        $this->load->view('admin',$object);
+        $this->load->view('component/footer');  
+    }
+
 
 	public function form_admin()
 	{

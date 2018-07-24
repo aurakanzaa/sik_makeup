@@ -1,11 +1,19 @@
 <!-- **********************************************************************************************************************************************************
 MAIN CONTENT
 *********************************************************************************************************************************************************** -->
+<?php
+$session_data = $this->session->userdata('userSession');
+?>
 <!--main content start-->
 <section id="main-content">
   <section class="wrapper site-min-height">
-    <br>&nbsp;&nbsp;&nbsp;&nbsp;
-    <a href="<?php echo base_url('index.php/admin/form_admin'); ?>"><button type="button" class="btn btn-success "><i class="fa fa-plus"> </i> Tambah Data Admin</button></a>
+    <br>
+    <?php echo form_open('admin/form_admin') ?>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <button type="submit" 
+    <?php if ($session_data['gol'] == '3' || $session_data['gol']== '4'|| $session_data['gol']== '6' || $session_data['gol'] == '7'){?>class="btn btn-success disabled"<?php } else {?>
+    class="btn btn-success " ><?php } ?><i class="fa fa-plus"> </i> Tambah Data Admin</button>
+    <?php echo form_close(); ?>
     <br>
     
     <div class="col-md-12 mt">
@@ -17,7 +25,6 @@ MAIN CONTENT
           <th>Id Role</th>
           <th>Id Golongan</th>
           <th>Username</th>
-          <th>Password</th>
           <th>Foto</th>
           <th align="center">Edit | Delete</th>
         </tr>
@@ -30,15 +37,19 @@ MAIN CONTENT
           <td><?php echo $key->id_role ?></td>
           <td><?php echo $key->id_golongan ?></td>
           <td><?php echo $key->username ?></td>
-          <td><?php echo $key->password ?></td>
           <td><?php echo $key->foto ?></td>
         
           <td>
+              <?php if ($session_data['gol'] == '2' || $session_data['gol'] == '5'){?>
                 <a class="btn btn-primary btn-xs" href="<?php echo site_url('admin/update/').$key->id ?>">
                   <i class="fa fa-pencil"></i>
                 </a>&nbsp;&nbsp;&nbsp;&nbsp;
                 <a class="btn btn-danger btn-xs" href="<?php echo site_url('admin/delete/').$key->id ?>">
                   <i class="fa fa-trash-o"></i>
+              <?php } ?>
+                </a>&nbsp;&nbsp;&nbsp;&nbsp;
+                <a class="btn btn-success btn-xs" href="<?php echo site_url('absensi/detail/').$key->id ?>">
+                  <i class="glyphicon glyphicon-book"></i>
                 </a>  
           </td>
         </tr>

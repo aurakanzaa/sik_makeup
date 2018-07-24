@@ -28,8 +28,8 @@ MAIN CONTENT
           <th>Harga Beli</th>
           <th>Harga Jual</th>
           <th>id_kategori</th>
-          <th>Deskripsi</th>
-          <th align="center">Edit | Delete</th>
+          <th >Deskripsi</th>
+          <th width="100px" align="center">Edit | Delete</th>
         </tr>
         <?php 
         $no = 1;

@@ -43,7 +43,71 @@ class Absensi extends CI_Controller {
 				$this->load->view('absensi',$object);
 				$this->load->view('component/footer');
 			
-	}	
+	}
+
+        public function User()
+        {
+                $object['absensi']=$this->absensi_model->getAbsensiId($this->session->userdata('userSession')['id']);
+                $cek['status'] = array(
+                        'home'=>'',
+                        'hrd'=>'active',
+                        'keuangan'=>'active',
+                        'produk'=>'active',
+                        'pembelian'=>'',
+                        'pemasukan'=>'',
+                        'pengeluaran'=>'',
+                        'utang'=>'',
+                        'pemesanan'=>'',
+                        'pembayaran'=>'',
+                        'cash_flow'=>'',
+                        'neraca'=>'',
+                        'admin'=>'',
+                        'gaji'=>'',
+                        'golongan'=>'',
+                        'absensi'=>'active',
+                        'user'=>'',
+                        'barang'=>'',
+                        'supplier'=>'',
+                        'kategori'=>'',
+                        );
+                
+                                $this->load->view('component/header',$cek);
+                                $this->load->view('absensi',$object);
+                                $this->load->view('component/footer');
+                        
+        }
+
+        public function detail($id)
+        {
+                $object['absensi']=$this->absensi_model->getAbsensiId($id);
+                $cek['status'] = array(
+                        'home'=>'',
+                        'hrd'=>'active',
+                        'keuangan'=>'active',
+                        'produk'=>'active',
+                        'pembelian'=>'',
+                        'pemasukan'=>'',
+                        'pengeluaran'=>'',
+                        'utang'=>'',
+                        'pemesanan'=>'',
+                        'pembayaran'=>'',
+                        'cash_flow'=>'',
+                        'neraca'=>'',
+                        'admin'=>'',
+                        'gaji'=>'',
+                        'golongan'=>'',
+                        'absensi'=>'active',
+                        'user'=>'',
+                        'barang'=>'',
+                        'supplier'=>'',
+                        'kategori'=>'',
+                        );
+                
+                        $this->load->view('component/header',$cek);
+                        $this->load->view('absensi_lap',$object);
+                        $this->load->view('component/footer');
+                        
+        }	
 
 	public function form_absensi(){
 		$object['absensi']=$this->absensi_model->getDataAbsensi();
@@ -112,7 +176,7 @@ class Absensi extends CI_Controller {
 			$object['absensi']=$this->absensi_model->getDataAbsensi();
 			$cek['status'] = array(
         		'home'=>'',
-        		'hrd'=>'active',
+        		'hrd'=>'',
         		'keuangan'=>'',
         		'produk'=>'',
         		'pembelian'=>'',
@@ -144,6 +208,13 @@ class Absensi extends CI_Controller {
 			$this->load->view('component/footer');
 		}
 	}
+        public function createuser(){
+                $this->absensi_model->insertAbsensiUser();
+                $this->load->view('component/header');
+                redirect('absensi/user','refresh');
+                $this->load->view('component/footer');
+                
+        }
 
 	
 	public function update($id){
@@ -185,11 +256,15 @@ class Absensi extends CI_Controller {
 			$this->absensi_model->UpdateById($id);
 			redirect('absensi','refresh');
 		}
-	}
 
+	}
+        public function updates($id){
+                $this->absensi_model->UpdateById($id);
+                redirect('absensi/user','refresh');
+                }
 	public function delete($id){
 		$this->absensi_model->delete($id);
-		redirect('absensi','refresh');
+		redirect('absensi/user','refresh');
 	}
 
 }

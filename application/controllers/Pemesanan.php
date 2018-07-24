@@ -156,6 +156,11 @@ class Pemesanan extends CI_Controller {
 		$this->pemesanan_model->delete($id);
 		redirect('pemesanan','refresh');
 	}
+    public function deletes($id)
+    {
+        $this->pemesanan_model->delete($id);
+        redirect('pemesanan/dataPemesananUser/'.$this->session->userdata('userSession')['id'],'refresh');
+    }
 
 }
 

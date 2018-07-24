@@ -9,7 +9,7 @@ class Admin_model extends CI_Model {
 			'id_role' => $this->input->post('id_role'),
 			'id_golongan' => $this->input->post('id_golongan'),
 			'username' => $this->input->post('username'),
-			'password' => $this->input->post('password'),
+			'password' => md5($this->input->post('password')),
 			'foto' => $this->input->post('foto'),
 		);
 		$this->db->insert('admin',$object);
@@ -27,6 +27,13 @@ class Admin_model extends CI_Model {
 		$this->db->where('id',$id);
 		$query = $this->db->get('admin');
 		return $query->result();
+	}
+	public function getAdminGol($id,$id2)
+	{
+		$this->db->where('id_golongan',$id);
+		$this->db->or_where('id_golongan',$id2);
+		$query = $this->db->get('admin');
+		return $query->result();
 	}	
 
 	public function UpdateById($id){
@@ -35,7 +42,7 @@ class Admin_model extends CI_Model {
 			'id_role' => $this->input->post('id_role'),
 			'id_golongan' => $this->input->post('id_golongan'),
 			'username' => $this->input->post('username'),
-			'password' => $this->input->post('password'),
+			'password' => md5($this->input->post('password')),
 			'foto' => $this->input->post('foto'),
 			);
 		$this->db->where('id',$id);

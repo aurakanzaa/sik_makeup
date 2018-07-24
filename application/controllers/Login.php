@@ -31,7 +31,8 @@ class Login extends CI_Controller{
                 'status' => "login",
                 'id' => $cek[0]->id,
                 'foto' => $cek[0]->foto,
-                'role' => $cek[0]->id_role
+                'role' => $cek[0]->id_role,
+                'gol' => $cek[0]->id_golongan
                 );
  
             $this->session->set_userdata('userSession',$data_session);
