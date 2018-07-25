@@ -51,8 +51,8 @@ class Absensi extends CI_Controller {
                 $cek['status'] = array(
                         'home'=>'',
                         'hrd'=>'active',
-                        'keuangan'=>'active',
-                        'produk'=>'active',
+                        'keuangan'=>'',
+                        'produk'=>'',
                         'pembelian'=>'',
                         'pemasukan'=>'',
                         'pengeluaran'=>'',
@@ -82,9 +82,9 @@ class Absensi extends CI_Controller {
                 $object['absensi']=$this->absensi_model->getAbsensiId($id);
                 $cek['status'] = array(
                         'home'=>'',
-                        'hrd'=>'active',
+                        'hrd'=>'',
                         'keuangan'=>'active',
-                        'produk'=>'active',
+                        'produk'=>'',
                         'pembelian'=>'',
                         'pemasukan'=>'',
                         'pengeluaran'=>'',
@@ -176,7 +176,7 @@ class Absensi extends CI_Controller {
 			$object['absensi']=$this->absensi_model->getDataAbsensi();
 			$cek['status'] = array(
         		'home'=>'',
-        		'hrd'=>'',
+        		'hrd'=>'active',
         		'keuangan'=>'',
         		'produk'=>'',
         		'pembelian'=>'',
@@ -218,8 +218,6 @@ class Absensi extends CI_Controller {
 
 	
 	public function update($id){
-		// $this->form_validation->set_rules('tgl_masuk_jam','tgl_masuk_jam','trim|required');
-		// $this->form_validation->set_rules('tgl_keluar_jam','tgl_keluar_jam','trim|required');
 		$this->form_validation->set_rules('id_admin','id_admin','trim|required');
 
 		$data['absensi']=$this->absensi_model->getAbsensi($id);

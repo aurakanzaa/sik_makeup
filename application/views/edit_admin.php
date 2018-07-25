@@ -50,17 +50,18 @@
                               </div>
                           </div>
 
-                          <div class="form-group">
+                          <!-- <div class="form-group">
                               <label class="col-sm-2 col-sm-2 control-label">Password</label>
                               <div class="col-sm-5">
                                   <input type="text" name="password" class="form-control" value="<?php echo $admin[0]->password ?>">
                               </div>
-                          </div>
+                          </div> -->
 
                           <div class="form-group">
                               <label class="col-sm-2 col-sm-2 control-label">Foto</label>
                               <div class="col-sm-5">
-                                  <input type="text" name="foto" class="form-control" value="<?php echo $admin[0]->foto ?>">
+                                <img src=<?=base_url("bower_components/uploads/").$admin[0]->foto; ?> alt="">
+                                  <input type="file" name="userfile" size="30" >
                               </div>
                           </div>
                           

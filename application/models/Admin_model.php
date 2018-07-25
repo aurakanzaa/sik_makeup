@@ -42,8 +42,8 @@ class Admin_model extends CI_Model {
 			'id_role' => $this->input->post('id_role'),
 			'id_golongan' => $this->input->post('id_golongan'),
 			'username' => $this->input->post('username'),
-			'password' => md5($this->input->post('password')),
-			'foto' => $this->input->post('foto'),
+			
+			'foto' => $this->upload->data('file_name'),
 			);
 		$this->db->where('id',$id);
 		$this->db->update('admin',$object);

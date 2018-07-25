@@ -8,8 +8,9 @@ class Home extends CI_Controller {
 		parent::__construct();
 		$this->load->helper('url','form');
 		$this->load->library('form_validation');
-		// $this->load->model('kasir_model');
-		// $this->load->model('kategori_model');
+		$this->load->model('admin_model');
+		$this->load->model('role_model');
+        $this->load->model('golongan_model');
 		$this->load->helper('html');
 		$this->load->library('image_lib');
 		$this->load->model('Model_login');
@@ -22,6 +23,9 @@ class Home extends CI_Controller {
             'password' => md5('admin')
             );
         $cek['dat'] = $this->Model_login->cek_login("admin",$where);
+        $object['admin']=$this->admin_model->getAdmin($this->session->userdata('userSession')['id']);
+        $object['role']=$this->role_model->getRole($this->session->userdata('userSession')['role']);
+        $object['golongan']=$this->golongan_model->getGolongan($this->session->userdata('userSession')['id']);
         $cek['status'] = array(
         		'home'=>'active',
         		'hrd'=>'',
@@ -45,9 +49,18 @@ class Home extends CI_Controller {
         		'kategori'=>'',
         		);
 		$this->load->view('component/header',$cek);
-		$this->load->view('home',$cek);
+		$this->load->view('home',$object);
 		$this->load->view('component/footer');
 	}
+
+    
+        
+
+
+
+
+
+
 
 
 }

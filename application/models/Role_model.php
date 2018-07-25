@@ -10,9 +10,10 @@ class Role_model extends CI_Model {
 		);
 		$this->db->insert('role',$object);
 	}
+	
 	public function getDataRole()
 	{
-		$query = $this->db->query("SELECT id_role,nama_role from role");
+		$query = $this->db->get('role');
 		return $query->result();
 	}
 
@@ -20,8 +21,6 @@ class Role_model extends CI_Model {
 	{
 		$this->db->where('id_role',$id);
 		$query = $this->db->get('role');
-
-		
 		return $query->result();
 	}	
 

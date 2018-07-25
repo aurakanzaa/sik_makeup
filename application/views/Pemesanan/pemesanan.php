@@ -30,7 +30,7 @@ function rupiah($angka){
           <th>Jumlah</th>
           <th>Total</th>
           <th>Status</th>
-          <th align="center">Edit | Delete</th>
+          <!-- <th align="center">Edit | Delete</th> -->
         </tr>
         <?php 
         $no = 1;
@@ -52,14 +52,14 @@ function rupiah($angka){
                $type = 'green';
             } ?>
           <td style="color: <?php echo $type ?>"><?php echo $status ?></td>
-          <td>
-                <a class="btn btn-primary btn-xs" href="<?php echo site_url('pembelian/update/').$key->id_pemesanan ?>">
+          <!-- <td>
+                <a class="btn btn-primary btn-xs" href="<?php echo site_url('pemesanan/update/').$key->id_pemesanan ?>">
                   <i class="fa fa-pencil"></i>
                 </a>&nbsp;&nbsp;&nbsp;&nbsp;
-                <a class="btn btn-danger btn-xs" href="<?php echo site_url('pembelian/delete/').$key->id_pemesanan ?>">
+                <a class="btn btn-danger btn-xs" href="<?php echo site_url('pemesanan/delete/').$key->id_pemesanan ?>">
                   <i class="fa fa-trash-o"></i>
                 </a>  
-          </td>
+          </td> -->
         </tr>
         <?php } ?>
       </table>
