@@ -47,7 +47,7 @@ class User_model extends CI_Model {
  
 	public function getDataUser()
 	{
-		$query = $this->db->query("SELECT id,id_role,nama, alamat, email, jenis_kelamin, no_telp from user");
+		$query = $this->db->query("select * from user join role on user.id_role = role.id_role");
 		return $query->result();
 	}
 

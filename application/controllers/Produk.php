@@ -17,6 +17,7 @@ class Produk extends CI_Controller {
 	public function index()
 	{		
 		    	$object['pro']=$this->produk_model->getDataProduk();
+		    	$object['kategori']=$this->kategori_model->getDataKategori();
 		    	$cek['status'] = array(
         		'home'=>'',
         		'hrd'=>'',

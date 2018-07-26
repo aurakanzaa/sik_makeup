@@ -27,7 +27,7 @@ MAIN CONTENT
           <th>Stok</th>
           <th>Harga Beli</th>
           <th>Harga Jual</th>
-          <th>id_kategori</th>
+          <th>Kategori</th>
           <th >Deskripsi</th>
           <th width="100px" align="center">Edit | Delete</th>
         </tr>
@@ -42,7 +42,7 @@ MAIN CONTENT
           <td><?php echo $key->stok ?></td>
           <td><?php echo rupiah($key->harga_beli) ?></td>
           <td><?php echo rupiah($key->harga_jual) ?></td>
-          <td><?php echo $key->id_kategori ?></td>
+          <td><?php echo $key->nama_kategori ?></td>
           <td><?php echo $key->deskripsi ?></td>
           <td>
                 <a class="btn btn-primary btn-xs" href="<?php echo base_url('index.php/produk/update'); ?>/<?php echo $key->id_produk ?>">

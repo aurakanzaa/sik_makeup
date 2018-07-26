@@ -24,7 +24,7 @@ class Produk_model extends CI_Model {
 	}
 	public function getDataProduk()
 	{
-		$query = $this->db->query("SELECT id_produk, nama_produk, stok, harga_jual, harga_beli, id_kategori, deskripsi, gambar from produk");
+		$query = $this->db->query("select * from produk join kategori on produk.id_kategori = kategori.id_kategori");
 		return $query->result();
 	}
 

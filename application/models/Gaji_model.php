@@ -15,7 +15,7 @@ class Gaji_model extends CI_Model {
 	}
 	public function getDataGaji()
 	{
-		$query = $this->db->get('gaji');
+		$query = $this->db->query("select * from gaji join admin on gaji.id_admin = admin.id ");
 		return $query->result();
 	}
 

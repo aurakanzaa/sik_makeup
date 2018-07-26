@@ -41,7 +41,7 @@ MAIN CONTENT
               <th><?php echo rupiah($key->total_gaji) ?></th>
               <th><?php echo $key->tanggal ?></th>
               <th><?php echo $key->status ?></th>
-              <th><?php echo $key->id_admin ?></th>
+              <th><?php echo $key->username ?></th>
               <td>
                 <a class="btn btn-primary btn-xs" href="<?php echo base_url('index.php/gaji/update'); ?>/<?php echo $key->id_gaji ?>">
                   <i class="fa fa-pencil"></i>

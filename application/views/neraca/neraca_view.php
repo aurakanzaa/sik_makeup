@@ -19,7 +19,8 @@ MAIN CONTENT
             <select name="tahun" id="inputBulan" class="form-control" required="required">
               <?php for ($i=date('Y'); $i >date('Y')-4  ; $i--) {?>
                  <option value="<?php echo $i ?>"><?php echo $i ?></option>
-              <?php } ?> 
+              <?php } ?>
+              <option value="2020">2020</option> 
             </select>
           </div>
         

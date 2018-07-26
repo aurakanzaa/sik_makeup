@@ -34,10 +34,10 @@ $session_data = $this->session->userdata('userSession');
         ?>
         <tr>
           <td><?php echo $no++ ?></td>
-          <td><?php echo $key->id_role ?></td>
-          <td><?php echo $key->id_golongan ?></td>
+          <td><?php echo $key->nama_role ?></td>
+          <td><?php echo $key->nama_gol ?></td>
           <td><?php echo $key->username ?></td>
-          <td><?php echo $key->foto ?></td>
+          <td><img src="<?=base_url()?>bower_components/uploads/<?=$key->foto ?>" style="width:100px;heigth:100px" class="img-responsive"></td>
         
           <td>
               <?php if ($session_data['gol'] == '2' || $session_data['gol'] == '5'){?>

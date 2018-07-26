@@ -14,7 +14,7 @@ MAIN CONTENT
         <h4><i class="fa fa-angle-right"></i> Daftar User</h4>
         <tr>
           <th>No</th>
-          <th>Id Role</th>
+          <th>Role</th>
           <th>Nama</th>
           <th>Alamat</th>
           <th>Email</th>
@@ -28,7 +28,7 @@ MAIN CONTENT
         ?>
         <tr>
           <td><?php echo $no++ ?></td>
-          <td><?php echo $key->id_role ?></td>
+          <td><?php echo $key->nama_role ?></td>
           <td><?php echo $key->nama ?></td>
           <td><?php echo $key->alamat ?></td>
           <td><?php echo $key->email ?></td>

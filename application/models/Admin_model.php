@@ -16,7 +16,7 @@ class Admin_model extends CI_Model {
 	}
 	public function getDataAdmin()
 	{
-		$query = $this->db->query("SELECT id, id_role, id_golongan, username, password, foto from admin");
+		$query = $this->db->query("select * from role join admin on role.id_role = admin.id_role join golongan on golongan.id_gol = admin.id_golongan");
 		return $query->result();
 	}
 
@@ -30,9 +30,7 @@ class Admin_model extends CI_Model {
 	}
 	public function getAdminGol($id,$id2)
 	{
-		$this->db->where('id_golongan',$id);
-		$this->db->or_where('id_golongan',$id2);
-		$query = $this->db->get('admin');
+		$query = $this->db->query("select * from role join admin on role.id_role = admin.id_role join golongan on golongan.id_gol = admin.id_golongan where id_golongan='$id' or id_golongan = '$id2'");
 		return $query->result();
 	}	
 

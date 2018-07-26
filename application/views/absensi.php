@@ -33,7 +33,7 @@ MAIN CONTENT
               <th><?php echo $key->id_absen ?></th>
               <th><?php echo $key->tgl_masuk_jam ?></th>
               <th><?php echo $key->tgl_pulang_jam ?></th>
-              <th><?php echo $key->id_admin ?></th>
+              <th><?php echo $key->username ?></th>
               <td>
                 <a class="btn btn-danger btn-s" href="<?php echo base_url('index.php/absensi/updates'); ?>/<?php echo $key->id_absen ?>">
                   <i class="fa fa-times"></i>

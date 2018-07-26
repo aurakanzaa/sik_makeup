@@ -19,9 +19,9 @@ MAIN CONTENT
         <tr>
           <th>No</th>
           <th>Tanggal</th>
-          <th>Kode </th>
           <th>Kode Pembayaran</th>
-          <th>Pesanan</th>
+          <th>Kode Pembayaran</th>
+          <th>Kode Pesanan</th>
           <th>Total Pemasukan</th>
         </tr>
         <?php 

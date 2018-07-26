@@ -25,7 +25,6 @@ MAIN CONTENT
           <th>Tanggal</th>
           <th>User</th>
           <th>Nama Pemasukan </th>
-          <th>Pembayaran</th>
           <th>Total Pemasukan</th>
           <th align="center">Edit | Delete</th>
         </tr>
@@ -37,7 +36,6 @@ MAIN CONTENT
           <td><?php echo $no++ ?></td>
           <td><?php echo $key->tgl_pemasukan ?></td>
           <td><?php echo $key->user ?></td>
-          <td><?php echo $key->id_pemasukan ?></td>
           <td><?php echo $key->nama_pemasukan ?></td>
           <td><?php echo rupiah($key->total_pemasukan) ?></td>
           <td>

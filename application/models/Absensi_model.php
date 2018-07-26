@@ -40,8 +40,7 @@ class Absensi_model extends CI_Model {
 	}	
 	public function getAbsensiId($id)
 	{
-		$this->db->where('id_admin',$id);
-		$query = $this->db->get('absensi');
+		$query = $this->db->query("select * from absensi join admin on absensi.id_admin= admin.id where id_admin='$id' ");
 		return $query->result();
 	}
 	public function UpdateById($id){
