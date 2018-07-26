@@ -7,22 +7,29 @@ class Cetak extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('Cetak_model');
+		$this->load->model('cetak_model');
+		$this->load->model('labarugi_model');
+		$this->load->model('perubahanmodal_model');
+		$this->load->model('user_model');
 		$this->load->library('dompdf_gen');
 		$this->load->helper('file');
 		$this->load->helper('url','form');
 	}
 
-	public function index()
+	public function index($id)
 	{
-		$data['ekstra']=$this->cetak_model->view_row();
-		$this->load->view('uas/preview', $data);
+		$object['labarugi']=$this->labarugi_model->getLabarugi($id);
+        $object['perubahan']=$this->perubahanmodal_model->getPerubahanModals($id);
+        $object['user']=$this->user_model->getDataUser();
+		$this->load->view('labarugi/labarugi_detail',$object);
 	}
 
-	public function cetakPdfLabarugi()
+	public function cetakPdfLabarugi($id)
     {
-        $data['labarugi']=$this->cetak_model->view_labarugi();
-        $this->load->view('labarugi/labarugi_print', $data);
+		$object['labarugi']=$this->labarugi_model->getLabarugi($id);
+        $object['perubahan']=$this->perubahanmodal_model->getPerubahanModals($id);
+        $object['user']=$this->user_model->getDataUser();
+        $this->load->view('labarugi/labarugi_print',$object);
 
         $paper_size = 'A4';
         $orientation = 'landscape';

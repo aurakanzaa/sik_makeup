@@ -107,6 +107,7 @@ MAIN CONTENT
           <td align="right" style="font-size: 12pt"><b><?php echo rupiah($perubahan[0]->prive+$labarugi[0]->laba_usaha_bersih+$perubahan[0]->modal_awal); ?></b></td>         
         </tr> 
       </table>
+      <a href="<?php echo base_url('index.php/cetak/cetakPdfLabarugi/'.$this->uri->segment(3))?>"><button type="button" class="btn btn-warning "><i class="fa fa-plus"> </i> CETAK </button></a>
     </div><!-- /col-md-12 -->
     </section>
     </section><!-- /MAIN CONTENT -->
