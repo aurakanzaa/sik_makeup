@@ -1,8 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 <?php
-$session_data = $this->session->userdata('logged_in');
-$data['username'] = $session_data['username'];
-$data['id'] = $session_data['id'];
+$session_data = $this->session->userdata('userSession');
 ?>
 <?php 
 function rupiah($angka){
@@ -24,48 +22,33 @@ function rupiah($angka){
         <h4>Struk</h4>
         <br>
         
-        <h5 class="left">Nama User : <?= $session_data['username'];?></h5>
+        <h5 class="left">Nama User : <?php echo $this->session->userdata('userSession')['nama'];?></h5>
 
         <tr>
           <th>No</th>
           <th>Tanggal</th>
-          <th>Kode Pemesanan</th>
-          <th>Kode Pembayaran</th>
-          <th>Kode Produk</th>
+          <th>Pemesanan</th>
           <th>Jumlah</th>
           <th>Total</th>
-          
+         
          
         </tr>
         <?php 
         $no = 1;
-        foreach($pesan as $key){ 
+        foreach($struk as $key){ 
         ?>
         <tr>
           <td><?php echo $no++ ?></td>
-          <td><?php echo $key->tanggal_pemesanan ?></td>
-          <td><?php echo $key->kode_pemesanan?></td>
-          <td><?php echo $key->kode_pembayaran?></td>
-          
+          <td><?php echo $key->tgl_pembayaran ?></td>
           <td><?php echo $key->nama_produk ?></td>
-          <td><?php echo $key->qty ?></td>
-          <td><?php echo rupiah($key->total_pemesanan) ?></td>
+          <td><?php echo $key->qty?></td>
+          <td><?php echo rupiah($key->total_pembayaran)?></td>
+          
           
         </tr>
         <?php } ?> 
 
-        <tfoot>
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td><b>Total</b></td>
-          <td><b><?php echo rupiah($totalstruk[0]->TOTAL)?></b></td>
-          
-        </tr>
-      </tfoot>
+        
 
       </table>
       </div>

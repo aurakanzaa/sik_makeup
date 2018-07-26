@@ -13,46 +13,61 @@ class Struk extends CI_Controller {
         $this->load->model('struk_model');
         $this->load->model('pembayaran_model');
         $this->load->model('pemesanan_model');
+        $this->load->model('kategori_model');
+        $this->load->model('Model_login');
+        $this->load->model('produk_model');
 		$this->load->helper('html');
 		$this->load->library('image_lib');
 	}
 
 	public function index()
-	{
-        $object['user']=$this->user_model->getDataUser();
-        $object['struk']=$this->struk_model->getDataStruk();
-        $object['bayar']=$this->pembayaran_model->getDataPembayaran();
-        $object['pesan']=$this->pemesanan_model->getDataPemesanan();
-        $object['totalstruk']=$this->struk_model->getDataTotalStruk();
-
-
-
-		$cek['status'] = array(
-        		'home'=>'',
-        		'hrd'=>'',
-        		'keuangan'=>'active',
-        		'produk'=>'',
-        		'pembelian'=>'',
-        		'pemasukan'=>'',
-        		'pengeluaran'=>'',
-        		'utang'=>'',
-        		'cash_flow'=>'active',
-        		'neraca'=>'',
-                'pemesanan'=>'',
-                'pembayaran'=>'',
-        		'admin'=>'',
-        		'gaji'=>'',
-        		'golongan'=>'',
-        		'absensi'=>'',
-        		'user'=>'',
-        		'barang'=>'',
-        		'supplier'=>'',
-        		'kategori'=>'',
-        		);
-		$this->load->view('component/header',$cek);
-		$this->load->view('struk/struk_view',$object);
-		$this->load->view('component/footer_afterLogin');	
+	{	
 	}
+
+    public function detail($id)
+    {
+        $where = array(
+            'username' => 'admin',
+            'password' => md5('admin')
+            );
+        if ($this->session->userdata('userSession')!=null)
+            {
+                $cek['dataPesanan']=$this->pemesanan_model->getStatusPemesanan($this->session->userdata('userSession')['id']);
+           
+            }
+        else
+            {
+                $cek['dataPesanan']=0;
+            }
+        $cek['kategori'] = $this->kategori_model->getDataKategori();
+        $cek['dat'] = $this->Model_login->cek_login("admin",$where);
+        $cek['produk'] = $this->produk_model->getDataProduk();
+        $cek['struk'] = $this->pembayaran_model->getPembayaranId($id);
+        $cek['status'] = array(
+                'home'=>'active',
+                'hrd'=>'',
+                'keuangan'=>'',
+                'produk'=>'',
+                'pembelian'=>'',
+                'pemasukan'=>'',
+                'pengeluaran'=>'',
+                'utang'=>'',
+                'cash_flow'=>'',
+                'neraca'=>'',
+                'admin'=>'',
+                'gaji'=>'',
+                'golongan'=>'',
+                'absensi'=>'',
+                'user'=>'',
+                'barang'=>'',
+                'supplier'=>'',
+                'kategori'=>'',
+                );
+
+        $this->load->view('component/header_main',$cek);
+        $this->load->view('struk/struk_view',$cek);
+        $this->load->view('component/footer');
+    }
 
 	public function form_struk()
 	{

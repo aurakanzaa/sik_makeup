@@ -26,6 +26,11 @@ class Pembayaran_model extends CI_Model {
 		$query = $this->db->get('pembayaran');
 		return $query->result();
 	}	
+	public function getPembayaranId($id)
+	{	
+		$query = $this->db->query("select * from pemesanan join pembayaran on pembayaran.id_pemesanan=pemesanan.id_pemesanan join produk on pemesanan.id_produk=produk.id_produk where pembayaran.id_pemesanan='$id'");
+		return $query->result();
+	}	
 
 	public function UpdateById($id){
 		$object=array

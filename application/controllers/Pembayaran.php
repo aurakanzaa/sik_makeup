@@ -123,7 +123,7 @@ class Pembayaran extends CI_Controller {
 		}else{
 		      $this->pembayaran_model->insertPembayaran($id, $object['produk'][0]->total_pemesanan);
                $this->pemesanan_model->updateStatusPemesanan($id);
-               redirect('struk','refresh');
+               redirect('struk/detail/'.$id,'refresh');
 
 		}
 	}
