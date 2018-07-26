@@ -13,6 +13,9 @@ class Labarugi extends CI_Controller {
 		$this->load->helper('html');
         $this->load->model('perubahanmodal_model');
 		$this->load->library('image_lib');
+        $this->load->model('cetak_model');
+        $this->load->library('dompdf_gen');
+        $this->load->helper('file');
 	}
 
 	public function index()
