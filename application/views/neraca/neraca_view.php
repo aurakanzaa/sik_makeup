@@ -26,7 +26,7 @@ MAIN CONTENT
         
           <button type="submit" class="btn btn-primary">Filter</button>
           <a href="<?php echo site_url('neraca/form_neraca') ?>" class="btn btn-success" ><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Transaksi</a>
-           <a href="<?php echo base_url('index.php/cetak/cetakPdfNeraca/'.$this->uri->segment(1))?>"><button type="button" class="btn btn-warning "><i class="fa fa-plus"> </i> CETAK </button></a>
+           
         <?php echo form_close(); ?>
       <div class="col-md-12 mt">
       <div class="content-panel">

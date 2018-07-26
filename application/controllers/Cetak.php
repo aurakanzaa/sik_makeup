@@ -52,9 +52,9 @@ class Cetak extends CI_Controller
 
     public function cetakPdfNeraca($id)
     {
-		$object['neraca']=$this->neraca_model->getDataNeraca();
-        $object['activa']=$this->neraca_model->getTotalActiva();
-        $object['pasiva']=$this->neraca_model->getTotalPasiva();
+		$object['neraca']=$this->neraca_model->getDataNeracaTahunPrint($id);
+        $object['activa']=$this->neraca_model->getTotalThActivaPrint($id);
+        $object['pasiva']=$this->neraca_model->getTotalThPasivaPrint($id);
         $this->load->view('neraca/neraca_print',$object);
 
         $paper_size = 'A4';

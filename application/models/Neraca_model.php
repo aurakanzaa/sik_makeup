@@ -28,6 +28,11 @@ class Neraca_model extends CI_Model {
 		return $query->result();
 	}
 	
+	public function getDataNeracaTahunPrint($id)
+	{
+		$query = $this->db->query("SELECT * from neraca where Year(tgl_neraca)='$id' ");
+		return $query->result();
+	}
 
 	public function getTotalPasiva()
 	{
@@ -45,10 +50,24 @@ class Neraca_model extends CI_Model {
 		$query = $this->db->query("SELECT sum(total_transaksi) as A from neraca where jenis='3' AND Year(tgl_neraca)='$th' ");
 		return $query->result();
 	}
+	public function getTotalThPasivaPrint($id)
+	{
+		
+		$query = $this->db->query("SELECT sum(total_transaksi) as A from neraca where jenis='3' AND Year(tgl_neraca)='$id' ");
+		return $query->result();
+	}
+
 	public function getTotalThActiva()
 	{
 		$th=$this->input->post('tahun');
 		$query = $this->db->query("SELECT sum(total_transaksi) as A from neraca where (jenis='1' or jenis = '2')  AND Year(tgl_neraca)='$th' ");
+		return $query->result();
+	}
+
+	public function getTotalThActivaPrint($id)
+	{
+		
+		$query = $this->db->query("SELECT sum(total_transaksi) as A from neraca where (jenis='1' or jenis = '2')  AND Year(tgl_neraca)='$id' ");
 		return $query->result();
 	}
 	public function getNeraca($id)
