@@ -12,27 +12,10 @@ MAIN CONTENT
 <section id="main-content">
   <section class="wrapper site-min-height">
     <br><br>
-    <legend>Filter Neraca</legend>
-      <?php echo form_open('neraca/filter'); ?>
-          <div class="form-group col-md-3">
-            <label class="sr-only" for="">label</label>
-            <select name="tahun" id="inputBulan" class="form-control" required="required">
-              <?php for ($i=date('Y'); $i >date('Y')-4  ; $i--) {?>
-                 <option value="<?php echo $i ?>"><?php echo $i ?></option>
-              <?php } ?> 
-            </select>
-          </div>
-        
-          <button type="submit" class="btn btn-primary">Filter</button>
-          <a href="<?php echo site_url('neraca/form_neraca') ?>" class="btn btn-success" ><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Transaksi</a>
-           <a href="<?php echo base_url('index.php/cetak/cetakPdfNeraca/'.$this->uri->segment(1))?>"><button type="button" class="btn btn-warning "><i class="fa fa-plus"> </i> CETAK </button></a>
-        <?php echo form_close(); ?>
+    <h4><i class="fa fa-angle-right"></i> Daftar Neraca </h4>
       <div class="col-md-12 mt">
       <div class="content-panel">
         <table class="table table-hover">
-        <h4><i class="fa fa-angle-right"></i> Daftar Neraca </h4> 
-        <br>
-        <br>
         <tr>
           <th>No</th>
           <th>Id</th>
@@ -40,7 +23,6 @@ MAIN CONTENT
           <th>Aktiva</th>
           <th>Pasiva</th>
           <th>Keterangan</th>
-          <th align="center">Edit | Delete</th>
         </tr>
         <?php 
         $no = 1;
@@ -61,15 +43,6 @@ MAIN CONTENT
             } else echo "---"?>    
           </td>
           <td><?php echo $key->keterangan ?></td>
-          
-          <td>
-                <a class="btn btn-primary btn-xs" href="<?php echo site_url('neraca/update/').$key->id_neraca ?>">
-                  <i class="fa fa-pencil"></i>
-                </a>&nbsp;&nbsp;&nbsp;&nbsp;
-                <a class="btn btn-danger btn-xs" href="<?php echo site_url('neraca/delete/').$key->id_neraca ?>">
-                  <i class="fa fa-trash-o"></i>
-                </a>  
-          </td>
         </tr>
         <?php } ?>
       <tfoot>
