@@ -107,6 +107,7 @@ MAIN CONTENT
           <td align="right" style="font-size: 12pt"><b><?php echo rupiah($perubahan[0]->prive+$labarugi[0]->laba_usaha_bersih+$perubahan[0]->modal_awal); ?></b></td>         
         </tr> 
       </table>
+      <input type="submit" class="btn btn-success" value="Cetak" name="" id="">
     </div><!-- /col-md-12 -->
     </section>
     </section><!-- /MAIN CONTENT -->
