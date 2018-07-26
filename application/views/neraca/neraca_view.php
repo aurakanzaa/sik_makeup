@@ -12,7 +12,7 @@ MAIN CONTENT
 <section id="main-content">
   <section class="wrapper site-min-height">
     <br><br>
-    <legend>Filter Cash Flow</legend>
+    <legend>Filter Neraca</legend>
       <?php echo form_open('neraca/filter'); ?>
           <div class="form-group col-md-3">
             <label class="sr-only" for="">label</label>

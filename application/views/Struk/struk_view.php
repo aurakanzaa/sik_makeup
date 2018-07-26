@@ -19,10 +19,10 @@ function rupiah($angka){
     <div class="col-md-12 mt">
       <div class="content-panel">
         <table class="table table-hover">
-        <h4>Struk</h4>
+        <h3>&nbsp;&nbsp;Struk</h3>
         <br>
         
-        <h5 class="left">Nama User : <?php echo $this->session->userdata('userSession')['nama'];?></h5>
+        <h5 align="leftt">&nbsp;&nbsp;<b>Nama User : <?php echo $this->session->userdata('userSession')['nama'];?></b></h5><br>
 
         <tr>
           <th>No</th>

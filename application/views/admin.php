@@ -26,7 +26,7 @@ $session_data = $this->session->userdata('userSession');
           <th>Id Golongan</th>
           <th>Username</th>
           <th>Foto</th>
-          <th align="center">Edit | Delete</th>
+          <th align="center">Detail</th>
         </tr>
         <?php 
         $no = 1;
