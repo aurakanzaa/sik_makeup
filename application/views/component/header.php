@@ -86,7 +86,7 @@ $session_data = $this->session->userdata('userSession');
                           <?php if ($session_data['gol']== '6') {} else {?><li class="<?php echo $status['neraca'] ?>" ><a  href="<?php echo site_url('neraca') ?>">Neraca</a></li>
                           <?php } ?>
                           <?php if ($session_data['gol']== '6') {} else {?>
-                          <li class="" ><a  href="<?php echo site_url('labarugi') ?>">Laba Rugi & Per Modal</a></li>
+                          <li class="<?php echo $status['labarugi'] ?>" ><a  href="<?php echo site_url('labarugi') ?>">Laba Rugi & Per Modal</a></li>
                           <?php } ?>
                           <li class="<?php echo $status['absensi'] ?>"><a  href="<?php echo site_url('Absensi/user') ?>">Absensi</a>
                           <?php if ($session_data['gol']== '6') {} else {?>

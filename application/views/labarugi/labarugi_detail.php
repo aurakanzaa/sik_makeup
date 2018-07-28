@@ -12,6 +12,13 @@ MAIN CONTENT
 <section id="main-content">
   <section class="wrapper site-min-height">
     <br><br>
+
+    <div>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <a href="<?php echo base_url('index.php/cetak/cetakPdfLabarugi/'.$this->uri->segment(3))?>"><button type="button" class="btn btn-round btn-info"><i class="fa fa-print"> </i> CETAK </button></a>
+      
+    </div>
+
     <div class="col-md-12 mt">
       <div class="content-panel col-md-12" style="padding-left: 60px;padding-right: 70px;">
       <h4><i class="fa fa-angle-right"></i> Laba Rugi Tahun <?php foreach ($labarugi as $key) { echo date('Y',strtotime($key->tanggal));break; }?></h4>
@@ -107,7 +114,7 @@ MAIN CONTENT
           <td align="right" style="font-size: 12pt"><b><?php echo rupiah($perubahan[0]->prive+$labarugi[0]->laba_usaha_bersih+$perubahan[0]->modal_awal); ?></b></td>         
         </tr> 
       </table>
-      <a href="<?php echo base_url('index.php/cetak/cetakPdfLabarugi/'.$this->uri->segment(3))?>"><button type="button" class="btn btn-warning "><i class="fa fa-plus"> </i> CETAK </button></a>
+      
     </div><!-- /col-md-12 -->
     </section>
     </section><!-- /MAIN CONTENT -->

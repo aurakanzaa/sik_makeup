@@ -13,7 +13,7 @@ MAIN CONTENT
   <section class="wrapper site-min-height">
     <br><br>
     <div class="col-md-12 mt">
-      <a href="<?php echo base_url('index.php/cetak/cetakPdfNeraca/')?><?php foreach ($neraca as $key) { echo date('Y',strtotime($key->tgl_neraca));break; }?>"><button type="button" class="btn btn-warning "><i class="fa fa-plus"> </i> CETAK </button></a>
+      <a href="<?php echo base_url('index.php/cetak/cetakPdfNeraca/')?><?php foreach ($neraca as $key) { echo date('Y',strtotime($key->tgl_neraca));break; }?>"><button type="button" class="btn btn-round btn-info"><i class="fa fa-print"> </i> CETAK </button></a>
       <br>
       <br>
       <div class="content-panel col-md-12" style="padding left: : 20px">
