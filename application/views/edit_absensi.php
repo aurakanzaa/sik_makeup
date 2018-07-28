@@ -16,6 +16,11 @@
                         <h4>Id Admin</h4>
                         <input class="form-control" id="" name="id_admin" type="text">
                     </div>
+
+                    <div class="col-xs-3">
+                        <h4>Tanggal</h4>
+                        <input class="form-control" id="" name="tgl_masuk_jam" type="datetime-local">
+                    </div>
                     
 
                     

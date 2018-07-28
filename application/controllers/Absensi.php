@@ -208,7 +208,7 @@ class Absensi extends CI_Controller {
 			$this->load->view('component/footer');
 		}else{
 			
-			$this->absensi_model->insertAbsensi();
+			$this->absensi_model->insertAbsensiManual();
 			$this->load->view('component/header');
 			redirect('absensi','refresh');
 			$this->load->view('component/footer');
@@ -258,7 +258,7 @@ class Absensi extends CI_Controller {
 			$this->load->view('edit_absensi',$data);
 			$this->load->view('component/footer');
 		}else{
-			$this->absensi_model->UpdateById($id);
+			$this->absensi_model->UpdateByIdKeluar($id);
 			redirect('absensi','refresh');
 		}
 

@@ -24,11 +24,21 @@ class Absensi_model extends CI_Model {
 		$this->db->insert('absensi',$object);
 	}
 
+	public function insertAbsensiManual()
+	{
+		$object = array(
+			'tgl_masuk_jam' => $this->input->post('tgl_masuk_jam'),
+			'tgl_pulang_jam' => $this->input->post('tgl_pulang_jam'),
+			'id_admin' => $this->input->post('id_admin'),
+		);
+		$this->db->insert('absensi',$object);
+	}
+
 	
 
 	public function getDataAbsensi()
 	{
-		$query = $this->db->get('absensi');
+		$query = $this->db->query("select * from admin join absensi on admin.id = absensi.id_admin");
 		return $query->result();
 	}
 
@@ -56,6 +66,8 @@ class Absensi_model extends CI_Model {
 			return false;
 		}
 	}
+
+	
 
 	public function delete($id){
 		$this->db->where('id_absen',$id);
