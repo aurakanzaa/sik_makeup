@@ -127,6 +127,8 @@ class User extends CI_Controller {
                 $this->form_validation->set_rules('email','email','trim|required');
                 $this->form_validation->set_rules('jenis_kelamin','jenis_kelamin','trim|required');
                 $this->form_validation->set_rules('no_telp','no_telp','trim|required');
+                $this->form_validation->set_rules('username','username','trim|required');
+                $this->form_validation->set_rules('password','password','trim|required');
                 
                 if($this->form_validation->run()==FALSE){
                         
@@ -166,13 +168,12 @@ class User extends CI_Controller {
         }
 
         public function update($id){
-               $this->form_validation->set_rules('id_role','Id Role','trim|required');
+                $this->form_validation->set_rules('id_role','Id Role','trim|required');
                 $this->form_validation->set_rules('nama','Nama','trim|required');
                 $this->form_validation->set_rules('alamat','alamat','trim|required');
                 $this->form_validation->set_rules('email','email','trim|required');
                 $this->form_validation->set_rules('jenis_kelamin','jenis_kelamin','trim|required');
                 $this->form_validation->set_rules('no_telp','no_telp','trim|required');
-                
                 
                 if($this->form_validation->run()==FALSE){
 
@@ -200,7 +201,7 @@ class User extends CI_Controller {
                         'pemasukan'=>'',
                         'pengeluaran'=>'',
                         'pemesanan'=>'',
-                'pembayaran'=>'',
+                        'pembayaran'=>'',
                         'utang'=>'',
                         'cash_flow'=>'',
                         'neraca'=>'',

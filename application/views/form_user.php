@@ -68,6 +68,20 @@
                                   <input type="text" name="no_telp" class="form-control">
                               </div>
                           </div>
+
+                          <div class="form-group">
+                              <label class="col-sm-2 col-sm-2 control-label"><b>Username</b></label>
+                              <div class="col-sm-5">
+                                  <input type="text" name="username" class="form-control" placeholder="username">
+                              </div>
+                          </div>
+
+                          <div class="form-group">
+                              <label class="col-sm-2 col-sm-2 control-label"><b>Password</b></label>
+                              <div class="col-sm-5">
+                                  <input type="password" name="password" class="form-control" placeholder="password">
+                              </div>
+                          </div>
                          
                         
                            

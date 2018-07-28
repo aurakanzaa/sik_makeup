@@ -41,6 +41,9 @@ class User_model extends CI_Model {
 			'email' => $this->input->post('email'),
 			'jenis_kelamin' => $this->input->post('jenis_kelamin'),
 			'no_telp' => $this->input->post('no_telp'),
+			'username' => $this->input->post('username'),
+			'password' => md5($this->input->post('password')),
+
 		);
 		$this->db->insert('user',$object);
 	}
@@ -68,8 +71,7 @@ class User_model extends CI_Model {
 			'email' => $this->input->post('email'),
 			'jenis_kelamin' => $this->input->post('jenis_kelamin'),
 			'no_telp' => $this->input->post('no_telp'),
-			
-			);
+		);
 		$this->db->where('id',$id);
 		$this->db->update('user',$object);
 		if($this->db->affected_rows()==1){
