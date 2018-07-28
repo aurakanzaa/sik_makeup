@@ -121,7 +121,7 @@ class Admin extends CI_Controller {
         $this->form_validation->set_rules('id_golongan','id golongan','trim|required');
         $this->form_validation->set_rules('username','username','trim|required');
         $this->form_validation->set_rules('password','password','trim|required');
-        $this->form_validation->set_rules('foto','foto','trim|required');
+        
 
             $cek['status'] = array(
                 'home'=>'',
@@ -157,11 +157,38 @@ class Admin extends CI_Controller {
 		      $this->load->view('form_admin',$object);
 		      $this->load->view('component/footer');
 		}else{
+            $config['upload_path'] = 'assets/img/admin/';
+            $config['allowed_types'] = 'gif|jpg|png';
+            $config['max_size']  = 1000000;
+            $config['max_width']  = 10240;
+            $config['max_height']  = 7680;
+            
+            $this->load->library('upload', $config);
+            
+            if ( ! $this->upload->do_upload('userfile')){
+                $error = array('error' => $this->upload->display_errors());
+                $this->load->view('form_admin',$error);
+            }
+            else{
+                //$data = array('upload_data' => $this->upload->data());
+
+                $upload = $this->upload->data();
+                $confi['image_library']='gd2';
+                $confi['source_image']=$upload['full_path'];
+                $confi['maintain_ratio']=TRUE;
+                $confi['height']=300;
+                $confi['width']=600;
+
+                $this->load->library('image_lib',$config);
+                $this->image_lib->clear();
+                $this->image_lib->initialize($confi);
+                $this->image_lib->resize();
 			
 		    $this->admin_model->insertAdmin();
             $this->load->view('component/header',$cek);
-            redirect('admin','refresh');
+            redirect('home','refresh');
             $this->load->view('component/footer');
+        }
 		     
 		}
 	}
@@ -229,7 +256,7 @@ class Admin extends CI_Controller {
                     'source_image' => $image_data['full_path'],
                     'maintain_ratio'=>TRUE,
                     'width'=> 300,
-                    'height'=>600,
+                    'height'=>300,
 
                     );
                 $this->load->library('image_lib',$config);

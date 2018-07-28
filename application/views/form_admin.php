@@ -51,11 +51,10 @@
                               </div>
                           </div>
 
-                          <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">Foto</label>
-                              <div class="col-sm-5">
-                                  <input type="text" name="foto" class="form-control">
-                              </div>
+                         <div class="form-group">
+                              <label class="col-sm-3 col-sm-3 control-label">Foto</label>
+                              <input type="file" name="userfile" size="30" >
+                            
                           </div>
 
                           

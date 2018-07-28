@@ -17,7 +17,7 @@
                         
                           <div class="form-group">
                              
-                              <div class="col-sm-5">
+                              <div class="col-sm-7">
                                 <?php if ($this->session->userdata('userSession')['role']==2){ ?>
                                   <input type="hidden" name="id_role" class="form-control" value="<?php echo $user[0]->id_role ?>" ><?php } else { ?>
                                   <select class="form-control" name="id_role">

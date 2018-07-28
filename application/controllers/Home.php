@@ -26,7 +26,7 @@ class Home extends CI_Controller {
         $cek['dat'] = $this->Model_login->cek_login("admin",$where);
         $object['admin']=$this->admin_model->getAdmin($this->session->userdata('userSession')['id']);
         $object['role']=$this->role_model->getRole($this->session->userdata('userSession')['role']);
-        $object['golongan']=$this->golongan_model->getGolongan($this->session->userdata('userSession')['id']);
+        $object['golongan']=$this->golongan_model->getDataGolongan($this->session->userdata('userSession')['id']);
         $object['penjualan']=$this->pembayaran_model->chartPemasukan();
         $cek['status'] = array(
         		'home'=>'active',
