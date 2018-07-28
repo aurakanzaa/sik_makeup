@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.4.14
--- http://www.phpmyadmin.net
+-- version 4.6.5.2
+-- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 26, 2018 at 12:55 PM
--- Server version: 5.6.26
--- PHP Version: 5.6.12
+-- Generation Time: Jul 28, 2018 at 10:36 AM
+-- Server version: 10.1.21-MariaDB
+-- PHP Version: 7.1.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -26,12 +26,12 @@ SET time_zone = "+00:00";
 -- Table structure for table `absensi`
 --
 
-CREATE TABLE IF NOT EXISTS `absensi` (
+CREATE TABLE `absensi` (
   `id_absen` int(11) NOT NULL,
   `tgl_masuk_jam` datetime NOT NULL,
   `tgl_pulang_jam` datetime DEFAULT NULL,
   `id_admin` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `absensi`
@@ -44,7 +44,29 @@ INSERT INTO `absensi` (`id_absen`, `tgl_masuk_jam`, `tgl_pulang_jam`, `id_admin`
 (4, '2018-07-24 21:50:56', '2018-07-24 21:51:23', 4),
 (5, '2018-07-24 21:51:25', '2018-07-24 21:51:27', 4),
 (6, '2018-07-24 22:00:38', '2018-07-24 22:00:40', 3),
-(7, '2018-07-24 22:10:39', '2018-07-24 22:10:42', 8);
+(7, '2018-07-24 22:10:39', '2018-07-24 22:10:42', 8),
+(8, '2018-07-26 12:08:48', '2018-07-26 12:08:56', 1),
+(9, '2018-07-27 02:52:51', '2018-07-27 02:53:00', 1),
+(10, '2018-07-27 02:53:58', '2018-07-27 02:54:14', 2),
+(11, '2018-07-27 03:06:27', '2018-07-27 03:06:30', 3),
+(12, '2018-07-27 03:17:17', '2018-07-28 13:21:44', 1),
+(13, '2018-07-28 14:44:13', NULL, 4),
+(14, '2018-07-28 14:44:33', NULL, 3),
+(15, '2018-07-28 14:46:27', '2018-07-28 14:49:41', 2),
+(16, '2018-07-28 14:52:47', '2018-07-28 14:53:01', 3),
+(17, '2018-07-28 14:53:26', '2018-07-28 15:21:02', 5),
+(18, '2018-07-28 15:02:54', '2018-07-28 15:06:54', 1),
+(19, '2018-07-28 15:03:29', NULL, 1),
+(20, '2018-07-28 15:04:16', NULL, 1),
+(21, '2018-07-28 15:04:55', '2018-07-28 15:06:56', 2),
+(22, '2018-07-28 15:06:37', NULL, 1),
+(23, '0000-00-00 00:00:00', NULL, 2),
+(24, '0000-00-00 00:00:00', NULL, 1),
+(25, '2018-07-01 01:01:00', '2018-07-28 15:16:52', 5),
+(26, '2018-07-28 15:18:04', '2018-07-28 15:18:30', 5),
+(27, '0000-00-00 00:00:00', '2018-07-28 15:18:22', 1),
+(28, '2018-07-01 14:02:00', NULL, 5),
+(29, '2018-07-01 14:02:00', '2018-07-31 17:05:00', 7);
 
 -- --------------------------------------------------------
 
@@ -52,28 +74,30 @@ INSERT INTO `absensi` (`id_absen`, `tgl_masuk_jam`, `tgl_pulang_jam`, `id_admin`
 -- Table structure for table `admin`
 --
 
-CREATE TABLE IF NOT EXISTS `admin` (
+CREATE TABLE `admin` (
   `id` int(11) NOT NULL,
   `id_role` int(11) NOT NULL,
   `id_golongan` int(11) NOT NULL,
-  `username` varchar(8) NOT NULL,
+  `username` varchar(12) NOT NULL,
   `password` varchar(32) NOT NULL,
   `foto` varchar(100) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `admin`
 --
 
 INSERT INTO `admin` (`id`, `id_role`, `id_golongan`, `username`, `password`, `foto`) VALUES
-(1, 1, 1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'admin.jpg'),
-(2, 1, 2, 'hrd', '4bf31e6f4b818056eaacb83dff01c9b8', 'new'),
-(3, 1, 3, 'logistic', '1e15f256bcbf4e3d8a9a3c6262a64401', 'admin.jpg'),
-(4, 1, 4, 'keuangan', 'a4151d4b2856ec63368a7c784b1f0a6e', 'admin.jpg'),
+(1, 1, 1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'man.png'),
+(2, 1, 2, 'hrd', '4bf31e6f4b818056eaacb83dff01c9b8', 'man1.png'),
+(3, 1, 3, 'logistic', '1e15f256bcbf4e3d8a9a3c6262a64401', 'man2.png'),
+(4, 1, 4, 'keuangan', 'a4151d4b2856ec63368a7c784b1f0a6e', '26977962.JPG'),
 (5, 1, 5, 'userhrd', 'b5f0a3b841a1dce7f0bc6d067e355436', 'admin.jpg'),
-(6, 1, 6, 'userkeua', '30e0f82143df680fd6fa25595726ed91', 'admin.jpg'),
-(7, 1, 7, 'userlogi', '61eea383ead83a858743b5279b45aa68', 'admin.jpeg'),
-(8, 1, 3, 'newlog', '1e15f256bcbf4e3d8a9a3c6262a64401', 'admin.jpg');
+(6, 1, 6, 'userkeuangan', '30e0f82143df680fd6fa25595726ed91', 'admin.jpg'),
+(7, 1, 7, 'userlogin', '7eec54842ae92700ea21f7289a2ed383', 'github3.png'),
+(8, 1, 3, 'newlogin', '1e15f256bcbf4e3d8a9a3c6262a64401', 'admin.jpg'),
+(9, 1, 1, 'superadmin', '17c4520f6cfd1ab53d8745e84681eb49', 'birthday-cake2.png'),
+(10, 1, 2, 'hrdara', '1fd9791f9897dd1f589af7d02af9304e', 'github2.png');
 
 -- --------------------------------------------------------
 
@@ -81,7 +105,7 @@ INSERT INTO `admin` (`id`, `id_role`, `id_golongan`, `username`, `password`, `fo
 -- Table structure for table `cash_flow`
 --
 
-CREATE TABLE IF NOT EXISTS `cash_flow` (
+CREATE TABLE `cash_flow` (
   `id_transaksi` int(10) NOT NULL,
   `id_user` int(10) DEFAULT NULL,
   `id_pembayaran` int(10) DEFAULT NULL,
@@ -90,7 +114,7 @@ CREATE TABLE IF NOT EXISTS `cash_flow` (
   `id_pembelian` int(11) DEFAULT NULL,
   `tgl_cashflow` date NOT NULL,
   `keterangan` text NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=87 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `cash_flow`
@@ -100,7 +124,6 @@ INSERT INTO `cash_flow` (`id_transaksi`, `id_user`, `id_pembayaran`, `id_Pengelu
 (3, 1, 0, 0, 0, 4, '2017-12-07', 'pembelian produk Lipstik Oriflame'),
 (7, 1, 4, 0, 0, 0, '2018-07-15', 'Pemasukan Minggu 1 Bulan Juli'),
 (11, 1, 0, 0, 3, 0, '2018-07-15', 'utang toko'),
-(14, 1, 0, 0, 4, 0, '2018-07-16', 'koi'),
 (15, 1, 0, 5, 0, 0, '2016-01-01', 'Pembayaran Beli Pulsa'),
 (17, 1, 0, 6, 0, 0, '2016-01-01', 'Pembayaran Bayar listrik'),
 (18, 1, 0, 7, 0, 0, '2016-01-01', 'Pembayaran beli bensin'),
@@ -171,7 +194,12 @@ INSERT INTO `cash_flow` (`id_transaksi`, `id_user`, `id_pembayaran`, `id_Pengelu
 (83, 1, 0, 67, 0, 0, '2018-04-01', 'Pembayaran beli kresek'),
 (84, 1, 0, 68, 0, 0, '2018-04-01', 'Pembayaran beli buble wrap'),
 (85, 1, 0, 69, 0, 0, '2018-04-01', 'Pembayaran beli product makeup'),
-(86, 1, 11, 0, 0, 0, '2018-07-26', 'Pemasukan Bulan April 2018');
+(86, 1, 11, 0, 0, 0, '2018-07-26', 'Pemasukan Bulan April 2018'),
+(87, 1, 0, 0, 0, 5, '2018-07-26', 'pembelian produk EVER GLAZE EG82304 Ultra Orchid'),
+(88, 1, 12, 0, 0, 0, '2018-07-26', 'Pemasukan Juli'),
+(89, 1, 0, 0, 0, 6, '2018-07-27', 'pembelian produk Cathy Doll AA Matte Powder Cushion Oil Control SPF'),
+(90, 1, 0, 0, 4, 0, '2018-07-26', 'lemari'),
+(91, 1, 0, 0, 0, 7, '2018-07-27', 'pembelian produk Mehron Celebre Pro HD Make-Up');
 
 -- --------------------------------------------------------
 
@@ -179,20 +207,21 @@ INSERT INTO `cash_flow` (`id_transaksi`, `id_user`, `id_pembayaran`, `id_Pengelu
 -- Table structure for table `gaji`
 --
 
-CREATE TABLE IF NOT EXISTS `gaji` (
+CREATE TABLE `gaji` (
   `id_gaji` int(3) NOT NULL,
   `total_gaji` int(11) NOT NULL,
   `tanggal` date NOT NULL,
   `status` varchar(10) NOT NULL,
   `id_admin` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `gaji`
 --
 
 INSERT INTO `gaji` (`id_gaji`, `total_gaji`, `tanggal`, `status`, `id_admin`) VALUES
-(1, 1200000, '2018-07-16', 'aktif', 1);
+(1, 1200000, '2018-07-16', 'aktif', 1),
+(2, 2000000, '2018-07-27', 'aktif', 5);
 
 -- --------------------------------------------------------
 
@@ -200,11 +229,11 @@ INSERT INTO `gaji` (`id_gaji`, `total_gaji`, `tanggal`, `status`, `id_admin`) VA
 -- Table structure for table `golongan`
 --
 
-CREATE TABLE IF NOT EXISTS `golongan` (
+CREATE TABLE `golongan` (
   `id_gol` int(11) NOT NULL,
   `nama_gol` varchar(15) NOT NULL,
   `gaji_pokok` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `golongan`
@@ -225,10 +254,10 @@ INSERT INTO `golongan` (`id_gol`, `nama_gol`, `gaji_pokok`) VALUES
 -- Table structure for table `kategori`
 --
 
-CREATE TABLE IF NOT EXISTS `kategori` (
+CREATE TABLE `kategori` (
   `id_kategori` int(10) NOT NULL,
   `nama_kategori` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `kategori`
@@ -240,7 +269,8 @@ INSERT INTO `kategori` (`id_kategori`, `nama_kategori`) VALUES
 (3, 'face'),
 (4, 'beauty & skin care'),
 (6, 'Brush'),
-(7, 'Kutek');
+(7, 'Kutek'),
+(8, 'sabun muka');
 
 -- --------------------------------------------------------
 
@@ -248,7 +278,7 @@ INSERT INTO `kategori` (`id_kategori`, `nama_kategori`) VALUES
 -- Table structure for table `labarugi`
 --
 
-CREATE TABLE IF NOT EXISTS `labarugi` (
+CREATE TABLE `labarugi` (
   `id_labarugi` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
   `penjualan` int(11) NOT NULL,
@@ -263,7 +293,7 @@ CREATE TABLE IF NOT EXISTS `labarugi` (
   `total_biaya` int(11) NOT NULL,
   `laba_usaha_bersih` int(11) NOT NULL,
   `tanggal` date NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `labarugi`
@@ -278,14 +308,14 @@ INSERT INTO `labarugi` (`id_labarugi`, `id_user`, `penjualan`, `retur_penjualan`
 -- Table structure for table `neraca`
 --
 
-CREATE TABLE IF NOT EXISTS `neraca` (
+CREATE TABLE `neraca` (
   `id_neraca` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
   `jenis` int(1) NOT NULL,
   `total_transaksi` int(11) NOT NULL,
   `tgl_neraca` date NOT NULL,
   `keterangan` text NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `neraca`
@@ -305,7 +335,8 @@ INSERT INTO `neraca` (`id_neraca`, `id_user`, `jenis`, `total_transaksi`, `tgl_n
 (11, 1, 3, 6000000, '2020-01-03', 'Sewa Gedung'),
 (12, 1, 3, 20051800, '2020-01-03', 'Biaya Operasional'),
 (13, 1, 3, 167900000, '2020-01-03', 'Modal Beli Produk'),
-(14, 1, 3, 9840000, '2020-01-03', 'Pengadaan Investasi');
+(14, 1, 3, 9840000, '2020-01-03', 'Pengadaan Investasi'),
+(15, 1, 1, 1000000, '2018-07-27', 'Printer');
 
 -- --------------------------------------------------------
 
@@ -313,13 +344,13 @@ INSERT INTO `neraca` (`id_neraca`, `id_user`, `jenis`, `total_transaksi`, `tgl_n
 -- Table structure for table `pemasukan`
 --
 
-CREATE TABLE IF NOT EXISTS `pemasukan` (
+CREATE TABLE `pemasukan` (
   `id_pemasukan` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
   `nama_pemasukan` varchar(100) NOT NULL,
   `tgl_pemasukan` date NOT NULL,
   `total_pemasukan` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pemasukan`
@@ -333,7 +364,8 @@ INSERT INTO `pemasukan` (`id_pemasukan`, `id_user`, `nama_pemasukan`, `tgl_pemas
 (8, 1, 'Pemasukan Bulan Januari 2017', '2017-01-01', 13750000),
 (9, 1, 'Pemasukan bulan Februari 2017', '2017-02-01', 13875000),
 (10, 1, 'Pemasukan Bulan Januari 2018', '2018-01-01', 15000000),
-(11, 1, 'Pemasukan Bulan April 2018', '2018-04-01', 16125000);
+(11, 1, 'Pemasukan Bulan April 2018', '2018-04-01', 16125000),
+(12, 1, 'Pemasukan Juli 2018', '2018-07-26', 10000000);
 
 -- --------------------------------------------------------
 
@@ -341,13 +373,13 @@ INSERT INTO `pemasukan` (`id_pemasukan`, `id_user`, `nama_pemasukan`, `tgl_pemas
 -- Table structure for table `pembayaran`
 --
 
-CREATE TABLE IF NOT EXISTS `pembayaran` (
+CREATE TABLE `pembayaran` (
   `id_pembayaran` int(11) NOT NULL,
   `id_pemesanan` int(11) NOT NULL,
   `total_pembayaran` int(11) NOT NULL,
   `tgl_pembayaran` date NOT NULL,
   `kode_pembayaran` varchar(7) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pembayaran`
@@ -358,7 +390,8 @@ INSERT INTO `pembayaran` (`id_pembayaran`, `id_pemesanan`, `total_pembayaran`, `
 (2, 2, 2412000, '2018-07-16', '0234579'),
 (3, 3, 350000, '2018-07-16', '0245789'),
 (4, 4, 50000, '2018-07-16', '0123678'),
-(5, 5, 150000, '2018-07-18', '0124579');
+(5, 5, 150000, '2018-07-18', '0124579'),
+(6, 6, 300000, '2018-07-26', '2345689');
 
 -- --------------------------------------------------------
 
@@ -366,7 +399,7 @@ INSERT INTO `pembayaran` (`id_pembayaran`, `id_pemesanan`, `total_pembayaran`, `
 -- Table structure for table `pembelian`
 --
 
-CREATE TABLE IF NOT EXISTS `pembelian` (
+CREATE TABLE `pembelian` (
   `id_pembelian` int(10) NOT NULL,
   `id_user` int(11) NOT NULL,
   `id_produk` int(10) NOT NULL,
@@ -374,7 +407,7 @@ CREATE TABLE IF NOT EXISTS `pembelian` (
   `harga_total` int(50) NOT NULL,
   `id_supp` int(11) NOT NULL,
   `tgl_beli` date NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pembelian`
@@ -382,7 +415,10 @@ CREATE TABLE IF NOT EXISTS `pembelian` (
 
 INSERT INTO `pembelian` (`id_pembelian`, `id_user`, `id_produk`, `qty`, `harga_total`, `id_supp`, `tgl_beli`) VALUES
 (0, 0, 7, 0, 0, 3, '2018-07-15'),
-(4, 1, 4, 100, 7500000, 1, '2017-12-07');
+(4, 1, 4, 100, 7500000, 1, '2017-12-07'),
+(5, 1, 27, 17, 100000, 3, '2018-07-26'),
+(6, 1, 17, 9, 900000, 1, '2018-07-27'),
+(7, 1, 20, 10, 100000, 4, '2018-07-27');
 
 -- --------------------------------------------------------
 
@@ -390,7 +426,7 @@ INSERT INTO `pembelian` (`id_pembelian`, `id_user`, `id_produk`, `qty`, `harga_t
 -- Table structure for table `pemesanan`
 --
 
-CREATE TABLE IF NOT EXISTS `pemesanan` (
+CREATE TABLE `pemesanan` (
   `id_pemesanan` int(10) NOT NULL,
   `kode_pemesanan` varchar(5) NOT NULL,
   `id_user` int(11) NOT NULL,
@@ -400,7 +436,7 @@ CREATE TABLE IF NOT EXISTS `pemesanan` (
   `total_pemesanan` int(11) NOT NULL,
   `status_pemesanan` int(11) NOT NULL DEFAULT '0',
   `kode_pembayaran` varchar(7) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pemesanan`
@@ -411,7 +447,8 @@ INSERT INTO `pemesanan` (`id_pemesanan`, `kode_pemesanan`, `id_user`, `id_produk
 (2, '13678', 2, 32, 9, '2018-07-16', 2412000, 1, '0234579'),
 (3, '34679', 2, 33, 1, '2018-07-16', 350000, 1, '0245789'),
 (4, '01378', 2, 1, 1, '2018-07-16', 50000, 1, '0123678'),
-(5, '01589', 1, 1, 3, '2018-07-18', 150000, 1, '0124579');
+(5, '01589', 1, 1, 3, '2018-07-18', 150000, 1, '0124579'),
+(6, '03578', 1, 11, 2, '2018-07-26', 300000, 1, '2345689');
 
 -- --------------------------------------------------------
 
@@ -419,7 +456,7 @@ INSERT INTO `pemesanan` (`id_pemesanan`, `kode_pemesanan`, `id_user`, `id_produk
 -- Table structure for table `pengeluaran`
 --
 
-CREATE TABLE IF NOT EXISTS `pengeluaran` (
+CREATE TABLE `pengeluaran` (
   `id_pengeluaran` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
   `nama_barang` varchar(40) NOT NULL,
@@ -427,7 +464,7 @@ CREATE TABLE IF NOT EXISTS `pengeluaran` (
   `qty` int(11) NOT NULL,
   `total_harga` int(11) NOT NULL,
   `tanggal_pengeluaran` date NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pengeluaran`
@@ -499,7 +536,7 @@ INSERT INTO `pengeluaran` (`id_pengeluaran`, `id_user`, `nama_barang`, `harga_sa
 (66, 1, 'beli kardus', 5000, 10, 50000, '2018-04-01'),
 (67, 1, 'beli kresek', 20000, 1, 20000, '2018-04-01'),
 (68, 1, 'beli buble wrap', 100000, 1, 100000, '2018-04-01'),
-(69, 1, 'beli product makeup', 100000, 130, 13000000, '2018-04-01');
+(69, 1, 'beli product make up', 100000, 130, 13000000, '2018-04-01');
 
 -- --------------------------------------------------------
 
@@ -507,14 +544,14 @@ INSERT INTO `pengeluaran` (`id_pengeluaran`, `id_user`, `nama_barang`, `harga_sa
 -- Table structure for table `perubahan_modal`
 --
 
-CREATE TABLE IF NOT EXISTS `perubahan_modal` (
+CREATE TABLE `perubahan_modal` (
   `id_perubahan_modal` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
   `id_laba` int(11) NOT NULL,
   `modal_awal` int(11) NOT NULL,
   `prive` int(11) NOT NULL,
   `tanggal` date NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `perubahan_modal`
@@ -529,7 +566,7 @@ INSERT INTO `perubahan_modal` (`id_perubahan_modal`, `id_user`, `id_laba`, `moda
 -- Table structure for table `produk`
 --
 
-CREATE TABLE IF NOT EXISTS `produk` (
+CREATE TABLE `produk` (
   `id_produk` int(10) NOT NULL,
   `nama_produk` varchar(50) NOT NULL,
   `stok` int(11) NOT NULL,
@@ -538,7 +575,7 @@ CREATE TABLE IF NOT EXISTS `produk` (
   `id_kategori` int(10) NOT NULL,
   `deskripsi` varchar(255) NOT NULL,
   `gambar` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `produk`
@@ -546,7 +583,6 @@ CREATE TABLE IF NOT EXISTS `produk` (
 
 INSERT INTO `produk` (`id_produk`, `nama_produk`, `stok`, `harga_jual`, `harga_beli`, `id_kategori`, `deskripsi`, `gambar`) VALUES
 (1, 'blush on', 91, 50000, 0, 1, 'pemerah pipi', '41XA2xlxl-L__SY355_1.jpg'),
-(2, 'mascara maybeline', -4, 100000, 0, 1, 'lala', 'brosur_sidoarjo1.jpg'),
 (3, 'Barang Baru', 5, 10000, 9000, 1, 'sfjksdf sdfkjsdkf', 'brosur_sidoarjo2.jpg'),
 (4, 'Lipstik Oriflame', 344, 85000, 70000, 1, 'product baru asli dari oriflame yg sada sdasa', '18.PNG'),
 (5, 'r', 0, 1, 1, 1, 'w', 'Screenshot_(1).png'),
@@ -555,30 +591,31 @@ INSERT INTO `produk` (`id_produk`, `nama_produk`, `stok`, `harga_jual`, `harga_b
 (8, 'Cathy Doll Nude Me Eyeshadow', 5, 20000, 16000, 1, 'eyes', 'Cathy_Doll_Nude_Me_Eyeshadow.PNG'),
 (9, 'L.A. GIRL Pro Primer Eyeshadow Stick', 5, 120000, 90000, 1, 'eyes', 'L_A__GIRL_Pro_Primer_Eyeshadow_Stick.PNG'),
 (10, 'MILANI Everday Eyes Powder Eyeshadow Collection', 5, 210000, 190000, 1, 'eyes', 'MILANI_Everday_Eyes_Powder_Eyeshadow_Collection.PNG'),
-(11, 'NYX Jumbo Eye Pencil', 5, 150000, 120000, 1, 'eyes', 'NYX_Jumbo_Eye_Pencil.PNG'),
+(11, 'NYX Jumbo Eye Pencil', 3, 150000, 120000, 1, 'eyes', 'NYX_Jumbo_Eye_Pencil.PNG'),
 (12, 'Emina Moist In A Bottle Moisturizer', 5, 70000, 50000, 4, 'beauty', 'Emina_Moist_In_A_Bottle_Moisturizer.PNG'),
 (13, 'MAKE OVER Hydration Serum 33 Ml', 5, 80000, 60000, 4, 'beauty', 'MAKE_OVER_Hydration_Serum_33_Ml.PNG'),
 (14, 'Mineral Botanica Brightening Serum', 5, 60000, 40000, 4, 'beauty', 'Mineral_Botanica_Brightening_Serum.PNG'),
-(15, 'Paula''s Choice Resist Super Antioxidant Concentrat', 5, 150000, 120000, 4, 'beauty', 'Paulas_Choice_Resist_Super_Antioxidant_Concentrate_Serum_-_Trial_0_17_Oz.PNG'),
-(16, 'Paula''s Choice Skin Balancing Invisible Finish Moi', 5, 100000, 85000, 4, 'beauty', 'Paulas_Choice_Skin_Balancing_Invisible_Finish_Moisture_Gel_60_Ml.PNG'),
-(17, 'Cathy Doll AA Matte Powder Cushion Oil Control SPF', 2, 100000, 80000, 3, 'face', 'Cathy_Doll_AA_Matte_Powder_Cushion_Oil_Control_SPF_50_PA+++.PNG'),
+(15, 'Paula\'s Choice Resist Super Antioxidant Concentrat', 5, 150000, 120000, 4, 'beauty', 'Paulas_Choice_Resist_Super_Antioxidant_Concentrate_Serum_-_Trial_0_17_Oz.PNG'),
+(16, 'Paula\'s Choice Skin Balancing Invisible Finish Moi', 5, 100000, 85000, 4, 'beauty', 'Paulas_Choice_Skin_Balancing_Invisible_Finish_Moisture_Gel_60_Ml.PNG'),
+(17, 'Cathy Doll AA Matte Powder Cushion Oil Control SPF', 11, 100000, 80000, 3, 'face', 'Cathy_Doll_AA_Matte_Powder_Cushion_Oil_Control_SPF_50_PA+++.PNG'),
 (18, 'Cathy Doll Cc Cream Speed White Light Beige Spf50 ', 5, 70000, 50000, 3, 'face', 'Cathy_Doll_Cc_Cream_Speed_White_Light_Beige_Spf50_Pa+++.PNG'),
 (19, 'Cathy Doll Cc Cream Speed White Spf50 Pa+++ Sachet', 5, 150000, 125000, 3, 'face', 'Cathy_Doll_Cc_Cream_Speed_White_Spf50_Pa+++_Sachet.PNG'),
-(20, 'Mehron Celebre Pro HD Make-Up', 5, 100000, 80000, 3, 'face', 'Mehron_Celebre_Pro_HD_Make-Up.PNG'),
+(20, 'Mehron Celebre Pro HD Make-Up', 15, 100000, 80000, 3, 'face', 'Mehron_Celebre_Pro_HD_Make-Up.PNG'),
 (21, 'Milani Conceal + Perfect 2-In-1 Foundation + Conce', 5, 130000, 110000, 3, 'face', 'Milani_Conceal_+_Perfect_2-In-1_Foundation_+_Concealer.PNG'),
 (22, 'CITY COLOR Be Matte Lipstick', 5, 60000, 40000, 2, 'lips', 'CITY_COLOR_Be_Matte_Lipstick.PNG'),
 (23, 'CITY COLOR City Chic Lip Liner', 5, 60000, 50000, 2, 'lips', 'CITY_COLOR_City_Chic_Lip_Liner.PNG'),
 (24, 'GIRLACTIK Matte Lip Paint', 5, 80000, 70000, 2, 'lips', 'GIRLACTIK_Matte_Lip_Paint.PNG'),
 (25, 'JORDANA Sweet Cream Matte Liquid Lip Color', 5, 150000, 120000, 2, 'lips', 'JORDANA_Sweet_Cream_Matte_Liquid_Lip_Color.PNG'),
 (26, 'L.A. GIRL Endless Auto Lipliner', 5, 120000, 90000, 2, 'lips', 'L_A__GIRL_Endless_Auto_Lipliner.PNG'),
-(27, 'EVER GLAZE EG82304 Ultra Orchid', 5, 50000, 40000, 7, 'makeup cair', 'EVER_GLAZE_EG82304_Ultra_Orchid.PNG'),
+(27, 'EVER GLAZE EG82304 Ultra Orchid', 15, 50000, 40000, 7, 'makeup cair', 'EVER_GLAZE_EG82304_Ultra_Orchid.PNG'),
 (28, 'EVER GLAZE EG82341 I Wanna Be Your Lava', 5, 45000, 35000, 7, 'makeup cair', 'EVER_GLAZE_EG82341_I_Wanna_Be_Your_Lava.PNG'),
 (29, 'Holographic #1207 Take a Trek', 5, 70000, 60000, 7, 'makeup cair', 'Holographic_1207_Take_a_Trek.PNG'),
 (30, 'Icon Nails Gel Lacquer', 5, 150000, 120000, 7, 'makeup cair', 'Icon_Nails_Gel_Lacquer.PNG'),
 (31, 'Noir Noir Lacquers', 6, 120000, 90000, 7, 'makeup cair', 'Noir_Noir_Lacquers.PNG'),
 (32, 'BH Cosmetics Bright White - 6 Piece Brush Set With', 0, 268000, 200000, 6, 'Add a dash of flash to your makeup vanity with our Bright White 6 Piece Brush Set, a brilliant option for use at home and on the road. The multipurpose collection features must-have makeup brushes for eyes and face, including foundation, dual-fiber powder', 'brush1.jpg'),
 (33, 'BH Cosmetics Chic - 14 Piece Brush Set With Cosmet', 9, 350000, 300000, 6, 'Blush, blend, line and define with our pale pink BH Chic 14 Piece Brush Set, a collection of professional-quality brush essentials for face, eyes, and lips. The two-tone synthetic brushes can be used with liquids, creams and powders to achieve precise mak', 'brush2.jpg'),
-(34, 'Real Techniques Sculpting Set', 10, 280000, 240000, 6, 'sclupting brush set', 'brush3.jpg');
+(34, 'Real Techniques Sculpting Set', 10, 280000, 240000, 6, 'sclupting brush set', 'brush3.jpg'),
+(35, 'pensil alis', 100, 120000, 100000, 1, 'ini pensil alis', 'AURA_KANZA_CAESARIA.png');
 
 -- --------------------------------------------------------
 
@@ -586,10 +623,10 @@ INSERT INTO `produk` (`id_produk`, `nama_produk`, `stok`, `harga_jual`, `harga_b
 -- Table structure for table `role`
 --
 
-CREATE TABLE IF NOT EXISTS `role` (
+CREATE TABLE `role` (
   `id_role` int(10) NOT NULL,
   `nama_role` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `role`
@@ -605,7 +642,7 @@ INSERT INTO `role` (`id_role`, `nama_role`) VALUES
 -- Table structure for table `struk`
 --
 
-CREATE TABLE IF NOT EXISTS `struk` (
+CREATE TABLE `struk` (
   `id_struk` int(10) NOT NULL,
   `id_pembayaran` int(10) NOT NULL,
   `id_pemesanan` int(10) NOT NULL
@@ -617,12 +654,12 @@ CREATE TABLE IF NOT EXISTS `struk` (
 -- Table structure for table `supplier`
 --
 
-CREATE TABLE IF NOT EXISTS `supplier` (
+CREATE TABLE `supplier` (
   `id_supplier` int(11) NOT NULL,
   `nama` varchar(255) NOT NULL,
   `alamat` varchar(255) NOT NULL,
   `no_telp` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `supplier`
@@ -641,7 +678,7 @@ INSERT INTO `supplier` (`id_supplier`, `nama`, `alamat`, `no_telp`) VALUES
 -- Table structure for table `user`
 --
 
-CREATE TABLE IF NOT EXISTS `user` (
+CREATE TABLE `user` (
   `id` int(10) NOT NULL,
   `id_role` int(11) NOT NULL,
   `nama` varchar(255) NOT NULL,
@@ -651,7 +688,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `no_telp` int(13) NOT NULL,
   `username` varchar(10) NOT NULL,
   `password` varchar(32) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user`
@@ -659,7 +696,9 @@ CREATE TABLE IF NOT EXISTS `user` (
 
 INSERT INTO `user` (`id`, `id_role`, `nama`, `alamat`, `email`, `jenis_kelamin`, `no_telp`, `username`, `password`) VALUES
 (1, 2, 'Nafianta', 'jl Mergan Kel', 'nofalarema@gmail', 'Perempuan', 2147483647, 'nafi', '5bfb391e6148ab027d7389fed2427a86'),
-(2, 2, 'aura', 'malang', 'aurakanzaaa@gmail.com', 'Perempuan', 9879, 'ara', '636bfa0fb2716ff876f5e33854cc9648');
+(2, 2, 'aura', 'malang', 'aurakanzaaa@gmail.com', 'Perempuan', 987911, 'ara', '636bfa0fb2716ff876f5e33854cc9648'),
+(3, 2, 'tal', 'malang', 'aurakanzaaa@gmail.com', 'Perempuan', 345678, 'tal', 'c0079e0d4e801bc94bce6fa2ed9e008c'),
+(5, 2, 'kakak aja', 'kakak mana', 'kaka@gmail.com', 'Perempuan', 9999, 'kakak', '237922b3d03c24e2f178e522180c167c');
 
 -- --------------------------------------------------------
 
@@ -667,14 +706,14 @@ INSERT INTO `user` (`id`, `id_role`, `nama`, `alamat`, `email`, `jenis_kelamin`,
 -- Table structure for table `utang`
 --
 
-CREATE TABLE IF NOT EXISTS `utang` (
+CREATE TABLE `utang` (
   `id_utang` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
   `nama_barang` varchar(40) NOT NULL,
   `total_utang` int(11) NOT NULL,
   `jml_utang` int(11) NOT NULL,
   `sisa_utang` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `utang`
@@ -683,7 +722,7 @@ CREATE TABLE IF NOT EXISTS `utang` (
 INSERT INTO `utang` (`id_utang`, `id_user`, `nama_barang`, `total_utang`, `jml_utang`, `sisa_utang`) VALUES
 (0, 0, '0', 0, 0, 0),
 (3, 1, 'utang toko', 10000000, 10000000, 0),
-(4, 1, 'koi', 900000, 800000, 100000);
+(4, 1, 'lemari', 2000000, 1000000, 1000000);
 
 --
 -- Indexes for dumped tables
@@ -842,82 +881,82 @@ ALTER TABLE `utang`
 -- AUTO_INCREMENT for table `absensi`
 --
 ALTER TABLE `absensi`
-  MODIFY `id_absen` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+  MODIFY `id_absen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 --
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `cash_flow`
 --
 ALTER TABLE `cash_flow`
-  MODIFY `id_transaksi` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=87;
+  MODIFY `id_transaksi` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
 --
 -- AUTO_INCREMENT for table `gaji`
 --
 ALTER TABLE `gaji`
-  MODIFY `id_gaji` int(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `id_gaji` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `golongan`
 --
 ALTER TABLE `golongan`
-  MODIFY `id_gol` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+  MODIFY `id_gol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `kategori`
 --
 ALTER TABLE `kategori`
-  MODIFY `id_kategori` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+  MODIFY `id_kategori` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `labarugi`
 --
 ALTER TABLE `labarugi`
-  MODIFY `id_labarugi` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+  MODIFY `id_labarugi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `neraca`
 --
 ALTER TABLE `neraca`
-  MODIFY `id_neraca` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
+  MODIFY `id_neraca` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT for table `pemasukan`
 --
 ALTER TABLE `pemasukan`
-  MODIFY `id_pemasukan` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
+  MODIFY `id_pemasukan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `pembayaran`
 --
 ALTER TABLE `pembayaran`
-  MODIFY `id_pembayaran` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+  MODIFY `id_pembayaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `pembelian`
 --
 ALTER TABLE `pembelian`
-  MODIFY `id_pembelian` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+  MODIFY `id_pembelian` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `pemesanan`
 --
 ALTER TABLE `pemesanan`
-  MODIFY `id_pemesanan` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+  MODIFY `id_pemesanan` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `pengeluaran`
 --
 ALTER TABLE `pengeluaran`
-  MODIFY `id_pengeluaran` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=70;
+  MODIFY `id_pengeluaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 --
 -- AUTO_INCREMENT for table `perubahan_modal`
 --
 ALTER TABLE `perubahan_modal`
-  MODIFY `id_perubahan_modal` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `id_perubahan_modal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `produk`
 --
 ALTER TABLE `produk`
-  MODIFY `id_produk` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=35;
+  MODIFY `id_produk` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 --
 -- AUTO_INCREMENT for table `role`
 --
 ALTER TABLE `role`
-  MODIFY `id_role` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `id_role` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `struk`
 --
@@ -927,17 +966,17 @@ ALTER TABLE `struk`
 -- AUTO_INCREMENT for table `supplier`
 --
 ALTER TABLE `supplier`
-  MODIFY `id_supplier` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+  MODIFY `id_supplier` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `utang`
 --
 ALTER TABLE `utang`
-  MODIFY `id_utang` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+  MODIFY `id_utang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- Constraints for dumped tables
 --
