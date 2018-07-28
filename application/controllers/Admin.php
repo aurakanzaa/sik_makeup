@@ -177,7 +177,7 @@ class Admin extends CI_Controller {
                 $confi['source_image']=$upload['full_path'];
                 $confi['maintain_ratio']=TRUE;
                 $confi['height']=300;
-                $confi['width']=600;
+                $confi['width']=300;
 
                 $this->load->library('image_lib',$config);
                 $this->image_lib->clear();

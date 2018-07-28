@@ -37,7 +37,7 @@ $session_data = $this->session->userdata('userSession');
           <td><?php echo $key->nama_role ?></td>
           <td><?php echo $key->nama_gol ?></td>
           <td><?php echo $key->username ?></td>
-          <td><img src="<?=base_url()?>bower_components/uploads/<?=$key->foto ?>" style="width:100px;heigth:100px" class="img-responsive"></td>
+          <td><img src="<?=base_url()?>assets/img/admin/<?=$key->foto ?>" style="width:100px;heigth:100px" class="img-responsive"></td>
         
           <td>
               <?php if ($session_data['gol'] == '2' || $session_data['gol'] == '5'){?>
