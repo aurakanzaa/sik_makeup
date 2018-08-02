@@ -33,14 +33,14 @@
                           <div class="form-group">
                               <label class="col-sm-3 col-sm-3 control-label">Harga Total</label>
                               <div class="col-sm-9">
-                                  <input type="number" id="harga_total" name="harga_total" class="form-control">
+                                  <input readonly type="number" id="harga_total" name="harga_total" class="form-control">
                               </div>
                           </div>
 
                           <div class="form-group">
                               <label class="col-sm-3 col-sm-3 control-label">Harga Barang</label>
                               <div class="col-sm-9">
-                                  <input type="number" id="harga_barang" name="harga_barang" class="form-control" value="<?php echo $produk[2]->harga_beli; ?>">
+                                  <input readonly type="number" id="harga_barang" name="harga_barang" class="form-control" value="<?php echo $produk[2]->harga_beli; ?>">
                               </div>
                           </div>
 
@@ -73,7 +73,9 @@
               </div><!-- col-lg-12-->
               <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                         <div class="form-panel" style="height: 500px">
-                          <img id="gambar" src="<?php echo base_url('bower_components/uploads/'.$produk[0]->gambar) ?>">
+                          <div id="gambar" align="center">
+                            <img src="<?php echo base_url('bower_components/uploads/'.$produk[0]->gambar) ?>">
+                        </div>
                         </div>
                      </div>       
             </div><!-- /row -->

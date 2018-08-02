@@ -44,12 +44,13 @@ $session_data = $this->session->userdata('userSession');
                 async : false,
                 dataType : 'json',
                 success : function(data){
-                    //var html = '';
+                    var html = '<img class="img img-responsive" style="min-height:400px" src="<?php echo base_url()?>bower_components/uploads/'+data[0].gambar+'">';
+
                     //var harga = '<h3 class="box-title"> Nilai Raport Anda Tahun '+data[0].tahun_ajar+' / '+data[0].kode_kelas+'</h3>';
                     document.getElementById('harga_barang').value = data[0].harga_beli;
                     var one = document.getElementById('jumlah').value;
                     document.getElementById('harga_total').value = data[0].harga_beli * one;
-                    $('#harga_barang').html(html);
+                    $('#gambar').html(html);
                     //$('#tahun').html(tah);
                     //$('#cetak').html(cet);
                 }
