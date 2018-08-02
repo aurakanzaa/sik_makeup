@@ -21,6 +21,44 @@ $session_data = $this->session->userdata('userSession');
     <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/css/style.css">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/css/style-responsive.css">
     <script src="<?php echo base_url()?>assets/js/chart-master/Chart.js"></script>
+
+    <script>
+      function startCalc(){
+        interval = setInterval("calc()",1);}
+        function calc()
+          {
+            var one = document.getElementById('jumlah').value;
+            var two = document.getElementById('harga_barang').value;
+            document.getElementById('harga_total').value = two * one;
+          }
+        function stopCalc(){
+        clearInterval(interval);}
+        function startData(){
+        intervals = setInterval("getData()",1);}
+        function getData()
+          {
+            var one = document.getElementById('id_produk').value;
+            $.ajax({
+                type  : 'ajax',
+                url   : '<?php echo base_url()?>index.php/Produk/getProd/'+one ,
+                async : false,
+                dataType : 'json',
+                success : function(data){
+                    //var html = '';
+                    //var harga = '<h3 class="box-title"> Nilai Raport Anda Tahun '+data[0].tahun_ajar+' / '+data[0].kode_kelas+'</h3>';
+                    document.getElementById('harga_barang').value = data[0].harga_beli;
+                    var one = document.getElementById('jumlah').value;
+                    document.getElementById('harga_total').value = data[0].harga_beli * one;
+                    $('#harga_barang').html(html);
+                    //$('#tahun').html(tah);
+                    //$('#cetak').html(cet);
+                }
+
+            });
+          }
+          function stopData(){
+        clearInterval(intervals);}
+    </script>
   </head>
 
   <body>

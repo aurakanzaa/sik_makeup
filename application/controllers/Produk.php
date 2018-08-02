@@ -14,6 +14,11 @@ class Produk extends CI_Controller {
 		$this->load->helper('html');
 		$this->load->library('image_lib');
 	}
+
+	public function getProd($id){
+        $data=$this->produk_model->getProduk($id);;
+        echo json_encode($data);
+    }
 	public function index()
 	{		
 		    	$object['pro']=$this->produk_model->getDataProduk();
