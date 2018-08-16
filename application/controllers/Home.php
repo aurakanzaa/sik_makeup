@@ -11,6 +11,7 @@ class Home extends CI_Controller {
 		$this->load->model('admin_model');
 		$this->load->model('role_model');
         $this->load->model('golongan_model');
+        $this->load->model('pembayaran_model');
 		$this->load->helper('html');
 		$this->load->library('image_lib');
 		$this->load->model('Model_login');
@@ -26,6 +27,7 @@ class Home extends CI_Controller {
         $object['admin']=$this->admin_model->getAdmin($this->session->userdata('userSession')['id']);
         $object['role']=$this->role_model->getRole($this->session->userdata('userSession')['role']);
         $object['golongan']=$this->golongan_model->getGolongan($this->session->userdata('userSession')['id']);
+        $object['penjualan']=$this->pembayaran_model->chartPemasukan();
         $cek['status'] = array(
         		'home'=>'active',
         		'hrd'=>'',

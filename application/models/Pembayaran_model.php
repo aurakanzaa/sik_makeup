@@ -53,6 +53,12 @@ class Pembayaran_model extends CI_Model {
 		$this->db->delete('pembayaran');
 		
 	}
+	public function chartPemasukan()
+	{
+		$date=date('Y');
+		$query=$this->db->query("SELECT tgl_pembayaran,sum(total_pembayaran) as total FROM `pembayaran` where Year(tgl_pembayaran)=$date  GROUP BY MONTH(tgl_pembayaran)");
+		return $query->result();
+	}
 
 }
 

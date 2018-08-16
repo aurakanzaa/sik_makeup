@@ -37,11 +37,31 @@
             </div> -->
             <!-- PROFIL END -->
 
-            <div class="row-mt">
-          
-
-            <!-- WEATHER-2 PANEL -->
-            <div class="col-lg-4 col-md-4 col-sm-4 mb">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                  <div class="border-head">
+                    <?php foreach ($penjualan as $key){?>
+                          <h3>Penjualan Tahun <?php echo date('Y',strtotime($key->tgl_pembayaran)) ?></h3>
+                        <?php break;} ?>
+                      </div>
+                      <div class="custom-bar-chart">
+                          <ul class="y-axis">
+                              <li><span>10.000K</span></li>
+                              <li><span>8.000K</span></li>
+                              <li><span>6.000K</span></li>
+                              <li><span>4.000K</span></li>
+                              <li><span>2.000K</span></li>
+                              <li><span>0</span></li>
+                          </ul>
+                          <?php foreach ($penjualan as $key){?>
+                          <div class="bar">
+                              <div class="title"><?php echo date('M',strtotime($key->tgl_pembayaran)) ?></div>
+                              <div class="value tooltips" data-original-title="<?php echo $key->total ?>" data-toggle="tooltip" data-placement="top"><?php $per=$key->total/100000; echo $per."%" ?></div>
+                          </div>
+                        <?php } ?>
+                      </div>
+                </div>
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
               <div class="weather-2 pn">
                 <div class="weather-2-header">
                   <div class="row centered">
@@ -68,39 +88,10 @@
                     <h4><b>Golongan</b></h4>
                     <h5><?php echo $golongan[0]->nama_gol ?></h5>
                   </div>
-                  <!-- <div class="col-sm-6 col-xs-6 centered">
-                    <button class="btn btn-small btn-theme04">FULL REPORT</button>
-                  </div> -->
-                  
-
               </div>
             </div><! --/col-md-4 -->
-            </div>
-
-
-                      <!--CUSTOM CHART START -->
-                      <div class="border-head">
-                          <h3>VISITS</h3>
-                      </div>
-                      <div class="custom-bar-chart">
-                          <ul class="y-axis">
-                              <li><span>100.000</span></li>
-                              <li><span>30.000</span></li>
-                              <li><span>20.000</span></li>
-                              <li><span>10.000</span></li>
-                              <li><span>1.000</span></li>
-                              <li><span>0</span></li>
-                          </ul>
-                          <div class="bar">
-                              <div class="title">JAN</div>
-                              <div class="value tooltips" data-original-title="1000.000" data-toggle="tooltip" data-placement="top">55%</div>
-                          </div>
-                          <div class="bar ">
-                              <div class="title">FEB</div>
-                              <div class="value tooltips" data-original-title="5.000" data-toggle="tooltip" data-placement="top">50%</div>
-                          </div>
-                      </div>
-                      <!--custom chart end-->
+            </div>    
+          </div>
 					</div><!-- /row -->	
           </section>
       </section>
